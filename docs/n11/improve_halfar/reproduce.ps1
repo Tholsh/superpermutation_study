@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Theo H.
+
 param(
     [string]$Compiler = 'C:\msys64\ucrt64\bin\g++.exe',
     [string]$Python = 'C:\msys64\ucrt64\bin\python.exe'

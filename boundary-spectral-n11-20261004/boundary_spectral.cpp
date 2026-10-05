@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Theo H.
+// Distributed without warranty; see the repository LICENSE for full terms.
+
 // Exact n=11 two-terminal polynomial transfer and boundary-closed spectrum.
 // This deliberately names its restriction: fixed modules, whole required
 // cycles visited once, arbitrary cycle order and ports, fixed outside frames.
