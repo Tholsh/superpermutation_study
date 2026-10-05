@@ -9,7 +9,12 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 [`docs/n11/improve_halfar/`](docs/n11/improve_halfar/) contains reconstruction and exchange reports, including `dependency-hashes.json`, which records the original search dependencies. Experiment reports and replay scripts may still refer to word paths recorded in the import manifest.
 
-### Compression and extraction
+
+## Math
+
+You can find the writeup in `docs/n11/improve_halfar`
+
+## Compression and extraction
 
 Use the following commands in a POSIX shell (Linux, macOS, WSL, or MSYS2 Bash). Binary compression output should not be passed through older PowerShell text pipelines.
 
