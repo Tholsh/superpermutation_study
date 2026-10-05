@@ -1,6 +1,6 @@
 # Paint waste: build, run, and validate
 
-`tools/reduced_alphabet.cpp` reads one word from stdin using the digits `1` through `N`, with `1 <= N <= 9`. Whitespace is ignored. Multiple lines are concatenated into a single word; a collection of separate words must be checked one word at a time.
+`tools/reduced_alphabet.cpp` reads one word from stdin, with `1 <= N <= 13`, on a 64-bit platform. By default its alphabet is the first N characters of `123456789ABCD`. Use `-z` or `--zero-based` for the first N characters of `0123456789ABC`. Each character is one symbol; letters are uppercase. For example, zero-based N=11 uses `0123456789A`, not decimal numbers separated by spaces. Whitespace is ignored. Multiple lines are concatenated into a single word; a collection of separate words must be checked one word at a time.
 
 From the repository root, compile with GCC and C++20:
 
@@ -23,14 +23,35 @@ The archive in the last command must exist first; see the README compression exa
 ## Output and flags
 
 ```text
-paint-waste [-s] N < WORD
+paint-waste [-s] [-z|--zero-based] N < WORD
 ```
 
 By default, stdout contains the painted word, then `reduced_alphabet_words:`, then `statistics:`. All results go to stdout; errors go to stderr. The final character of each dirty length-N window is marked red using ANSI escape sequences. A dirty window repeats a symbol; a clean window contains every alphabet symbol exactly once.
 
 The reduced alphabet contains one `[depth:index]` pair per dirty window. Depth is the number of consecutive clean windows immediately preceding it (zero for a consecutive dirty window). Index retains the tool's backward repeat-distance encoding: it scans backward from the penultimate character of the preceding window of at most `2*N` symbols, excluding its first character, and emits `2*N - position` for the nearest repeat of the final symbol, or zero if absent. Positions are zero-based. These pairs use hexadecimal; all statistics use decimal. A trailing clean run has no pair and is still included in the statistics.
 
-Use `-s` for statistics only, without color codes, the word, reduced pairs, or section headings. The flag works before or after N. `-h` and `--help` print usage.
+Use `-s` for statistics only, without color codes, the word, reduced pairs, or section headings. Flags work before or after N. `-h` and `--help` print usage.
+
+For **N > 9**, output is always statistics-only. Without explicit `-s`, the tool asks `Continue? [y/N]:` through the controlling terminal before reading the word; enter `y` or `yes` to accept. Any other answer cancels with status 1 and no statistics. The answer is read separately from stdin, so piped corpus symbols are never consumed as a reply. When no terminal is available, the tool exits with an instruction to rerun with `-s`. Passing `-s` explicitly accepts statistics-only mode and avoids the prompt, which is suitable for scripts and pipes. Prompts and errors go to stderr.
+
+Statistics-only mode streams the word instead of retaining it. Exact coverage uses one bit per required permutation: roughly 4.8 MiB at N=11, 57.1 MiB at N=12, and 742.3 MiB at N=13, plus small input buffers. Allocation or input failures exit with status 1.
+
+```powershell
+# Same valid N=3 word relabeled from 123 to 012.
+'012010210' | ./paint-waste.exe -z -s 3
+# Validate a zero-based N=11 word; explicit -s avoids the confirmation prompt.
+Get-Content words/11/superpermutation-11-43930624.txt | ./paint-waste.exe -z -s 11
+```
+
+The second command requires an extracted word. For a compressed word in a POSIX shell:
+
+```sh
+xz -dc words/11/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
+```
+
+The N=3 example reports length 9, six distinct permutations, none missing, and `valid_superpermutation: 1`. Changing labels does not change coverage statistics or reduced pairs; painted output retains the selected labels.
+
+The archived N=11 example above was checked with `-z -s 11`: length `43930624`, distinct permutations `39916800`, missing permutations `0`, repeated permutation windows `18816`, and `valid_superpermutation: 1`.
 
 ## Statistics
 
@@ -89,4 +110,4 @@ With Python and GCC available, run from the repository root:
 python tests/test_reduced_alphabet.py
 ```
 
-The checks compile into a temporary directory, compare coverage with an independent permutation-set oracle, validate the corpus example, and check short/default output agreement, whitespace, invalid input, and clean-run depths above 255.
+The checks compile into a temporary directory, compare both alphabets with independent window-set oracles, validate the N=5 corpus example, and check N=10 through N=13, consent without a terminal, stream-buffer boundaries, short/default output agreement, whitespace, invalid input, and clean-run depths above 255.
