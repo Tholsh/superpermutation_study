@@ -1,0 +1,50 @@
+﻿[
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\search\\course_exchange.cpp",
+        "Hash":  "0539F75365CDDE5B2DB8DE9F4DC3EDB2ED5B0A7BA86726659C10EF9C12380ACB"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\boundary-spectral-n11-20261004\\coupled_cycle_search.cpp",
+        "Hash":  "AB7E2CAEAB7466DBAF04B54D28902803F222D53884F1B0DBCF27186543C36C8C"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\boundary-spectral-n11-20261004\\phase_cut_spectral.cpp",
+        "Hash":  "67A3B57E5A4A34052BC9CA6DF396985EFE1BBE222E60D4DE6DFC623357689BAC"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\boundary-spectral-n11-20261004\\boundary_spectral.cpp",
+        "Hash":  "090C452AC025FB09048AC099FEDF7F8A08E0D66252459A8B1FD18C45D1389711"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\boundary-spectral-n11-20261004\\construct.cpp",
+        "Hash":  "D459951CC8AE7555360E09E23C000DBD93F061F3ED133369896F1CB26D524A4E"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\data\\n11\\rows.txt.xz",
+        "Hash":  "84DF53FDA07F6DFB122FA015F6D7A10BF7A1C0B19485EA1D76C9B30D5A74054E"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\data\\n11\\circles.txt",
+        "Hash":  "FE9B9BC85C7529244B3CE391594B1696AF89B05B482521C13FE99332D127C5E0"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\tools\\verification\\literal_check.cpp",
+        "Hash":  "F46871217B9B693F3648F4CE085E24317942C4BBD2AD3DA67DB73250DD325CAB"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\tools\\verification\\verify_standalone.cpp",
+        "Hash":  "B8D79C7983E5E44ECD5E4D71ACF6C59F28C44EAD8AE6FB60842AB492AFBBED27"
+    },
+    {
+        "Path":  "C:\\Users\\Theo\\Documents\\Programs\\superpermutation_study\\tools\\verification\\verify_sorted.cpp",
+        "Hash":  "E14547F1DA171FAB32EB407900981CAC6D9B7BDCCA5B0A6E0B1B7010A26F0905"
+    },
+    {
+        "Path":  "C:\\msys64\\ucrt64\\bin\\g++.exe",
+        "Hash":  "C230499B40965363B9E6B3E43E318D6B4022F3EF04DC08B205C1FA6DC0FCC801"
+    },
+    {
+        "Path":  "C:\\msys64\\ucrt64\\bin\\python.exe",
+        "Hash":  "F109DEC1C9247998518C227AD80607B34689AB906F30D22EF330D042E7315149"
+    }
+]

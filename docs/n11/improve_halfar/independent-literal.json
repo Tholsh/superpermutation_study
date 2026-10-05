@@ -1,0 +1,1 @@
+{"n":11,"alphabet":"0123456789A","normalization":"discard exactly one optional final LF","final_lf_present":false,"length":43930624,"permutation_occurrences":39935616,"distinct_permutations":39916800,"required_permutations":39916800,"missing_permutations":0,"extra_occurrences":18816,"load_seconds":0.0178644,"scan_seconds":1.02856}

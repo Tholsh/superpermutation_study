@@ -1,0 +1,12 @@
+﻿{
+    "success":  true,
+    "started_local":  "2026-10-04T20:11:50.9274994-04:00",
+    "completed_local":  "2026-10-04T20:13:24.5406262-04:00",
+    "total_seconds":  93.6141303,
+    "working_directory":  "C:\\Users\\Theo\\AppData\\Local\\Temp\\course-exchange-reproduction-3c6a701841e14280bd021d1959d07263",
+    "candidate_path":  "C:\\Users\\Theo\\AppData\\Local\\Temp\\course-exchange-reproduction-3c6a701841e14280bd021d1959d07263\\output\\global-phase-n11-43930624.txt",
+    "input_sha256":  "784c892b81283ece13f5b1ef8c49d13b0bcb4d3c1ec49882e5593f034e86b596",
+    "output_sha256":  "0f3b2dcf607aaf3e7985c9daf2d87c07f8947522490dfea90b05a90c7fd5aa6b",
+    "output_bytes":  43930624,
+    "mode":  "--global-all-phases"
+}
