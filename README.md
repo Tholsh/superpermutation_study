@@ -39,7 +39,7 @@ For another alphabet size, set the delta distance to that size. `xz -t archive.t
 
 ## Paint waste
 
-[`tools/reduced_alphabet.cpp`](tools/reduced_alphabet.cpp) builds the `paint-waste` tool. It reads a word from standard input, ignores whitespace, and supports alphabets `1` through `N` for `1 <= N <= 9`.
+[`tools/reduced_alphabet.cpp`](tools/reduced_alphabet.cpp) builds the `paint-waste` tool. It reads a word from standard input, ignores whitespace, and supports `1 <= N <= 13` on a 64-bit platform. Its default labels are `123456789ABCD`; `-z` / `--zero-based` selects `0123456789ABC`. Use the first N characters of the selected alphabet, with uppercase letters.
 
 For each length-`N` window, it marks the final character red if the window contains repeated symbols. It prints the colored word, reduced-alphabet `[depth:index]` pairs (in hexadecimal), and then decimal statistics to stdout. Statistics include length, clean/dirty windows and runs, distinct/missing permutations, and binary `valid_superpermutation` coverage. Use `-s` to print only statistics. See the [full run guide and field definitions](docs/reduced_alphabet.md).
 
@@ -65,6 +65,14 @@ valid_superpermutation: 1
 
 Validity `1` means all `N!` distinct permutations occur. A completed analysis exits successfully even when validity is `0`; inspect that field when validating a word.
 
+For the zero-based version of the same valid word:
+
+```powershell
+'012010210' | ./paint-waste.exe -z -s 3
+```
+
+Above N=9, the tool always uses statistics-only output. Without `-s`, it asks for confirmation through the terminal; explicit `-s` accepts that mode without prompting. If no terminal is available, rerun with `-s`. Large words are streamed; exact coverage at N=13 needs about 742 MiB of RAM. See the [full run guide](docs/reduced_alphabet.md) for alphabet and confirmation details.
+
 On Linux/macOS with GCC:
 
 ```sh
@@ -80,7 +88,13 @@ xz -k -T1 --check=sha256 --delta=dist=5 --lzma2=preset=9,dict=256MiB words/5/153
 xz -dc words/5/153-recursive.txt.xz | ./paint-waste 5
 ```
 
-`-dc` decompresses to stdout and preserves the archive. Paint waste supports only `N <= 9`; the N=11 course-exchange program takes a word filename and needs extraction first.
+`-dc` decompresses to stdout and preserves the archive. To validate a zero-based N=11 corpus word directly:
+
+```sh
+xz -dc words/11/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
+```
+
+The N=11 course-exchange program takes a word filename and needs extraction first.
 
 ## Course exchange search
 

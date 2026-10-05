@@ -1,6 +1,7 @@
 """Compile and check paint-waste against an independent window-set oracle."""
 import itertools
 import math
+import os
 from pathlib import Path
 import random
 import subprocess
@@ -24,11 +25,16 @@ class PaintWasteTests(unittest.TestCase):
         cls.directory.cleanup()
 
     def run_word(self, word, *args):
+        # Disconnect the controlling terminal so prompt tests never read from
+        # the person running this suite. Word input still uses its own pipe.
+        terminal_options = ({"creationflags": subprocess.DETACHED_PROCESS}
+                            if os.name == "nt" else {"start_new_session": True})
         return subprocess.run([str(self.binary), *map(str, args)], input=word,
-                              text=True, capture_output=True)
+                              text=True, capture_output=True, timeout=15,
+                              **terminal_options)
 
-    def stats(self, word, n):
-        result = self.run_word(word, "-s", n)
+    def stats(self, word, n, *flags):
+        result = self.run_word(word, "-s", n, *flags)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stderr, "")
         self.assertNotIn("\x1b", result.stdout)
@@ -83,8 +89,56 @@ class PaintWasteTests(unittest.TestCase):
         self.assertEqual(stats["distinct_permutations"], 120)
         self.assertEqual(stats["valid_superpermutation"], 1)
 
+    def test_zero_based_labels_and_paint(self):
+        self.assertEqual(self.stats("012010210", 3, "-z"), self.stats("123121321", 3))
+        self.assertEqual(self.stats("012010210", 3, "--zero-based"), self.stats("123121321", 3))
+        result = self.run_word("012010210", "-z", 3)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(result.stdout.startswith("01201\x1b[31m0\x1b[0m210\n"))
+        self.assertIn("[3:3]", result.stdout)
+        self.assertEqual(self.stats("000", 1, "-z")["valid_superpermutation"], 1)
+        for word in ["123", "01a", "012A"]:
+            self.assertNotEqual(self.run_word(word, "-z", "-s", 3).returncode, 0)
+
+    def test_zero_based_oracle(self):
+        rng = random.Random(123)
+        for n in range(1, 7):
+            alphabet = "012345"[:n]
+            word = "".join(rng.choice(alphabet) for _ in range(150))
+            windows = [word[i:i+n] for i in range(len(word)-n+1)]
+            clean = [w for w in windows if len(set(w)) == n]
+            stats = self.stats(word, n, "-z")
+            self.assertEqual(stats["distinct_permutations"], len(set(clean)))
+            self.assertEqual(stats["clean"], len(clean))
+            self.assertEqual(stats["missing_permutations"], math.factorial(n)-len(set(clean)))
+
+    def test_large_alphabets_statistics_only(self):
+        for n in [10, 11, 12, 13]:
+            for alphabet, flags in [("0123456789ABC", ["-z"]), ("123456789ABCD", [])]:
+                stats = self.stats(alphabet[:n], n, *flags)
+                self.assertEqual(stats["length"], n)
+                self.assertEqual(stats["clean"], 1)
+                self.assertEqual(stats["required_permutations"], math.factorial(n))
+                self.assertEqual(stats["missing_permutations"], math.factorial(n)-1)
+                self.assertEqual(stats["valid_superpermutation"], 0)
+
+    def test_large_alphabet_requires_consent_without_terminal(self):
+        result = self.run_word("0123456789", "-z", 10)
+        self.assertEqual(result.returncode, 1)
+        self.assertEqual(result.stdout, "")
+        self.assertIn("rerun with -s", result.stderr)
+
+    def test_stream_buffer_boundary(self):
+        stats = self.stats("12" * 40000, 2)
+        self.assertEqual(stats["length"], 80000)
+        self.assertEqual(stats["clean"], 79999)
+        self.assertEqual(stats["distinct_permutations"], 2)
+        self.assertEqual(stats["repeated_permutation_windows"], 79997)
+        self.assertEqual(stats["valid_superpermutation"], 1)
+
     def test_rejected_arguments_and_input(self):
-        for args in [[], [0], [10], ["3foo"], [3, "--unknown"], ["-s", "-s", 3]]:
+        for args in [[], [0], [14], ["3foo"], [3, "--unknown"], ["-s", "-s", 3],
+                     ["-z", "--zero-based", 3]]:
             self.assertNotEqual(self.run_word("123", *args).returncode, 0)
         for word in ["124", "120", "12x"]:
             self.assertNotEqual(self.run_word(word, "-s", 3).returncode, 0)
