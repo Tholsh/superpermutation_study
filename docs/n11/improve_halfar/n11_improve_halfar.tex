@@ -1,0 +1,75 @@
+% !TeX program = lualatex
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+
+\begin{document}
+
+\section{Starting-phase optimization}
+
+Starting from the length-$43{,}930{,}628$ word in PR~\#5, we obtained
+a verified $11$-symbol superpermutation of length $43{,}930{,}624$.
+
+We retained Jay Pantone's $2{,}800$ closed trails, their cyclic
+transition sequences, and their order in the source word.
+We changed only their starting phases.
+
+A starting phase specifies a position in the periodic spelling
+of a closed trail, including which constituent cycle is entered
+and the position within that cycle. From this position, we follow
+the fixed cyclic spelling until every permutation assigned to
+the trail has appeared as a complete window. This determines
+the shortest coverage-preserving opening for that position.
+The portion preceding the chosen start is encountered after
+wrapping around; it is not discarded.
+
+For trail $i$, let $c_i$ be its period length and $P_i$ its set
+of admitted starting positions. For $p\in P_i$, define:
+\[
+h_i(p)=\text{opened length}-c_i,
+\]
+and let $F_i(p)$ and $T_i(p)$ be its first and last
+$11$-symbol windows. Let $o(a,b)$ denote the maximal directed
+suffix--prefix overlap between $a$ and $b$.
+
+The assembled length is
+\[
+L=
+\sum_{i=1}^{2800}c_i
++\sum_{i=1}^{2800}h_i(p_i)
+-\sum_{i=1}^{2799}
+o\!\left(T_i(p_i),F_{i+1}(p_{i+1})\right).
+\]
+We minimize this exactly by dynamic programming:
+\[
+D_1(p)=h_1(p),
+\qquad
+D_{i+1}(q)=h_{i+1}(q)
++\min_{p\in P_i}
+\left[D_i(p)-o\!\left(T_i(p),F_{i+1}(q)\right)\right].
+\]
+Here $D_i(p)$ is the minimum accumulated opening adjustment
+minus overlaps for the first $i$ trails, ending at opening $p$.
+
+We admitted every permutation-window start assigned to its
+trail: $39{,}916{,}800$ assigned occurrences plus $18{,}816$
+additional occurrences, giving $39{,}935{,}616$ candidates.
+One opening was selected per trail. Exact suffix--prefix
+buckets evaluated the recurrence without constructing dense
+all-pairs overlap matrices.
+
+Each opening preserves its assigned permutation set, and exact
+overlap joins preserve the opened words as contiguous substrings.
+The assigned sets partition $S_{11}$, so coverage is retained.
+
+The result uses nine fewer opening characters but removes five
+fewer characters through overlap, saving four characters overall.
+Three independent full-word checkers confirmed all $11!$
+permutations, with none missing.
+
+This is a joint starting-phase optimization of the inherited
+construction, not a relocation of trails or a new standalone
+all-$n$ construction.
+
+\end{document}
