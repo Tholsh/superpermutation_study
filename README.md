@@ -6,17 +6,6 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 [`words/`](words/) groups words by alphabet size, from `5` through `13`. Filenames generally record the word length and sometimes the construction or author. Some files contain collections of words; others are compressed as `.gz`, `.xz`, or `.zip`. Tools that read stdin can consume a decompression pipe; tools that take a filename need an extracted file.
 
-Distinct words imported from the boundary-spectral experiments are archived once in `words/11/`. `words/11/imported-words.json` records their hashes and original paths. Unverified candidates are kept separately in `words/11/candidates/`; they should not be treated as verified superpermutations.
-
-The corpus also includes word submissions from all six open pull requests to [jaypantone/superperm-upper-43-80](https://github.com/jaypantone/superperm-upper-43-80/pulls), checked on October 4, 2026. [`words/pull-request-imports.json`](words/pull-request-imports.json) records pinned commits, source blob hashes, word hashes, and which submissions were already present. Submitted xz archives retain their original compression; plain-text submissions are compressed with the settings below, using their alphabet size as the delta distance. Import checks cover archive integrity, alphabet, and length; they do not independently verify permutation coverage.
-
-| Alphabet size | Newly imported length | Pull request |
-| --- | --- | --- |
-| 9 | 408,731 | [#1](https://github.com/jaypantone/superperm-upper-43-80/pull/1) |
-| 10 | 4,034,873 | [#3](https://github.com/jaypantone/superperm-upper-43-80/pull/3) |
-| 11 | 43,930,668 | [#4](https://github.com/jaypantone/superperm-upper-43-80/pull/4) |
-| 12 | 522,745,538 | [#5](https://github.com/jaypantone/superperm-upper-43-80/pull/5) |
-| 13 | 6,747,918,058 | [#5](https://github.com/jaypantone/superperm-upper-43-80/pull/5) |
 
 [`docs/n11/improve_halfar/`](docs/n11/improve_halfar/) contains reconstruction and exchange reports, including `dependency-hashes.json`, which records the original search dependencies. Experiment reports and replay scripts may still refer to word paths recorded in the import manifest.
 
