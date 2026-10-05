@@ -1,11 +1,11 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.10.4)  4 OCT 2026 20:48
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.10.4)  4 OCT 2026 21:34
  restricted system commands enabled.
  file:line:error style messages enabled.
-**.latex-build docs/n11/improve_halfar/n11_improve_halfar.tex
+**.latex-build n11_improve_halfar.tex
 
 ! Emergency stop.
 <*> .latex-build 
-                 docs/n11/improve_halfar/n11_improve_halfar.tex
+                 n11_improve_halfar.tex
 
 Here is how much of LuaTeX's memory you used:
  5 strings out of 476081

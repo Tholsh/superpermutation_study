@@ -12,7 +12,7 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 ## Math
 
-You can find the writeup in `docs/n11/improve_halfar`
+You can find the writeup in `docs/n11/improve_halfar/math`
 
 ## Compression and extraction
 
