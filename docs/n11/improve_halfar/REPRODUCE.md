@@ -10,16 +10,24 @@ The repository now includes all source and model files needed to reproduce the r
 | `boundary-spectral-n11-20261004/coupled_cycle_search.cpp` | Coupled course routines. |
 | `boundary-spectral-n11-20261004/phase_cut_spectral.cpp` | Course phase routines. |
 | `boundary-spectral-n11-20261004/boundary_spectral.cpp` | Model and boundary routines. |
-| `boundary-spectral-n11-20261004/construct.cpp` | Pinned upstream constructor helpers. |
+| `boundary-spectral-n11-20261004/construct.cpp` | Constructor and common tuple/row helpers. |
 | `data/n11/rows.txt.xz` | Pinned model rows, compressed from 6,422,995 to 375,940 bytes. |
 | `data/n11/circles.txt` | Matching connector circles. |
 | `tools/verification/literal_check.cpp` | Literal permutation coverage checker. |
 | `tools/verification/verify_standalone.cpp` | Independent inversion-rank checker. |
 | `tools/verification/verify_sorted.cpp` | Independent packed-window sorting checker. |
 
-Paths above are relative to the repository root. [local-dependencies.json](local-dependencies.json) pins their SHA-256 hashes. [dependency-hashes.json](dependency-hashes.json) preserves the historical external paths and hashes; those paths are no longer required. The only change to the imported optimizer library is making `boundary_spectral.cpp` include the local `construct.cpp`. The constructor helpers and model data retain their original contents.
+Paths above are relative to the repository root. [local-dependencies.json](local-dependencies.json) pins the current source and data hashes. [dependency-hashes.json](dependency-hashes.json) preserves the historical external paths and hashes; those paths are no longer required. The optimizer and four library sources have been refactored for readability; the model data retains its original contents.
 
 The library folder contains only its four required C++ sources. Old experiment directories, replay scripts, binaries, and duplicate input archives have been removed. Relevant reconstruction and optimization evidence remains in this documentation folder; words remain in the corpus.
+
+## Reading the optimizer
+
+`course_exchange.cpp` separates inventory construction (`buildCourseInventory`), literal reconstruction (`reconstructCourses`), and search dispatch through `SearchMode`. Search functions cover single openings, nonadjacent swaps, adjacent pairs, fixed-order global openings, and local course windows. Extra-copy coverage policy belongs to each `LiteralCourse`.
+
+In the libraries, `RowModel` loads row successors and connector modules; `CoursePhaseModel` enumerates constituent-cycle openings; `CoupledCourses` combines those openings into a subset dynamic program. A **course** is a closed row-successor cycle; a **module** groups courses joined by connector circles; a **port** is a possible opening. A **pad** is the number of symbols added beyond a period to retain assigned permutation coverage. When extra copies permit omitting a suffix, the optimizer's pad can be negative. Seam overlap subtracts symbols from the joined word's length. Source comments explain the boundary-key encoding, compressed state indexing, coverage-preserving cuts, cost recurrence, and literal traceback.
+
+The October 4, 2026 refactor was checked by building all five standalone programs, running the existing 20-case boundary controls, checking sparse/dense/coupled recurrence agreement and literal witness costs, and comparing the original and refactored reconstruction reports byte for byte. The complete reproduction again produced length **43,930,624**, with SHA-256 `0f3b2dcf607aaf3e7985c9daf2d87c07f8947522490dfea90b05a90c7fd5aa6b`; all three independent checkers found all **39,916,800** permutations. Disposable validation code and generated repository run reports were removed afterward; no test infrastructure was added for this refactor.
 
 ## Run the complete reproduction
 

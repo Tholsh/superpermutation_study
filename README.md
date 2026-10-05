@@ -47,7 +47,7 @@ For another alphabet size, set the delta distance to that size. `xz -t archive.t
 
 [`tools/reduced_alphabet.cpp`](tools/reduced_alphabet.cpp) builds the `paint-waste` tool. It reads a word from standard input, ignores whitespace, and supports alphabets `1` through `N` for `1 <= N <= 9`.
 
-For each length-`N` window, it marks the final character red if the window contains repeated symbols. It prints the colored word to stdout and statistics to stderr: clean/dirty window counts, longest dirty run, and reduced-alphabet `[depth:index]` pairs (in hexadecimal). A clean window is a permutation; this tool does not check that every distinct permutation is present.
+For each length-`N` window, it marks the final character red if the window contains repeated symbols. It prints the colored word, reduced-alphabet `[depth:index]` pairs (in hexadecimal), and then decimal statistics to stdout. Statistics include length, clean/dirty windows and runs, distinct/missing permutations, and binary `valid_superpermutation` coverage. Use `-s` to print only statistics. See the [full run guide and field definitions](docs/reduced_alphabet.md).
 
 Run these commands from the repository root with a C++20 compiler such as GCC. In PowerShell with MinGW GCC:
 
@@ -55,6 +55,21 @@ Run these commands from the repository root with a C++20 compiler such as GCC. I
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste.exe
 Get-Content words/5/153-recursive.txt | ./paint-waste.exe 5
 ```
+
+A concrete coverage check, showing four fields from the statistics-only output:
+
+```powershell
+'123121321' | ./paint-waste.exe -s 3 | Select-String '^(length|distinct_permutations|missing_permutations|valid_superpermutation):'
+```
+
+```text
+length: 9
+distinct_permutations: 6
+missing_permutations: 0
+valid_superpermutation: 1
+```
+
+Validity `1` means all `N!` distinct permutations occur. A completed analysis exits successfully even when validity is `0`; inspect that field when validating a word.
 
 On Linux/macOS with GCC:
 

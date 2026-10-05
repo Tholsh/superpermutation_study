@@ -7,6 +7,14 @@ paint-waste.exe
 *.lib
 *.pdb
 *.ilk
+
+# LaTeX preview output.
+**/.latex-build/
+*.aux
+*.dvi
+*.synctex
+*.synctex.gz
+/docs/n11/improve_halfar/n11_improve_halfar.log
 /boundary-spectral-n11-20261004/**/*.nibbles
 /boundary-spectral-n11-20261004/**/*.i128
 /boundary-spectral-n11-20261004/**/*.u8
