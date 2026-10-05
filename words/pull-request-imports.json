@@ -1,0 +1,187 @@
+{
+  "repository": "https://github.com/jaypantone/superperm-upper-43-80",
+  "checked_date": "2026-10-04",
+  "scope": "All open pull requests at time of import; current head snapshots",
+  "words": [
+    {
+      "archive": "words/11/superpermutation-11-43930624.txt.xz",
+      "n": 11,
+      "symbols": 43930624,
+      "alphabet": "0123456789A",
+      "word_sha256": "0f3b2dcf607aaf3e7985c9daf2d87c07f8947522490dfea90b05a90c7fd5aa6b",
+      "status": "already present",
+      "source_repository": "Tholsh/superperm-upper-43-80",
+      "source_commit": "71a982cce98d515ee2c3ad34cfc1cfe6198d4e5d",
+      "source_path": "words/11/superpermutation-11-43930624.txt.xz",
+      "source_git_blob_sha1": "b822b8cb506bc96f0fada817cbb629eabb509b02",
+      "pull_requests": [
+        {
+          "number": 6,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/6",
+          "title": "superpermutation for n=11 symbols of length 43930624",
+          "head_commit": "71a982cce98d515ee2c3ad34cfc1cfe6198d4e5d"
+        },
+        {
+          "number": 2,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/2",
+          "title": "Shorter word for n=11 superpermutation",
+          "head_commit": "71a982cce98d515ee2c3ad34cfc1cfe6198d4e5d"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    },
+    {
+      "archive": "words/11/superpermutation-11-43930678.txt.xz",
+      "n": 11,
+      "symbols": 43930678,
+      "alphabet": "0123456789A",
+      "word_sha256": "6b8231e6c115dbee2df2847b3f57cc4a78f8ad459f8a970bf2d7aaa0a4c0486c",
+      "status": "already present",
+      "source_repository": "Tholsh/superperm-upper-43-80",
+      "source_commit": "71a982cce98d515ee2c3ad34cfc1cfe6198d4e5d",
+      "source_path": "words/11/superpermutation-11-43930678.txt.xz",
+      "source_git_blob_sha1": "0211dcc2c8a8c90bd98f1b989f3244974e481fc5",
+      "pull_requests": [
+        {
+          "number": 6,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/6",
+          "title": "superpermutation for n=11 symbols of length 43930624",
+          "head_commit": "71a982cce98d515ee2c3ad34cfc1cfe6198d4e5d"
+        },
+        {
+          "number": 2,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/2",
+          "title": "Shorter word for n=11 superpermutation",
+          "head_commit": "71a982cce98d515ee2c3ad34cfc1cfe6198d4e5d"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    },
+    {
+      "archive": "words/11/superpermutation-11-43930628.txt.xz",
+      "n": 11,
+      "symbols": 43930628,
+      "alphabet": "0123456789A",
+      "word_sha256": "784c892b81283ece13f5b1ef8c49d13b0bcb4d3c1ec49882e5593f034e86b596",
+      "status": "already present",
+      "source_repository": "jhalfar/superperm-upper-43-80",
+      "source_commit": "e5f03e2f2ff375be1821bcdf499e2aeada3c082a",
+      "source_path": "words/11/superpermutation-11-43930628.txt.xz",
+      "source_git_blob_sha1": "11905b601a9550154b6d0135a815523e7c4e888c",
+      "pull_requests": [
+        {
+          "number": 5,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/5",
+          "title": "Shorter words for n=11 (43,930,628), n=12 (522,745,538) and n=13 (6,747,918,058)",
+          "head_commit": "e5f03e2f2ff375be1821bcdf499e2aeada3c082a"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    },
+    {
+      "archive": "words/12/superpermutation-12-522745538.txt.xz",
+      "n": 12,
+      "symbols": 522745538,
+      "alphabet": "0123456789AB",
+      "word_sha256": "e5afe06c1c944f8585cfa0d83f7a591c72bc47044b122675a2e74688a76ef7a5",
+      "status": "imported",
+      "source_repository": "jhalfar/superperm-upper-43-80",
+      "source_commit": "e5f03e2f2ff375be1821bcdf499e2aeada3c082a",
+      "source_path": "words/12/superpermutation-12-522745538.txt.xz",
+      "source_git_blob_sha1": "e033ea4ea9d327f7dbcb278261285d676e7ded41",
+      "pull_requests": [
+        {
+          "number": 5,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/5",
+          "title": "Shorter words for n=11 (43,930,628), n=12 (522,745,538) and n=13 (6,747,918,058)",
+          "head_commit": "e5f03e2f2ff375be1821bcdf499e2aeada3c082a"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    },
+    {
+      "archive": "words/13/superpermutation-13-6747918058.txt.xz",
+      "n": 13,
+      "symbols": 6747918058,
+      "alphabet": "0123456789ABC",
+      "word_sha256": "566b45cb04752e7d27da43f58da9b6375953a0fa015385c2bdf8630d89931596",
+      "status": "imported",
+      "source_repository": "jhalfar/superperm-upper-43-80",
+      "source_commit": "e5f03e2f2ff375be1821bcdf499e2aeada3c082a",
+      "source_path": "words/13/superpermutation-13-6747918058.txt.xz",
+      "source_git_blob_sha1": "a84673e4562074a967fd6f838295337454a7e85f",
+      "pull_requests": [
+        {
+          "number": 5,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/5",
+          "title": "Shorter words for n=11 (43,930,628), n=12 (522,745,538) and n=13 (6,747,918,058)",
+          "head_commit": "e5f03e2f2ff375be1821bcdf499e2aeada3c082a"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    },
+    {
+      "archive": "words/11/superpermutation-11-43930668.txt.xz",
+      "n": 11,
+      "symbols": 43930668,
+      "alphabet": "0123456789A",
+      "word_sha256": "55391b67b4d74caee18b9682c34c957533545f24df07fafb3f8f131a1f60d380",
+      "status": "imported",
+      "source_repository": "rumstd/superperm-upper-43-80_fork",
+      "source_commit": "5f42413fc63192e9ed03d6858201b089275ed764",
+      "source_path": "words/11/superpermutation-11-43930668.txt.xz",
+      "source_git_blob_sha1": "2b99a6d0db315606184830d9c3699d5c2341a731",
+      "pull_requests": [
+        {
+          "number": 4,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/4",
+          "title": "superpermutation for n=11 symbols of length 43930668",
+          "head_commit": "5f42413fc63192e9ed03d6858201b089275ed764"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    },
+    {
+      "archive": "words/10/superpermutation-10-4034873.txt.xz",
+      "n": 10,
+      "symbols": 4034873,
+      "alphabet": "0123456789",
+      "word_sha256": "37b55c2c717c066eb84ffd30bb8d34e6c524e827c5e5e6f2a667189840539b43",
+      "status": "imported",
+      "source_repository": "rumstd/superperm-upper-43-80_fork",
+      "source_commit": "b03803ebd7ded438a0193bc8e6ca6eb9e22a3be8",
+      "source_path": "words/10/superperm10_4034873.txt",
+      "source_git_blob_sha1": "17403dd243b14032293c433bb789766ed85ff85e",
+      "pull_requests": [
+        {
+          "number": 3,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/3",
+          "title": "superpermutation for n=10 symbols of length 4034873",
+          "head_commit": "b03803ebd7ded438a0193bc8e6ca6eb9e22a3be8"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    },
+    {
+      "archive": "words/9/superpermutation-9-408731.txt.xz",
+      "n": 9,
+      "symbols": 408731,
+      "alphabet": "012345678",
+      "word_sha256": "1ce7fb2e5691f34a3df3ea5cc72c08b7110bef5e78a3eb19b2604c9087d7a150",
+      "status": "imported",
+      "source_repository": "rumstd/superperm-upper-43-80_fork",
+      "source_commit": "bed0469a3bb201a35e5c8af277ba1e02076a4887",
+      "source_path": "words/9/superperm9_408731.txt",
+      "source_git_blob_sha1": "238a5bb2523c7b3c112e819a8a49b0d2faae3b1b",
+      "pull_requests": [
+        {
+          "number": 1,
+          "url": "https://github.com/jaypantone/superperm-upper-43-80/pull/1",
+          "title": "superpermutation for n=9 symbols of length 408731",
+          "head_commit": "bed0469a3bb201a35e5c8af277ba1e02076a4887"
+        }
+      ],
+      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+    }
+  ]
+}

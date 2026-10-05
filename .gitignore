@@ -1,0 +1,20 @@
+paint-waste.exe
+*.exe
+*.dll
+*.o
+*.obj
+*.a
+*.lib
+*.pdb
+*.ilk
+/boundary-spectral-n11-20261004/**/*.nibbles
+/boundary-spectral-n11-20261004/**/*.i128
+/boundary-spectral-n11-20261004/**/*.u8
+
+# Keep N > 10 superpermutations compressed.
+/words/1[1-9]/**/*.txt
+/words/[2-9][0-9]/**/*.txt
+/words/[1-9][0-9][0-9]*/**/*.txt
+superpermutation-1[1-9]-*.txt
+superpermutation-[2-9][0-9]-*.txt
+superpermutation-[1-9][0-9][0-9]*-*.txt
