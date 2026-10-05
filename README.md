@@ -6,7 +6,7 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 Our software is free software under the **GNU General Public License, version 3 or later (GPL-3.0-or-later)**. You may use, study, modify, and redistribute it under those terms. Distributed derivatives must preserve the GPL freedoms and provide the corresponding source as required by the license. It comes without warranty. See [LICENSE](LICENSE) for the full terms.
 
-Imported code retains its upstream terms and attribution; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Corpus words and imported documents retain their authorship and applicable upstream terms; this software license does not relicense those third-party materials.
+Imported code retains its upstream terms and attribution; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Corpus words and imported documents retain their authorship.
 
 ## Corpus
 
