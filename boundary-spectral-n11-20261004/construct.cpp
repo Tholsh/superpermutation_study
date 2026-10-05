@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
+// Derived from jaypantone/superperm-upper-43-80, commit c8fb7ffd.
+// Modified locally for readability; see ../THIRD_PARTY_NOTICES.md.
 #include <algorithm>
 #include <array>
 #include <chrono>

@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Theo H.
+// Distributed without warranty; see the repository LICENSE for full terms.
+
 // Expanded n=11 boundary family: every row's assigned-cycle starting phase is
 // an allowed cut, not only the row head. Exact occupation is kept by a minimal
 // wrapping prefix. Whole required cycles are still visited once; modules and

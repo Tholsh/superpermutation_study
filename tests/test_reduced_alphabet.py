@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Theo H.
+
 """Compile and check paint-waste against an independent window-set oracle."""
 import itertools
 import math

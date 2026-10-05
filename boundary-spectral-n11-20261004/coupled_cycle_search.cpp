@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Theo H.
+// Distributed without warranty; see the repository LICENSE for full terms.
+
 // Release module order AND module contiguity. In a selected neighboring bundle,
 // every required cyclic course is occupied once, in any interleaved order and
 // at any assigned constituent-cycle phase. This remains a restricted family:

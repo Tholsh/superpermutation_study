@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Theo H.
+// Distributed without warranty; see the repository LICENSE for full terms.
+
 // Reconstruct a witness in the exact cyclic-course basis before optimizing it.
 // No DSU module contiguity or module order is assumed.
 #define COUPLED_CYCLE_LIBRARY

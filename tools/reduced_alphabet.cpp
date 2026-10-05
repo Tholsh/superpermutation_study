@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Theo H.
+// Distributed without warranty; see the repository LICENSE for full terms.
+
 #include <algorithm>
 #include <array>
 #include <bit>
