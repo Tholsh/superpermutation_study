@@ -1,0 +1,2 @@
+# All 8 minimal superpermutations of length 153 on 5 symbols
+# Found by Ben Chaffin in March 2014

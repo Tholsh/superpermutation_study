@@ -163,11 +163,8 @@
       "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
     },
     {
-      "archive": "words/9/superpermutation-9-408731.txt.xz",
       "n": 9,
       "symbols": 408731,
-      "alphabet": "012345678",
-      "word_sha256": "1ce7fb2e5691f34a3df3ea5cc72c08b7110bef5e78a3eb19b2604c9087d7a150",
       "status": "imported",
       "source_repository": "rumstd/superperm-upper-43-80_fork",
       "source_commit": "bed0469a3bb201a35e5c8af277ba1e02076a4887",
@@ -181,7 +178,15 @@
           "head_commit": "bed0469a3bb201a35e5c8af277ba1e02076a4887"
         }
       ],
-      "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
+      "validation": "Normalized to one-based labels; all 362880 permutations independently verified. Original import hashes retained in original_import.",
+      "original_import": {
+        "archive": "words/9/superpermutation-9-408731.txt.xz",
+        "alphabet": "012345678",
+        "word_sha256": "1ce7fb2e5691f34a3df3ea5cc72c08b7110bef5e78a3eb19b2604c9087d7a150"
+      },
+      "path": "words/9/superpermutation-9-408731.txt",
+      "alphabet": "123456789",
+      "word_sha256": "c3842f6f73af4e395f92bd83e1c30e87efa6d8e1b28bdd35b7676f91c0d4dd4f"
     }
   ]
 }

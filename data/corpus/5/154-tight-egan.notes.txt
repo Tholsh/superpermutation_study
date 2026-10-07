@@ -1,0 +1,8 @@
+# This is an exhaustive list of the superpermutations on 5 symbols meeting the following criteria:
+# • Only edges of weights 1 and 2
+# • No consecutive edges of weight 2
+# • The initial 10 edge weights are 1 1 1 1 2 1 1 1 1 2
+# • The total length of the string is 154
+#
+# They were posted to the superpermutators group by Greg Egan on 2018-10-19
+#

@@ -1,0 +1,3 @@
+The files in this archive were all created by PermutationChains with various options in combination with the coverFirst option.
+
+The coverFirst option tries to build solutions (with a particular structure) by first covering all the 1-cycles not in the chosen kernel with a collection of disjoint 2-cycles.  (For non-standard kernels that include partial 2-cycles, the whole of the 2-cycle is excluded from the set to be covered.) These covers are then used as the starting point to try to find complete solutions.
