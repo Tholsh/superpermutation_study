@@ -2,19 +2,12 @@
 
 A corpus of superpermutation words and C++ tools for inspecting waste and searching for shorter constructions. A superpermutation contains every permutation of its alphabet as a contiguous substring.
 
-## License
-
-Our software is free software under the **GNU General Public License, version 3 or later (GPL-3.0-or-later)**. You may use, study, modify, and redistribute it under those terms. Distributed derivatives must preserve the GPL freedoms and provide the corresponding source as required by the license. It comes without warranty. See [LICENSE](LICENSE) for the full terms.
-
-Imported code retains its upstream terms and attribution; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Corpus words and imported documents retain their authorship.
-
 ## Corpus
 
 [`words/`](words/) groups words by alphabet size, from `5` through `13`. Filenames generally record the word length and sometimes the construction or author. Some files contain collections of words; others are compressed as `.gz`, `.xz`, or `.zip`. Tools that read stdin can consume a decompression pipe; tools that take a filename need an extracted file.
 
 
 [`docs/n11/improve_halfar/`](docs/n11/improve_halfar/) contains reconstruction and exchange reports, including `dependency-hashes.json`, which records the original search dependencies. Experiment reports and replay scripts may still refer to word paths recorded in the import manifest.
-
 
 ## Math
 
@@ -206,3 +199,9 @@ Optional modes:
 | `--global-all-phases` | Global opening optimization with the course order fixed. |
 
 The program writes reconstruction reports, mode-specific JSON/JSONL logs, and candidate `.txt` words when improvements are found. Search proceeds only after byte-exact reconstruction and requires each course to occur once. Independently verify permutation coverage before treating a candidate as a valid improved superpermutation.
+
+## License
+
+Our software is free software under the **GNU General Public License, version 3 or later (GPL-3.0-or-later)**. You may use, study, modify, and redistribute it under those terms. Distributed derivatives must preserve the GPL freedoms and provide the corresponding source as required by the license. It comes without warranty. See [LICENSE](LICENSE) for the full terms.
+
+Imported code retains its upstream terms and attribution; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Corpus words and imported documents retain their authorship.
