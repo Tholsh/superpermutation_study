@@ -43,6 +43,32 @@ unzip words/7/7_5907_COV.zip -d extracted-7_5907_COV
 
 For another alphabet size, set the delta distance to that size. `xz -t archive.txt.xz` checks archive integrity; it does not verify permutation coverage.
 
+## Relabel word files
+
+[`tools/relabel_words.py`](tools/relabel_words.py) converts between zero-based `0123456789ABC` and one-based `123456789ABCD` labels using Python 3.8 or newer. `--to 0` expects one-based input; `--to 1` expects zero-based input. Each uppercase letter is one symbol (`9` becomes `A` when converting to one-based labels). Whitespace, line endings, word length, and filenames are preserved. Optionally use `-n N` to validate the source alphabet size; the default is 13. Only word symbols and ASCII whitespace are accepted.
+
+```powershell
+# A single file, in either direction; write to a different output file.
+python tools/relabel_words.py --to 0 -n 3 one-based.txt zero-based.txt
+python tools/relabel_words.py --to 1 -n 3 zero-based.txt restored.txt
+# Convert every .txt file recursively, retaining relative subdirectories.
+./tools/relabel-folder.ps1 -To 0 -Source words -Destination converted-zero -DryRun
+./tools/relabel-folder.ps1 -To 0 -Source words -Destination converted-zero
+./tools/relabel-folder.ps1 -To 1 -Source converted-zero -Destination converted-one
+```
+
+For Bash (Linux, macOS, WSL, or MSYS2):
+
+```sh
+bash tools/relabel-folder.sh --to 0 --dry-run words converted-zero
+bash tools/relabel-folder.sh --to 0 words converted-zero
+bash tools/relabel-folder.sh --to 1 converted-zero converted-one
+# Stream a compressed zero-based N=11 word into a one-based text file.
+xz -dc words/11/superpermutation-11-43930624.txt.xz | python3 tools/relabel_words.py --to 1 -n 11 > one-based-n11.txt
+```
+
+For example, `123121321` becomes `012010210` and converts back exactly. Folder conversion processes plain `.txt` files only, skips symlinks, and requires separate, non-nested input/output folders. Extract compressed archives first. `--dry-run` lists planned conversions without checking word contents. Existing outputs are refused unless you pass `--overwrite` (PowerShell: `-Overwrite`). File outputs are published only after complete validation; a failed file leaves no partial output. A folder run stops at the first error, retaining already completed files. Stream output can contain a valid prefix before an input error, so check the exit status. Run `python tools/relabel_words.py --help` for all options; PowerShell accepts `-Python PATH`, and Bash accepts a `RELABEL_PYTHON` environment override.
+
 ## Paint waste
 
 [`tools/reduced_alphabet.cpp`](tools/reduced_alphabet.cpp) builds the `paint-waste` tool. It reads a word from standard input, ignores whitespace, and supports `1 <= N <= 13` on a 64-bit platform. Its default labels are `123456789ABCD`; `-z` / `--zero-based` selects `0123456789ABC`. Use the first N characters of the selected alphabet, with uppercase letters.
@@ -70,6 +96,15 @@ valid_superpermutation: 1
 ```
 
 Validity `1` means all `N!` distinct permutations occur. A completed analysis exits successfully even when validity is `0`; inspect that field when validating a word.
+
+Use `-m` to mark dirty characters as `[X]` instead of using color. The reduced alphabet and statistics keep exactly the same format:
+
+```powershell
+'123121321' | ./paint-waste.exe -m 3
+# Painted word: 12312[1]321
+```
+
+`-s -m` prints only the usual statistics, since `-s` suppresses the word.
 
 For the zero-based version of the same valid word:
 
