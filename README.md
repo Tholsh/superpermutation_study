@@ -4,7 +4,9 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 ## Corpus
 
-[`words/`](words/) groups words by alphabet size, from `5` through `13`. Filenames generally record the word length and sometimes the construction or author. Some files contain collections of words; others are compressed as `.gz`, `.xz`, or `.zip`. Tools that read stdin can consume a decompression pipe; tools that take a filename need an extracted file.
+[`words/`](words/) groups words by alphabet size, from `5` through `13`. Through **N=9**, every `.txt` file contains exactly one superpermutation, using one-based labels `123…N`. Collections have their own folders, with filenames such as `872-treelike/872-00001.txt` (length and source ordinal). Existing individual word filenames are retained. Repeated occurrences from different sources are preserved.
+
+Author notes and cycle descriptions live in [`data/corpus/`](data/corpus/), outside the word files. The [normalization manifest](data/corpus/normalization-n1-n9.json) records source hashes, collection order, relocated metadata, and full permutation-coverage validation. N=10 and above retain their original labels and compression; check the import manifests and use `-z` for zero-based words. Tools that read stdin can consume a decompression pipe; tools that take a filename need an extracted file.
 
 
 [`docs/n11/improve_halfar/`](docs/n11/improve_halfar/) contains reconstruction and exchange reports, including `dependency-hashes.json`, which records the original search dependencies. Experiment reports and replay scripts may still refer to word paths recorded in the import manifest.
@@ -29,9 +31,8 @@ cat word-n11.txt | xz -T1 --check=sha256 --delta=dist=11 --lzma2=preset=9,dict=2
 # Extract an xz word to a normal .txt file, keeping its archive.
 xz -dk words/11/superpermutation-11-43930667.txt.xz
 
-# Extract other corpus formats, keeping the archives.
-gzip -dk words/6/872-treelike.txt.gz
-unzip words/7/7_5907_COV.zip -d extracted-7_5907_COV
+# N <= 9 collections are already split into individual text files.
+head -c 80 words/6/872-treelike/872-00001.txt
 ```
 
 For another alphabet size, set the delta distance to that size. `xz -t archive.txt.xz` checks archive integrity; it does not verify permutation coverage.
@@ -45,17 +46,17 @@ For another alphabet size, set the delta distance to that size. `xz -t archive.t
 python tools/relabel_words.py --to 0 -n 3 one-based.txt zero-based.txt
 python tools/relabel_words.py --to 1 -n 3 zero-based.txt restored.txt
 # Convert every .txt file recursively, retaining relative subdirectories.
-./tools/relabel-folder.ps1 -To 0 -Source words -Destination converted-zero -DryRun
-./tools/relabel-folder.ps1 -To 0 -Source words -Destination converted-zero
-./tools/relabel-folder.ps1 -To 1 -Source converted-zero -Destination converted-one
+./tools/relabel-folder.ps1 -To 0 -N 5 -Source words/5 -Destination converted-zero -DryRun
+./tools/relabel-folder.ps1 -To 0 -N 5 -Source words/5 -Destination converted-zero
+./tools/relabel-folder.ps1 -To 1 -N 5 -Source converted-zero -Destination converted-one
 ```
 
 For Bash (Linux, macOS, WSL, or MSYS2):
 
 ```sh
-bash tools/relabel-folder.sh --to 0 --dry-run words converted-zero
-bash tools/relabel-folder.sh --to 0 words converted-zero
-bash tools/relabel-folder.sh --to 1 converted-zero converted-one
+bash tools/relabel-folder.sh --to 0 -n 5 --dry-run words/5 converted-zero
+bash tools/relabel-folder.sh --to 0 -n 5 words/5 converted-zero
+bash tools/relabel-folder.sh --to 1 -n 5 converted-zero converted-one
 # Stream a compressed zero-based N=11 word into a one-based text file.
 xz -dc words/11/superpermutation-11-43930624.txt.xz | python3 tools/relabel_words.py --to 1 -n 11 > one-based-n11.txt
 ```

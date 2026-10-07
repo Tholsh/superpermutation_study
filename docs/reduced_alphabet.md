@@ -1,6 +1,6 @@
 # Paint waste: build, run, and validate
 
-`tools/reduced_alphabet.cpp` reads one word from stdin, with `1 <= N <= 13`, on a 64-bit platform. By default its alphabet is the first N characters of `123456789ABCD`. Use `-z` or `--zero-based` for the first N characters of `0123456789ABC`. Each character is one symbol; letters are uppercase. For example, zero-based N=11 uses `0123456789A`, not decimal numbers separated by spaces. Whitespace is ignored. Multiple lines are concatenated into a single word; a collection of separate words must be checked one word at a time.
+`tools/reduced_alphabet.cpp` reads one word from stdin, with `1 <= N <= 13`, on a 64-bit platform. By default its alphabet is the first N characters of `123456789ABCD`. Use `-z` or `--zero-based` for the first N characters of `0123456789ABC`. Each character is one symbol; letters are uppercase. For example, zero-based N=11 uses `0123456789A`, not decimal numbers separated by spaces. Whitespace is ignored. Multiple lines are concatenated into a single word; a collection of separate words must be checked one word at a time. The repository corpus through N=9 is already one-based, with one word per text file; see the [corpus layout](../data/corpus/README.md).
 
 From the repository root, compile with GCC and C++20:
 
