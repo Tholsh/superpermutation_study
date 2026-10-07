@@ -139,6 +139,49 @@ class PaintWasteTests(unittest.TestCase):
         self.assertEqual(stats["repeated_permutation_windows"], 79997)
         self.assertEqual(stats["valid_superpermutation"], 1)
 
+    def test_bracket_output_preserves_statistics_and_reduced_pairs(self):
+        for word, n, flags, painted in [
+                ("123121321", 3, [], "12312[1]321"),
+                ("012010210", 3, ["-z"], "01201[0]210"),
+                ("1111", 3, [], "11[1][1]"),
+                ("123", 3, [], "123"), ("", 3, [], "")]:
+            with self.subTest(word=word):
+                normal = self.run_word(word, n, *flags)
+                result = self.run_word(word, "-m", n, *flags)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stderr, "")
+                self.assertNotIn("\x1b", result.stdout)
+                first_line, remainder = result.stdout.split("\n", 1)
+                self.assertEqual(first_line, painted)
+                self.assertEqual(remainder, normal.stdout.split("\n", 1)[1])
+                self.assertEqual(result.stdout.split("statistics:\n")[1],
+                                 self.run_word(word, "-s", n, *flags).stdout)
+                after_n = self.run_word(word, n, *flags, "-m")
+                self.assertEqual(after_n.stdout, result.stdout)
+
+    def test_bracket_flag_with_short_mode(self):
+        for word, n, flags in [("123121321", 3, []),
+                               ("0123456789A", 11, ["-z"])]:
+            expected = self.run_word(word, "-s", n, *flags).stdout
+            for args in [("-m", "-s", n, *flags), (n, *flags, "-s", "-m")]:
+                result = self.run_word(word, *args)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stderr, "")
+                self.assertEqual(result.stdout, expected)
+        # Bracket painting does not authorize a statistics-only downgrade.
+        result = self.run_word("0123456789A", "-z", "-m", 11)
+        self.assertEqual(result.returncode, 1)
+        self.assertEqual(result.stdout, "")
+        self.assertIn("rerun with -s", result.stderr)
+
+    def test_bracket_output_errors_leave_stdout_empty(self):
+        for word, args in [("12x", ["-m", 3]), ("124", ["-m", 3]),
+                           ("123", ["-m", "-m", 3]), ("123", ["-m", 14])]:
+            result = self.run_word(word, *args)
+            self.assertEqual(result.returncode, 1)
+            self.assertEqual(result.stdout, "")
+            self.assertNotEqual(result.stderr, "")
+
     def test_rejected_arguments_and_input(self):
         for args in [[], [0], [14], ["3foo"], [3, "--unknown"], ["-s", "-s", 3],
                      ["-z", "--zero-based", 3]]:

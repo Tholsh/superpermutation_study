@@ -23,7 +23,7 @@ The archive in the last command must exist first; see the README compression exa
 ## Output and flags
 
 ```text
-paint-waste [-s] [-z|--zero-based] N < WORD
+paint-waste [-s] [-m] [-z|--zero-based] N < WORD
 ```
 
 By default, stdout contains the painted word, then `reduced_alphabet_words:`, then `statistics:`. All results go to stdout; errors go to stderr. The final character of each dirty length-N window is marked red using ANSI escape sequences. A dirty window repeats a symbol; a clean window contains every alphabet symbol exactly once.
@@ -32,7 +32,18 @@ The reduced alphabet contains one `[depth:index]` pair per dirty window. Depth i
 
 Use `-s` for statistics only, without color codes, the word, reduced pairs, or section headings. Flags work before or after N. `-h` and `--help` print usage.
 
-For **N > 9**, output is always statistics-only. Without explicit `-s`, the tool asks `Continue? [y/N]:` through the controlling terminal before reading the word; enter `y` or `yes` to accept. Any other answer cancels with status 1 and no statistics. The answer is read separately from stdin, so piped corpus symbols are never consumed as a reply. When no terminal is available, the tool exits with an instruction to rerun with `-s`. Passing `-s` explicitly accepts statistics-only mode and avoids the prompt, which is suitable for scripts and pipes. Prompts and errors go to stderr.
+Use `-m` to paint each dirty character with brackets instead of ANSI color. Each dirty character is individually marked `[X]`; consecutive dirty characters appear as `[X][Y]`. Clean characters stay unmarked. The reduced-alphabet pairs and the statistical output are identical to the default output. `-m` changes only the painted word and emits no color escapes.
+
+```powershell
+'123121321' | ./paint-waste.exe -m 3
+# First line: 12312[1]321
+'012010210' | ./paint-waste.exe -z -m 3
+# First line: 01201[0]210
+```
+
+Both examples still print `[3:3]` in the reduced alphabet and the same text statistics, including `length: 9` and `valid_superpermutation: 1`. Combining `-s` and `-m` prints only the usual statistics: `-s` suppresses the painted word, so there are no brackets. Flags work in either order.
+
+For **N > 9**, output is always statistics-only. Without explicit `-s`, the tool asks `Continue? [y/N]:` through the controlling terminal before reading the word; enter `y` or `yes` to accept. Any other answer cancels with status 1 and no statistics. The answer is read separately from stdin, so piped corpus symbols are never consumed as a reply. When no terminal is available, the tool exits with an instruction to rerun with `-s`. Passing `-s` explicitly accepts statistics-only mode and avoids the prompt, which is suitable for scripts and pipes. `-m` alone does not skip this confirmation. Prompts and errors go to stderr.
 
 Statistics-only mode streams the word instead of retaining it. Exact coverage uses one bit per required permutation: roughly 4.8 MiB at N=11, 57.1 MiB at N=12, and 742.3 MiB at N=13, plus small input buffers. Allocation or input failures exit with status 1.
 
@@ -110,4 +121,4 @@ With Python and GCC available, run from the repository root:
 python tests/test_reduced_alphabet.py
 ```
 
-The checks compile into a temporary directory, compare both alphabets with independent window-set oracles, validate the N=5 corpus example, and check N=10 through N=13, consent without a terminal, stream-buffer boundaries, short/default output agreement, whitespace, invalid input, and clean-run depths above 255.
+The checks compile into a temporary directory, compare both alphabets with independent window-set oracles, validate the N=5 corpus example, and check bracket/color statistics agreement, consecutive dirty characters, and error output, N=10 through N=13, consent without a terminal, stream-buffer boundaries, short/default output agreement, whitespace, invalid input, and clean-run depths above 255.

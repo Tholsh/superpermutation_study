@@ -27,7 +27,7 @@ using Symbol = uint8_t;
 constexpr std::size_t MAX_N = 13;
 constexpr const char* RED = "\033[31m";
 constexpr const char* RESET = "\033[0m";
-constexpr const char* USAGE = "usage: paint-waste [-s] [-z|--zero-based] N < WORD\n";
+constexpr const char* USAGE = "usage: paint-waste [-s] [-m] [-z|--zero-based] N < WORD\n";
 static_assert(sizeof(std::size_t) >= 8, "Paint waste requires a 64-bit platform.");
 
 bool is_dirty(std::span<const Symbol> window) {
@@ -106,19 +106,22 @@ bool confirm_short_output(std::size_t n) {
 }
 
 int main(int argc, char** argv) try {
-    bool short_output = false, zero_based = false;
+    bool short_output = false, bracket_output = false, zero_based = false;
     std::string_view degree;
     for (int i = 1; i < argc; ++i) {
         const std::string_view argument = argv[i];
         if (argument == "-h" || argument == "--help") {
             std::cout << USAGE
                       << "  -s  statistics only (required above N=9)\n"
+                         "  -m  mark each dirty character as [X] instead of using ANSI color\n"
                          "  -z, --zero-based  use 0123456789ABC instead of 123456789ABCD\n"
                          "  N must be between 1 and 13; uppercase letters are symbols 10 onward.\n";
             return 0;
         }
         if (argument == "-s" && !short_output) {
             short_output = true;
+        } else if (argument == "-m" && !bracket_output) {
+            bracket_output = true;
         } else if ((argument == "-z" || argument == "--zero-based") && !zero_based) {
             zero_based = true;
         } else if (degree.empty() && !argument.starts_with('-')) {
@@ -224,11 +227,17 @@ int main(int argc, char** argv) try {
     if (!short_output) {
         bool red_on = false;
         for (std::size_t i = 0; i < symbols.size(); ++i) {
-            if (dirty_at[i] != red_on) {
-                std::cout << (dirty_at[i] ? RED : RESET);
-                red_on = dirty_at[i];
+            if (bracket_output) {
+                if (dirty_at[i]) std::cout << '[';
+                std::cout << alphabet[symbols[i]];
+                if (dirty_at[i]) std::cout << ']';
+            } else {
+                if (dirty_at[i] != red_on) {
+                    std::cout << (dirty_at[i] ? RED : RESET);
+                    red_on = dirty_at[i];
+                }
+                std::cout << alphabet[symbols[i]];
             }
-            std::cout << alphabet[symbols[i]];
         }
         if (red_on) std::cout << RESET;
         std::cout << "\n\nreduced_alphabet_words:\n" << std::hex;
@@ -239,22 +248,28 @@ int main(int argc, char** argv) try {
     }
     const std::size_t windows = length >= n ? length - n + 1 : 0;
     const std::size_t clean = windows - dirty_count;
-    std::cout << std::dec
-              << "length: " << length << '\n'
-              << "symbols: " << length << '\n'
-              << "n: " << n << '\n'
-              << "windows: " << windows << '\n'
-              << "dirty: " << dirty_count << '\n'
-              << "clean: " << clean << '\n'
-              << "max_dirty_run: " << max_dirty_run << '\n'
-              << "max_clean_run: " << max_clean_run << '\n'
-              << "dirty_runs: " << dirty_runs << '\n'
-              << "clean_runs: " << clean_runs << '\n'
-              << "required_permutations: " << factorial[n] << '\n'
-              << "distinct_permutations: " << distinct << '\n'
-              << "missing_permutations: " << factorial[n] - distinct << '\n'
-              << "repeated_permutation_windows: " << clean - distinct << '\n'
-              << "valid_superpermutation: " << (distinct == factorial[n] ? 1 : 0) << '\n';
+    // Painting style never changes the statistics or their text format.
+    const std::array<std::pair<std::string_view, std::size_t>, 15> statistics{{
+        {"length", length},
+        {"symbols", length},
+        {"n", n},
+        {"windows", windows},
+        {"dirty", dirty_count},
+        {"clean", clean},
+        {"max_dirty_run", max_dirty_run},
+        {"max_clean_run", max_clean_run},
+        {"dirty_runs", dirty_runs},
+        {"clean_runs", clean_runs},
+        {"required_permutations", factorial[n]},
+        {"distinct_permutations", distinct},
+        {"missing_permutations", factorial[n] - distinct},
+        {"repeated_permutation_windows", clean - distinct},
+        {"valid_superpermutation", distinct == factorial[n] ? 1u : 0u},
+    }};
+    std::cout << std::dec;
+    for (const auto& [key, value] : statistics) {
+        std::cout << key << ": " << value << '\n';
+    }
     return 0;
 } catch (const std::exception& error) {
     std::cerr << "analysis failed: " << error.what() << '\n';
