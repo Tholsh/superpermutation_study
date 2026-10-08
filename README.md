@@ -133,73 +133,14 @@ The N=11 course-exchange program takes a word filename and needs extraction firs
 
 ## Course exchange search
 
-The course-exchange snapshot/search program is currently stored in [`search/course_exchange.cpp`](search/course_exchange.cpp). It targets `N = 11`: it reconstructs an input word as cyclic courses, checks the reconstruction, and searches for savings by changing course openings or exchanging courses.
-
-### Build prerequisites
-
-This source is not standalone. It includes:
-
-```text
-boundary-spectral-n11-20261004/coupled_cycle_search.cpp
-```
-
-That directory is at the repository root and contains only the four required library sources: `coupled_cycle_search.cpp`, `phase_cut_spectral.cpp`, `boundary_spectral.cpp`, and `construct.cpp`. The include chain is:
-
-```text
-course_exchange.cpp -> coupled_cycle_search.cpp -> phase_cut_spectral.cpp
-                    -> boundary_spectral.cpp -> construct.cpp
-```
-
-Prebuilt executables, old replay scripts, and unrelated experiment outputs are omitted to save space. The pinned model inputs are `data/n11/rows.txt.xz` and `data/n11/circles.txt`; the reproduction script extracts the rows into a temporary directory.
-
-All source and model dependencies are included. [`local-dependencies.json`](docs/n11/improve_halfar/local-dependencies.json) pins their hashes; [`dependency-hashes.json`](docs/n11/improve_halfar/dependency-hashes.json) preserves the original source locations. The three independent checker sources are in `tools/verification/`.
-
-The four-character improvement from Halfar's 43,930,628 word has been reproduced. See the [instructions and run log](docs/n11/improve_halfar/REPRODUCE.md) and [PowerShell script](docs/n11/improve_halfar/reproduce.ps1). The script builds the optimizer and all three checkers from this checkout.
-
-Compile with GCC (the source uses GCC's `__builtin_popcount`):
+[`search/course_exchange.cpp`](search/course_exchange.cpp) reconstructs an N=11 word as cyclic courses and searches for savings by changing openings or exchanging courses. Build from the repository root with GNU Make and 64-bit GCC:
 
 ```powershell
-g++ -std=c++20 -O2 search/course_exchange.cpp -o course_exchange.exe
+mingw32-make course_exchange
+./build/course_exchange.exe rows.txt circles.txt word-n11.txt out-audit 2 0
 ```
 
-On Linux/macOS, use the same command with `-o course_exchange`.
-
-### Usage
-
-```text
-course_exchange ROWS CIRCLES WORD FRESH_OUT WINDOW_SIZE SECONDS [MODE]
-```
-
-- `ROWS`, `CIRCLES`: matching model input files.
-- `WORD`: an uncompressed N=11 word in the model's alphabet.
-- `FRESH_OUT`: a new output directory; it must not already exist.
-- `WINDOW_SIZE`: number of consecutive courses considered by the default exchange search, from `2` to `8`.
-- `SECONDS`: nonnegative search budget; `0` performs reconstruction only. This is not a strict timeout for every mode or preprocessing step.
-
-Examples in PowerShell, using placeholder model and word paths:
-
-```powershell
-# Audit the course reconstruction.
-./course_exchange.exe rows.txt circles.txt word-n11.txt out-audit 2 0
-
-# Search exchanges of two consecutive courses with a 60-second budget.
-./course_exchange.exe rows.txt circles.txt word-n11.txt out-exchange 2 60
-
-# Optimize openings across the entire fixed course order.
-./course_exchange.exe rows.txt circles.txt word-n11.txt out-global 2 60 --global-all-phases
-```
-
-Optional modes:
-
-| Mode | Search |
-| --- | --- |
-| No flag | Single-course phase improvements, then local course exchanges. |
-| `--pair-swaps` | Two-site course swaps with constituent and all-phase openings. |
-| `--occupation-swaps` | Pair swaps that also use extra copies of permutations within their owning course. |
-| `--adjacent-all-phases` | Adjacent pairs, trying both orders and all available openings. |
-| `--global-all-phases` | Global opening optimization with the course order fixed. |
-
-The program writes reconstruction reports, mode-specific JSON/JSONL logs, and candidate `.txt` words when improvements are found. Search proceeds only after byte-exact reconstruction and requires each course to occur once. Independently verify permutation coverage before treating a candidate as a valid improved superpermutation.
+On Linux/macOS, use `make course_exchange` and `./build/course_exchange`. See the [build and run guide](docs/course_exchange.md) for inputs, search modes, and checkers, or the [complete reproduction](docs/n11/improve_halfar/REPRODUCE.md) for the four-character improvement from Halfar's word.
 
 ## License
 
