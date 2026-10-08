@@ -6,16 +6,16 @@ From the repository root, compile with GCC and C++20:
 
 ```powershell
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste.exe
-Get-Content words/5/153-recursive.txt | ./paint-waste.exe 5
+Get-Content words/5/153/153-recursive.txt | ./paint-waste.exe 5
 ```
 
 On Linux, macOS, or MSYS2 Bash:
 
 ```sh
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste
-./paint-waste 5 < words/5/153-recursive.txt
+./paint-waste 5 < words/5/153/153-recursive.txt
 # Read a compressed word without extracting it.
-xz -dc words/5/153-recursive.txt.xz | ./paint-waste -s 5
+xz -dc words/5/153/153-recursive.txt.xz | ./paint-waste -s 5
 ```
 
 The archive in the last command must exist first; see the README compression examples.
@@ -51,13 +51,13 @@ Statistics-only mode streams the word instead of retaining it. Exact coverage us
 # Same valid N=3 word relabeled from 123 to 012.
 '012010210' | ./paint-waste.exe -z -s 3
 # Validate a zero-based N=11 word; explicit -s avoids the confirmation prompt.
-Get-Content words/11/superpermutation-11-43930624.txt | ./paint-waste.exe -z -s 11
+Get-Content words/11/43930624/superpermutation-11-43930624.txt | ./paint-waste.exe -z -s 11
 ```
 
 The second command requires an extracted word. For a compressed word in a POSIX shell:
 
 ```sh
-xz -dc words/11/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
+xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
 ```
 
 The N=3 example reports length 9, six distinct permutations, none missing, and `valid_superpermutation: 1`. Changing labels does not change coverage statistics or reduced pairs; painted output retains the selected labels.
@@ -109,7 +109,7 @@ valid_superpermutation: 1
 
 The six covered permutations are `123`, `231`, `312`, `213`, `132`, and `321`. The window `121` is dirty. The default output also includes the reduced pair `[3:3]` before the statistics.
 
-The corpus example `words/5/153-recursive.txt` reports length 153, 120 distinct permutations, and validity 1. Empty input or input shorter than N reports zero windows and validity 0. At N=1, any nonempty valid input covers the sole permutation.
+The corpus example `words/5/153/153-recursive.txt` reports length 153, 120 distinct permutations, and validity 1. Empty input or input shorter than N reports zero windows and validity 0. At N=1, any nonempty valid input covers the sole permutation.
 
 Exit status is 0 for a completed analysis, including a word whose validity is 0. Bad arguments, characters, out-of-alphabet symbols, or input read errors exit with status 1. A script validating coverage must inspect `valid_superpermutation`.
 
