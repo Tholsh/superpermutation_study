@@ -1,4 +1,5 @@
 paint-waste.exe
+/build/
 *.exe
 *.dll
 *.o

@@ -621,13 +621,13 @@ static Numeric numerical(const BoundaryPortModel &p, const std::vector<I128> &P,
               << ",\"all_dense_polynomial_minplus_partition_checks_pass\":true}\n";
     return 0;
 }
-#ifndef BOUNDARY_SPECTRAL_LIBRARY
+#ifndef BOUNDARY_TRANSFER_LIBRARY
 int main(int argc, char **argv) try {
     if (argc == 2 && std::string(argv[1]) == "--self-test") {
         return selfTest();
     }
     require(argc == 6,
-            "usage: boundary_spectral ROWS CIRCLES WHOLE_ROW_WORD RECORD_WORD FRESH_OUT");
+            "usage: boundary_transfer ROWS CIRCLES WHOLE_ROW_WORD RECORD_WORD FRESH_OUT");
     std::filesystem::path out(argv[5]);
     require(!std::filesystem::exists(out), "fresh output");
     std::filesystem::create_directories(out);

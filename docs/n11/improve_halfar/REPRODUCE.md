@@ -9,7 +9,7 @@ The repository now includes all source and model files needed to reproduce the r
 | `search/course_exchange.cpp` | Optimizer entry point. |
 | `boundary-spectral-n11-20261004/coupled_cycle_search.cpp` | Coupled course routines. |
 | `boundary-spectral-n11-20261004/phase_cut_spectral.cpp` | Course phase routines. |
-| `boundary-spectral-n11-20261004/boundary_spectral.cpp` | Model and boundary routines. |
+| `boundary-spectral-n11-20261004/boundary_transfer.cpp` | Model and boundary routines. |
 | `boundary-spectral-n11-20261004/construct.cpp` | Constructor and common tuple/row helpers. |
 | `data/n11/rows.txt.xz` | Pinned model rows, compressed from 6,422,995 to 375,940 bytes. |
 | `data/n11/circles.txt` | Matching connector circles. |
@@ -37,13 +37,13 @@ From the repository root, in PowerShell:
 powershell -NoProfile -ExecutionPolicy Bypass -File docs/n11/improve_halfar/reproduce.ps1
 ```
 
-Defaults are GCC at `C:\msys64\ucrt64\bin\g++.exe` and Python at `C:\msys64\ucrt64\bin\python.exe`. Override them for another installation:
+Defaults are GCC, GNU Make (`mingw32-make.exe`), and Python under `C:\msys64\ucrt64\bin`. Override them for another installation:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File docs/n11/improve_halfar/reproduce.ps1 -Compiler 'D:\msys64\ucrt64\bin\g++.exe' -Python 'D:\msys64\ucrt64\bin\python.exe'
+powershell -NoProfile -ExecutionPolicy Bypass -File docs/n11/improve_halfar/reproduce.ps1 -Compiler 'D:\msys64\ucrt64\bin\g++.exe' -Make 'D:\msys64\ucrt64\bin\mingw32-make.exe' -Python 'D:\msys64\ucrt64\bin\python.exe'
 ```
 
-The script checks required paths and pinned hashes, builds the optimizer and all three checkers, and extracts the rows and baseline word using Python's `lzma` module with binary I/O. It creates a fresh temporary working directory and a fresh `reproduction-<id>` report directory beside this document. Executables, extracted inputs, and the generated word stay in the temporary directory. Only small reports are copied into the repository; existing runs are not overwritten.
+The script checks required paths and pinned hashes, builds the optimizer and all three checkers, and extracts the rows and baseline word using Python's `lzma` module with binary I/O. It creates a fresh temporary working directory and a fresh `reproduction-<id>` report directory beside this document. Executables are built into the ignored repository `build/` directory through the root Makefile; extracted inputs and the generated word stay in the temporary directory. Only small reports are copied into the repository; existing runs are not overwritten.
 
 Use 64-bit GCC: the libraries use `__int128` and the optimizer uses `__builtin_popcount`. GCC 13.1.0 from MSYS2 was used here. Cached openings alone occupy 958,454,784 bytes, with additional RAM needed for inputs, course ownership, traceback, and hash tables.
 
@@ -52,11 +52,11 @@ Use 64-bit GCC: the libraries use `__int128` and the optimizer uses `__builtin_p
 With the variables initialized by [reproduce.ps1](reproduce.ps1), the build and optimization are:
 
 ```powershell
-& $Compiler -O3 -std=c++17 $usedFiles[0] -o $binaryPath
+& $Make -C $repoRoot -B course_exchange checkers "CXX=$Compiler"
 & $binaryPath $rowsPath $circlesPath $inputPath $outputDir 2 900 --global-all-phases
 ```
 
-The script also builds each source in `tools/verification/` with `-O3 -std=c++17`. C++17 matches the original optimizer build; the paint-waste tool separately requires C++20. `2` satisfies the window-size argument requirement. `900` enables optimization, but the global mode does not enforce it as a strict timeout. The output directory must not already exist.
+The Makefile builds the optimizer and each source in `tools/verification/` with `-O3 -std=c++17`. See the [build and run guide](../../course_exchange.md) for incremental builds and flags. C++17 matches the original optimizer build; the paint-waste tool separately requires C++20. `2` satisfies the window-size argument requirement. `900` enables optimization, but the global mode does not enforce it as a strict timeout. The output directory must not already exist.
 
 The baseline archive is `words/11/43930628/superpermutation-11-43930628.txt.xz`. Its extracted SHA-256 is:
 

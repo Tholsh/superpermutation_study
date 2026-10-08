@@ -6,8 +6,8 @@
 // an allowed cut, not only the row head. Exact occupation is kept by a minimal
 // wrapping prefix. Whole required cycles are still visited once; modules and
 // their global order remain fixed. No claim of a global optimum.
-#define BOUNDARY_SPECTRAL_LIBRARY
-#include "boundary_spectral.cpp"
+#define BOUNDARY_TRANSFER_LIBRARY
+#include "boundary_transfer.cpp"
 
 // Spell a prefix of the infinite repetition of s, starting at the cyclic cut.
 static std::string cyclicText(const std::string &s, size_t begin, size_t length) {

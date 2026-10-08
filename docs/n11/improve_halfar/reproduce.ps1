@@ -3,6 +3,7 @@
 
 param(
     [string]$Compiler = 'C:\msys64\ucrt64\bin\g++.exe',
+    [string]$Make = 'C:\msys64\ucrt64\bin\mingw32-make.exe',
     [string]$Python = 'C:\msys64\ucrt64\bin\python.exe'
 )
 
@@ -12,23 +13,24 @@ $runId = 'reproduction-' + [guid]::NewGuid().ToString('N')
 $reportDir = Join-Path $PSScriptRoot $runId
 $workDir = Join-Path ([System.IO.Path]::GetTempPath()) ('course-exchange-' + $runId)
 $outputDir = Join-Path $workDir 'output'
-$binaryPath = Join-Path $workDir 'course_exchange.exe'
+$buildDir = Join-Path $repoRoot 'build'
+$binaryPath = Join-Path $buildDir 'course_exchange.exe'
 $inputPath = Join-Path $workDir 'halfar-input.txt'
 $archivePath = Join-Path $repoRoot 'words/11/43930628/superpermutation-11-43930628.txt.xz'
 $rowsPath = Join-Path $workDir 'rows.txt'
 $rowsArchive = Join-Path $repoRoot 'data/n11/rows.txt.xz'
 $circlesPath = Join-Path $repoRoot 'data/n11/circles.txt'
 $constructPath = Join-Path $repoRoot 'boundary-spectral-n11-20261004/construct.cpp'
-$literalChecker = Join-Path $workDir 'literal_check.exe'
-$inversionChecker = Join-Path $workDir 'verify_standalone.exe'
-$sortedChecker = Join-Path $workDir 'verify_sorted.exe'
+$literalChecker = Join-Path $buildDir 'literal_check.exe'
+$inversionChecker = Join-Path $buildDir 'verify_standalone.exe'
+$sortedChecker = Join-Path $buildDir 'verify_sorted.exe'
 $checkerSources = @(
     (Join-Path $repoRoot 'tools/verification/literal_check.cpp'),
     (Join-Path $repoRoot 'tools/verification/verify_standalone.cpp'),
     (Join-Path $repoRoot 'tools/verification/verify_sorted.cpp')
 )
 
-foreach ($required in (@($Compiler, $Python, $archivePath, $rowsArchive, $circlesPath, $constructPath) + $checkerSources)) {
+foreach ($required in (@($Compiler, $Make, $Python, $archivePath, $rowsArchive, $circlesPath, $constructPath, (Join-Path $repoRoot 'Makefile')) + $checkerSources)) {
     if (-not (Test-Path -LiteralPath $required)) { throw "Missing required path: $required" }
 }
 
@@ -38,7 +40,7 @@ $usedFiles = @(
     (Join-Path $repoRoot 'search/course_exchange.cpp'),
     (Join-Path $repoRoot 'boundary-spectral-n11-20261004/coupled_cycle_search.cpp'),
     (Join-Path $repoRoot 'boundary-spectral-n11-20261004/phase_cut_spectral.cpp'),
-    (Join-Path $repoRoot 'boundary-spectral-n11-20261004/boundary_spectral.cpp'),
+    (Join-Path $repoRoot 'boundary-spectral-n11-20261004/boundary_transfer.cpp'),
     $constructPath, $rowsArchive, $circlesPath
 )
 foreach ($dependency in $dependencies) {
@@ -53,18 +55,13 @@ $savedPath = $env:PATH
 $started = Get-Date
 try {
     $env:PATH = (Split-Path $Compiler -Parent) + ';' + $env:PATH
-    @($usedFiles + $checkerSources + @($Compiler, $Python) |
+    @($usedFiles + $checkerSources + @((Join-Path $repoRoot 'Makefile'), $Compiler, $Make, $Python) |
         ForEach-Object { Get-FileHash -Algorithm SHA256 -LiteralPath $_ } |
         Select-Object Path, Hash) | ConvertTo-Json -Depth 3 |
         Set-Content -LiteralPath (Join-Path $reportDir 'inputs-and-tools.json') -Encoding UTF8
 
-    & $Compiler -O3 -std=c++17 $usedFiles[0] -o $binaryPath
-    if ($LASTEXITCODE -ne 0) { throw 'C++ build failed' }
-    $checkerBinaries = @($literalChecker, $inversionChecker, $sortedChecker)
-    for ($checkerIndex = 0; $checkerIndex -lt $checkerSources.Count; ++$checkerIndex) {
-        & $Compiler -O3 -std=c++17 $checkerSources[$checkerIndex] -o $checkerBinaries[$checkerIndex]
-        if ($LASTEXITCODE -ne 0) { throw "Checker build failed: $($checkerSources[$checkerIndex])" }
-    }
+    & $Make -C $repoRoot -B course_exchange checkers "CXX=$Compiler"
+    if ($LASTEXITCODE -ne 0) { throw 'Makefile build failed' }
 
     @'
 import lzma, pathlib, sys
@@ -118,7 +115,8 @@ for archive, target in ((sys.argv[1], sys.argv[2]), (sys.argv[3], sys.argv[4])):
         mode = '--global-all-phases'
     } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $reportDir 'run-summary.json') -Encoding UTF8
     Write-Output "Reproduced successfully. Reports: $reportDir"
-    Write-Output "Temporary binary and word files: $workDir"
+    Write-Output "Build binaries: $buildDir"
+    Write-Output "Temporary input and word files: $workDir"
 } finally {
     $env:PATH = $savedPath
 }
