@@ -58,7 +58,7 @@ With the variables initialized by [reproduce.ps1](reproduce.ps1), the build and 
 
 The script also builds each source in `tools/verification/` with `-O3 -std=c++17`. C++17 matches the original optimizer build; the paint-waste tool separately requires C++20. `2` satisfies the window-size argument requirement. `900` enables optimization, but the global mode does not enforce it as a strict timeout. The output directory must not already exist.
 
-The baseline archive is `words/11/superpermutation-11-43930628.txt.xz`. Its extracted SHA-256 is:
+The baseline archive is `words/11/43930628/superpermutation-11-43930628.txt.xz`. Its extracted SHA-256 is:
 
 ```text
 784c892b81283ece13f5b1ef8c49d13b0bcb4d3c1ec49882e5593f034e86b596

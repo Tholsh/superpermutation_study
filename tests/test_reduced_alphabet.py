@@ -87,7 +87,7 @@ class PaintWasteTests(unittest.TestCase):
 
     def test_whitespace_and_corpus(self):
         self.assertEqual(self.stats("1 23\r\n121\t321", 3), self.stats("123121321", 3))
-        stats = self.stats((ROOT / "words/5/153-recursive.txt").read_text(), 5)
+        stats = self.stats((ROOT / "words/5/153/153-recursive.txt").read_text(), 5)
         self.assertEqual(stats["length"], 153)
         self.assertEqual(stats["distinct_permutations"], 120)
         self.assertEqual(stats["valid_superpermutation"], 1)

@@ -4,7 +4,7 @@
   "scope": "All open pull requests at time of import; current head snapshots",
   "words": [
     {
-      "archive": "words/11/superpermutation-11-43930624.txt.xz",
+      "archive": "words/11/43930624/superpermutation-11-43930624.txt.xz",
       "n": 11,
       "symbols": 43930624,
       "alphabet": "0123456789A",
@@ -31,7 +31,7 @@
       "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
     },
     {
-      "archive": "words/11/superpermutation-11-43930678.txt.xz",
+      "archive": "words/11/43930678/superpermutation-11-43930678.txt.xz",
       "n": 11,
       "symbols": 43930678,
       "alphabet": "0123456789A",
@@ -58,7 +58,7 @@
       "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
     },
     {
-      "archive": "words/11/superpermutation-11-43930628.txt.xz",
+      "archive": "words/11/43930628/superpermutation-11-43930628.txt.xz",
       "n": 11,
       "symbols": 43930628,
       "alphabet": "0123456789A",
@@ -79,7 +79,7 @@
       "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
     },
     {
-      "archive": "words/12/superpermutation-12-522745538.txt.xz",
+      "archive": "words/12/522745538/superpermutation-12-522745538.txt.xz",
       "n": 12,
       "symbols": 522745538,
       "alphabet": "0123456789AB",
@@ -100,7 +100,7 @@
       "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
     },
     {
-      "archive": "words/13/superpermutation-13-6747918058.txt.xz",
+      "archive": "words/13/6747918058/superpermutation-13-6747918058.txt.xz",
       "n": 13,
       "symbols": 6747918058,
       "alphabet": "0123456789ABC",
@@ -121,7 +121,7 @@
       "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
     },
     {
-      "archive": "words/11/superpermutation-11-43930668.txt.xz",
+      "archive": "words/11/43930668/superpermutation-11-43930668.txt.xz",
       "n": 11,
       "symbols": 43930668,
       "alphabet": "0123456789A",
@@ -142,7 +142,7 @@
       "validation": "Git blob hash, archive integrity, symbol count and alphabet checked; permutation coverage not independently checked in this import"
     },
     {
-      "archive": "words/10/superpermutation-10-4034873.txt.xz",
+      "archive": "words/10/4034873/superpermutation-10-4034873.txt.xz",
       "n": 10,
       "symbols": 4034873,
       "alphabet": "0123456789",
@@ -184,7 +184,7 @@
         "alphabet": "012345678",
         "word_sha256": "1ce7fb2e5691f34a3df3ea5cc72c08b7110bef5e78a3eb19b2604c9087d7a150"
       },
-      "path": "words/9/superpermutation-9-408731.txt",
+      "path": "words/9/408731/superpermutation-9-408731.txt",
       "alphabet": "123456789",
       "word_sha256": "c3842f6f73af4e395f92bd83e1c30e87efa6d8e1b28bdd35b7676f91c0d4dd4f"
     }

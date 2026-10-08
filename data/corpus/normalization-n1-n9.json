@@ -2,7 +2,7 @@
   "date": "2026-10-07",
   "scope": "words/1 through words/9 (existing corpus begins at N=5)",
   "alphabet": "123456789",
-  "layout": "One complete word per plain .txt file; collection order retained in numbered files.",
+  "layout": "words/N/LENGTH/, with one complete word per plain .txt file; collection order retained in numbered files.",
   "duplicates": "Repeated source occurrences retained; no words deduplicated or discarded.",
   "validation": "Full permutation coverage verified for 52798 words.",
   "words_by_n": {
@@ -20,7 +20,7 @@
       "words": 8,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "aa92a98149b126de75ccc67e5bbab294bdd4069e41dfe25f8311e8d944fe6001",
-      "folder": "words/5/153-chaffin",
+      "folder": "words/5/153/153-chaffin",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         3,
@@ -44,7 +44,7 @@
       "words": 39,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "885e526cc44d1d3d5274e25bd703dddde79ab69358659951b7dbb879499dd26b",
-      "folder": "words/5/154-tight-egan",
+      "folder": "words/5/154/154-tight-egan",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         9,
@@ -99,7 +99,7 @@
       "words": 140,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "5054a4a293f2228d586ae0c77d78e95a77e58d9748abcbe1a9f794f60fa337bd",
-      "folder": "words/5/154_tight_corlett",
+      "folder": "words/5/154/154_tight_corlett",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         7,
@@ -255,7 +255,7 @@
       "words": 1024,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "7747ca5672cc852afc76963ac910e5fe708bedbc9d427b203921a0bbfbbf648f",
-      "folder": "words/6/872-nonstandard",
+      "folder": "words/6/872/872-nonstandard",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -1299,7 +1299,7 @@
       "words": 772,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "0b799711b76599b7bca8e7a5c729ff859b904d7c3561a2f6fd598d2ec4ad753c",
-      "folder": "words/6/872-treelike-slack1",
+      "folder": "words/6/872/872-treelike-slack1",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -2086,7 +2086,7 @@
       "words": 36,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "d676efcb2107a6ff078224bde8313232188162f77f04195fc91b90d3b4b7ab2f",
-      "folder": "words/6/872-treelike-slack2",
+      "folder": "words/6/872/872-treelike-slack2",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -2137,7 +2137,7 @@
       "words": 42288,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "41ddd1cecd256c115ab7cbda55e5a424001031356b7a7510948921769481499e",
-      "folder": "words/6/872-treelike",
+      "folder": "words/6/872/872-treelike",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44440,7 +44440,7 @@
       "words": 3,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "9165c2e045504878076a15dcf14eb508f2cfa99a099c559ba4fba976fce9fc50",
-      "folder": "words/6/873-tight",
+      "folder": "words/6/873/873-tight",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         3,
@@ -44459,7 +44459,7 @@
       "words": 2,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "bf4243a07f87b0811933fded12fde0c6b7887095b1a252647cff872e7721ae3d",
-      "folder": "words/7/7_5906/7_5906_nsk56664666466466646665_2SYMM_FS",
+      "folder": "words/7/5906/7_5906/7_5906_nsk56664666466466646665_2SYMM_FS",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44476,7 +44476,7 @@
       "words": 2,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "05196344851e511fe8383a761d5ba83ab0961a535205d4027f06869736497da9",
-      "folder": "words/7/7_5906/7_5906_nsk66466466466644666466466466_2SYMM_FS",
+      "folder": "words/7/5906/7_5906/7_5906_nsk66466466466644666466466466_2SYMM_FS",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44493,7 +44493,7 @@
       "words": 9,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "1bae09a355af9b52b74d0dc4213ff9b6f893d9bb9d0a47474dac852517c64756",
-      "folder": "words/7/7_5906/7_5906_nsk6664664666446664664666_2SYMM_FS",
+      "folder": "words/7/5906/7_5906/7_5906_nsk6664664666446664664666_2SYMM_FS",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44517,7 +44517,7 @@
       "words": 52,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "92e87fca3cd331a03005f1c63e432da59da2269f0bb3b08d9bb4fc2de61010a7",
-      "folder": "words/7/7_5906/7_5906_nsk666466646646664666_2SYMM_FS",
+      "folder": "words/7/5906/7_5906/7_5906_nsk666466646646664666_2SYMM_FS",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44584,7 +44584,7 @@
       "words": 8,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "0e5a137f0c0d7743748026f9bd0e8160e6a97f2376979accb05312258ef0989d",
-      "folder": "words/7/7_5906/7_5906_nsk666646646636636646646666_2SYMM_FS",
+      "folder": "words/7/5906/7_5906/7_5906_nsk666646646636636646646666_2SYMM_FS",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44607,7 +44607,7 @@
       "words": 9,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "57317694064bb6495d5058207b625a4809ab463bd14d28fdb96fc0e1b732b50e",
-      "folder": "words/7/7_5906/7_5906_nsk666646664466646666_2SYMM_FS",
+      "folder": "words/7/5906/7_5906/7_5906_nsk666646664466646666_2SYMM_FS",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44671,7 +44671,7 @@
       "words": 10,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "5a7b86fb4a6e3eb9077e05e51155c9daecdc2bf7304ff8e36973a2703ad4a3b4",
-      "folder": "words/7/7_5907_COV/7_5907_nsk66666-66666-66666-66666_2SYMM_LA_FS_COV",
+      "folder": "words/7/5907/7_5907_COV/7_5907_nsk66666-66666-66666-66666_2SYMM_LA_FS_COV",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -44696,7 +44696,7 @@
       "words": 1506,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "54175d63c0b18ca9c9db26f84651196c3a3ed52ee42efd1b50b98c1114e430b1",
-      "folder": "words/7/7_5907_COV/7_5907_nsk66666-66666_2SYMM_LA_FS_COV",
+      "folder": "words/7/5907/7_5907_COV/7_5907_nsk66666-66666_2SYMM_LA_FS_COV",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -46232,7 +46232,7 @@
       "words": 762,
       "converted_from_zero_based": false,
       "normalized_words_sha256": "8fe17de7fb97b5b6ebdb7238fe52b77c8d14d3133cbe953dad64667d0e3303ab",
-      "folder": "words/7/7_5907_FFC_4SYMM/7_5907_FFC_4SYMM",
+      "folder": "words/7/5907/7_5907_FFC_4SYMM/7_5907_FFC_4SYMM",
       "filename_pattern": "{length}-{ordinal:05d}.txt",
       "source_line_numbers": [
         1,
@@ -47014,7 +47014,7 @@
       "words": 1,
       "converted_from_zero_based": true,
       "normalized_words_sha256": "04d6e63e8cc6d5d4bf80a5e2581b39e9235e087395ee761a8adfe31fc66eab8f",
-      "path": "words/8/superpermutation-8-46181.txt"
+      "path": "words/8/46181/superpermutation-8-46181.txt"
     },
     {
       "source": "words/9/superpermutation-9-408731.txt.xz",
@@ -47023,7 +47023,7 @@
       "words": 1,
       "converted_from_zero_based": true,
       "normalized_words_sha256": "1761c302379022c745702941b948bc5437c42fac699b2432eceebb62e3e12ef3",
-      "path": "words/9/superpermutation-9-408731.txt"
+      "path": "words/9/408731/superpermutation-9-408731.txt"
     },
     {
       "source": "words/9/superpermutation-9-408732.txt",
@@ -47032,7 +47032,7 @@
       "words": 1,
       "converted_from_zero_based": true,
       "normalized_words_sha256": "1331bfc36676c2650a5713761fae17f1bef91c7ea5796f04821220615cff1050",
-      "path": "words/9/superpermutation-9-408732.txt"
+      "path": "words/9/408732/superpermutation-9-408732.txt"
     },
     {
       "source": "words/9/superpermutation-9-408736.txt",
@@ -47041,7 +47041,7 @@
       "words": 1,
       "converted_from_zero_based": true,
       "normalized_words_sha256": "93d4063d3deec240fbdeea3d7a81a7d63f64e4a36e72a7689d3e976cc771caf1",
-      "path": "words/9/superpermutation-9-408736.txt"
+      "path": "words/9/408736/superpermutation-9-408736.txt"
     }
   ],
   "original_files_sha256": {
@@ -47074,5 +47074,10 @@
     "words/9/superpermutation-9-408731.txt.xz": "b2ec5c9e63d4bff819a3ba93940e562555904ceeaf49f45ba69c945e1d40f977",
     "words/9/superpermutation-9-408732.txt": "6b5f22010b002373c6cc1db3ed4e3e9d10fe48a4cfca19568f87253c6e846a96",
     "words/9/superpermutation-9-408736.txt": "b8b6298a2fa06e626ef189a75661a76abf257a5124d1808f16c041897b55b33f"
+  },
+  "length_grouping": {
+    "date": "2026-10-07",
+    "layout": "words/N/LENGTH/collection-or-file",
+    "content_changes": false
   }
 }

@@ -4,7 +4,7 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 ## Corpus
 
-[`words/`](words/) groups words by alphabet size, from `5` through `13`. Through **N=9**, every `.txt` file contains exactly one superpermutation, using one-based labels `123…N`. Collections have their own folders, with filenames such as `872-treelike/872-00001.txt` (length and source ordinal). Existing individual word filenames are retained. Repeated occurrences from different sources are preserved.
+[`words/`](words/) groups words by alphabet size, from `5` through `13`, then by word length: `words/N/LENGTH/`. For example, the recursive N=5 word is [`words/5/153/153-recursive.txt`](words/5/153/153-recursive.txt). Through **N=9**, every `.txt` file contains exactly one superpermutation, using one-based labels `123…N`. Collections retain their own folders inside the length folder, such as `words/6/872/872-treelike/872-00001.txt` (length and source ordinal). Existing individual word filenames are retained. Repeated occurrences from different sources are preserved.
 
 Author notes and cycle descriptions live in [`data/corpus/`](data/corpus/), outside the word files. The [normalization manifest](data/corpus/normalization-n1-n9.json) records source hashes, collection order, relocated metadata, and full permutation-coverage validation. N=10 and above retain their original labels and compression; check the import manifests and use `-z` for zero-based words. Tools that read stdin can consume a decompression pipe; tools that take a filename need an extracted file.
 
@@ -29,10 +29,10 @@ xz -k -T1 --check=sha256 --delta=dist=11 --lzma2=preset=9,dict=256MiB word-n11.t
 cat word-n11.txt | xz -T1 --check=sha256 --delta=dist=11 --lzma2=preset=9,dict=256MiB > word-n11-copy.txt.xz
 
 # Extract an xz word to a normal .txt file, keeping its archive.
-xz -dk words/11/superpermutation-11-43930667.txt.xz
+xz -dk words/11/43930667/superpermutation-11-43930667.txt.xz
 
 # N <= 9 collections are already split into individual text files.
-head -c 80 words/6/872-treelike/872-00001.txt
+head -c 80 words/6/872/872-treelike/872-00001.txt
 ```
 
 For another alphabet size, set the delta distance to that size. `xz -t archive.txt.xz` checks archive integrity; it does not verify permutation coverage.
@@ -58,7 +58,7 @@ bash tools/relabel-folder.sh --to 0 -n 5 --dry-run words/5 converted-zero
 bash tools/relabel-folder.sh --to 0 -n 5 words/5 converted-zero
 bash tools/relabel-folder.sh --to 1 -n 5 converted-zero converted-one
 # Stream a compressed zero-based N=11 word into a one-based text file.
-xz -dc words/11/superpermutation-11-43930624.txt.xz | python3 tools/relabel_words.py --to 1 -n 11 > one-based-n11.txt
+xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz | python3 tools/relabel_words.py --to 1 -n 11 > one-based-n11.txt
 ```
 
 For example, `123121321` becomes `012010210` and converts back exactly. Folder conversion processes plain `.txt` files only, skips symlinks, and requires separate, non-nested input/output folders. Extract compressed archives first. `--dry-run` lists planned conversions without checking word contents. Existing outputs are refused unless you pass `--overwrite` (PowerShell: `-Overwrite`). File outputs are published only after complete validation; a failed file leaves no partial output. A folder run stops at the first error, retaining already completed files. Stream output can contain a valid prefix before an input error, so check the exit status. Run `python tools/relabel_words.py --help` for all options; PowerShell accepts `-Python PATH`, and Bash accepts a `RELABEL_PYTHON` environment override.
@@ -73,7 +73,7 @@ Run these commands from the repository root with a C++20 compiler such as GCC. I
 
 ```powershell
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste.exe
-Get-Content words/5/153-recursive.txt | ./paint-waste.exe 5
+Get-Content words/5/153/153-recursive.txt | ./paint-waste.exe 5
 ```
 
 A concrete coverage check, showing four fields from the statistics-only output:
@@ -112,21 +112,21 @@ On Linux/macOS with GCC:
 
 ```sh
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste
-./paint-waste 5 < words/5/153-recursive.txt
+./paint-waste 5 < words/5/153/153-recursive.txt
 ```
 
 To use an xz word directly through stdin, without extracting it first (POSIX shell):
 
 ```sh
 # Make a compressed N=5 example, then pipe it into the tool.
-xz -k -T1 --check=sha256 --delta=dist=5 --lzma2=preset=9,dict=256MiB words/5/153-recursive.txt
-xz -dc words/5/153-recursive.txt.xz | ./paint-waste 5
+xz -k -T1 --check=sha256 --delta=dist=5 --lzma2=preset=9,dict=256MiB words/5/153/153-recursive.txt
+xz -dc words/5/153/153-recursive.txt.xz | ./paint-waste 5
 ```
 
 `-dc` decompresses to stdout and preserves the archive. To validate a zero-based N=11 corpus word directly:
 
 ```sh
-xz -dc words/11/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
+xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
 ```
 
 The N=11 course-exchange program takes a word filename and needs extraction first.
