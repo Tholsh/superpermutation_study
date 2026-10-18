@@ -37,6 +37,28 @@ head -c 80 words/6/872/872-treelike/872-00001.txt
 
 For another alphabet size, set the delta distance to that size. `xz -t archive.txt.xz` checks archive integrity; it does not verify permutation coverage.
 
+## Reduced-alphabet binary files
+
+[`tools/reduced_codec.cpp`](tools/reduced_codec.cpp) builds an encoder and decoder for the versioned `.spra` binary format. Each tuple occupies one byte: four bits of clean-run depth and a signed four-bit copy offset relative to N symbols ago. Both commands write **only their result to stdout**, so redirect it to a file or another compressor. Decode restores the word without whitespace or a final newline; the header preserves the alphabet mode. N may be 1 through 16, but version 1 rejects any word whose recorded depths or offsets do not fit its nibble ranges.
+
+In a POSIX shell:
+
+```sh
+g++ -std=c++20 -O2 tools/reduced_codec.cpp -o reduced-codec
+./reduced-codec encode 5 words/5/153/153-recursive.txt > word-n5.spra
+./reduced-codec decode word-n5.spra > restored-n5.txt
+```
+
+In PowerShell, build with `-o reduced-codec.exe` and use `cmd /c` for binary-safe redirection:
+
+```powershell
+g++ -std=c++20 -O2 tools/reduced_codec.cpp -o reduced-codec.exe
+cmd /c '.\reduced-codec.exe encode 5 words\5\153\153-recursive.txt > word-n5.spra'
+cmd /c '.\reduced-codec.exe decode word-n5.spra > restored-n5.txt'
+```
+
+Check the exit status before keeping output; errors go to stderr. See the [binary format and run guide](docs/reduced_binary.md) for stdin and gzip pipelines, zero-based labels, the complete header and decoding rules, representability limits, and regression checks. The painted-word tool and its historical displayed indices remain separate.
+
 ## Relabel word files
 
 [`tools/relabel_words.py`](tools/relabel_words.py) converts between zero-based `0123456789ABC` and one-based `123456789ABCD` labels using Python 3.8 or newer. `--to 0` expects one-based input; `--to 1` expects zero-based input. Each uppercase letter is one symbol (`9` becomes `A` when converting to one-based labels). Whitespace, line endings, word length, and filenames are preserved. Optionally use `-n N` to validate the source alphabet size; the default is 13. Only word symbols and ASCII whitespace are accepted.
