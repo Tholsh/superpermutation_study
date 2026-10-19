@@ -143,6 +143,59 @@ The header costs more than the transform saves on these tiny N=1..4 examples;
 the crossover is N=5 in this sample. This is construction-dependent, not a
 general theorem about N.
 
+### Exploring wider tuples
+
+Equivalent reserializations of the N=11 tuples give the following comparison.
+The wider layouts are experiments for a future format; the current codec accepts
+only the version-1 `0x44` layout.
+
+| Depth bits + offset bits | Uncompressed file bytes | Gzip level-9 bytes |
+| --- | ---: | ---: |
+| 4 + 4, byte-aligned | 3,995,032 | 29,073 |
+| 6 + 6, packed across bytes | 5,992,531 | 43,585 |
+| 8 + 8, byte-aligned | 7,990,030 | 50,971 |
+
+The 8+8 experiment writes a depth byte followed by a sign-extended offset byte
+for each tuple. The 6+6 experiment packs two 12-bit tuples into three bytes;
+an odd final tuple has four zero padding bits. Both retain the seed and counts
+and identify their proposed layout in the header. These measurements use the
+same normalized word and gzip settings as above. Gzip recovers much of the
+expanded stream's redundancy, but compressed size still rises about 75% for
+8+8 on this word. Bit packing is not always smaller after gzip: for the N=9
+example, 6+6 gives 839 bytes and 8+8 gives 831 bytes.
+
+A 6+6 layout represents depth 0..63 and signed offset -32..+31. At N=32 that
+supports every copy distance from 1 through 64, although longer runs and farther
+references would still need an extension or rejection rule. Format-wide support
+for complete N=32 words also needs wider lengths and position counters: 32!
+requires 118 bits, and even 21! exceeds the current uint64 decoded-length field.
+
+### Normalized 3+5 experiment
+
+A three-bit literal depth reaches only 7. An alternative is to use those bits
+as an index into an N-relative table:
+
+```text
+depth_table = [0, N-3, N-2, N-1, N, N+1, N+2, N+3]
+ordinary_byte = (depth_code << 5) | (signed_offset & 31)
+```
+
+The five-bit signed offset covers -16..+15. An escape is needed for other depths,
+farther references, or dirty symbols without an earlier occurrence. In this
+experiment byte `0x80` is the escape: ordinarily it would mean depth N followed
+by offset zero, which would produce a clean window and therefore cannot be an
+ordinary dirty tuple. The escape carries an unsigned LEB128 actual depth followed
+by a one-byte literal symbol ID. This also handles first appearances and long
+copy distances without retaining the entire decoded history. Symbol IDs up to
+31 suffice for N=32; wider header counts and position counters are still needed.
+
+For the complete N=11 example, seven of 3,994,998 tuples have depths outside the
+table. A trial serialization with those seven escapes has 3,995,046 bytes and
+compresses to 29,074 bytes with gzip level 9, versus 3,995,032 and 29,073 bytes for
+the current 4+4 format. The trial parser checked every reconstructed dirty symbol
+against the original word. This is an exploratory format, not implemented by
+`reduced-codec`; the version-1 wire format below is unchanged.
+
 ## Tuple semantics
 
 The encoder retains the first `min(word_length, N-1)` symbols as a seed. Starting
