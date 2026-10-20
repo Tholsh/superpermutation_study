@@ -1,0 +1,22 @@
+{
+  "archive": "boundary-phase-n8-46173-source.zip",
+  "archive_sha256": "6e170d469881d12b16c9c227d86a0a30ad3e142a64923bb2873b070bb1b325be",
+  "archive_prefix": "boundary-phase-n8-46173/",
+  "imported_directory": "data/n8/46173",
+  "files_imported": 25,
+  "modifications": "None; all archive members retained byte-for-byte, including LICENSE, NOTICE, PROVENANCE.md, and evidence.",
+  "checksums": "data/n8/46173/SHA256SUMS",
+  "checksums_sha256": "e03895c622bbc8b352b851564e1b090a5891f1339de6aa54cc6a22122e5904a8",
+  "corpus_path": "words/8/46173/n8-46173_1indexed_canonical.txt",
+  "corpus_sha256": "8acf0fb6ecd633ac43a6b98edf7e9de74f62e987fe0f85c9059ed49008609b81",
+  "canonical_relabeling": {
+    "5": "1",
+    "2": "2",
+    "4": "3",
+    "0": "4",
+    "3": "5",
+    "1": "6",
+    "6": "7",
+    "7": "8"
+  }
+}

@@ -2,7 +2,6 @@
   "files.associations": {
     "*.tex": "latex"
   },
-  "latexPreview.latexFontDir": "C:/Users/Theo/AppData/Local/Programs/MiKTeX/fonts",
   "latex-workshop.latex.build.enableMagicComments": false,
   "latex-workshop.latex.autoBuild.run": "onSave",
   "latex-workshop.latex.outDir": "%DIR%/.latex-build",
@@ -26,5 +25,8 @@
       "name": "LuaLaTeX",
       "tools": ["lualatex"]
     }
-  ]
+  ],
+  "latex-workshop.latex.recipe.default": "LuaLaTeX",
+  "latex-workshop.latex.clean.method": "glob",
+  "makefile.configureOnOpen": false
 }

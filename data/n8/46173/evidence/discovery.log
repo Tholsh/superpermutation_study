@@ -1,0 +1,12 @@
+n=8 L=46224 perm windows 40376 pieces 16 (0.0s)
+trails 16 (closed pieces 16, chained open pieces 0), sum R 46144
+trail windows 40376 distinct 40320 (n! check: True), duplicated 56 (0.0s)
+options 5152 by extra cost { 0: 840 1: 4312 }; dup-skip options { 0: 112 } (0.0s)
+model length of the plan: 46174 (16 events)
+t=1s: best 46174 -> 46173 (thread 0, it 6176, removed 4 trails, 0 big)
+it 166528 t=20s best 46173 (thread 0: cur 46175)
+it 328064 t=40s best 46173 (thread 0: cur 46173)
+LNS done: 507574 iterations on 1 threads, best 46173
+stats: events 16 (unchanged pieces 0, segments 0), gap-2 openings 3, gap-1 openings 0, duplicate-skip openings 0, opening cost 3
+stats: runs 6, join cost between runs 12, joins inside runs cost 9; joins by cost: 0:1 1:9 2:3 3:2
+wrote research/halfar-n8-46174-20261020/probe27-split-v1/word.txt length 46173 (60s)

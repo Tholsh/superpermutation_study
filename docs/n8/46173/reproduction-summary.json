@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-20",
+  "command": "python docs/n8/46173/reproduce.py",
+  "environment": "Windows, MSYS2 UCRT64 GCC/G++; Python 3",
+  "compiler_versions": {
+    "cc": "gcc.exe (Rev7, Built by MSYS2 project) 13.1.0",
+    "cxx": "g++.exe (Rev7, Built by MSYS2 project) 13.1.0"
+  },
+  "success": true,
+  "package": "data/n8/46173",
+  "package_files_verified": 24,
+  "manifest_sha256": "e03895c622bbc8b352b851564e1b090a5891f1339de6aa54cc6a22122e5904a8",
+  "parent_replay_byte_identical": true,
+  "solution_replay_byte_identical": true,
+  "python_spelling_byte_identical": true,
+  "regenerated_base_byte_identical": true,
+  "regenerated_table_byte_identical": true,
+  "canonical_solution_matches_corpus": true,
+  "solution_sha256_with_lf": "9ec23c8c05d60e51786d5fedea27aa3b6b2841c96fe15cf82c6095ecede7b475",
+  "canonical_corpus_sha256_with_lf": "8acf0fb6ecd633ac43a6b98edf7e9de74f62e987fe0f85c9059ed49008609b81",
+  "literal_checker_result": {
+    "n": 8,
+    "alphabet": "01234567",
+    "normalization": "discard exactly one optional final LF",
+    "final_lf_present": true,
+    "length": 46173,
+    "permutation_occurrences": 40376,
+    "distinct_permutations": 40320,
+    "required_permutations": 40320,
+    "missing_permutations": 0,
+    "extra_occurrences": 56,
+    "load_seconds": 9.96e-05,
+    "scan_seconds": 0.0006083,
+    "tested_deletions": 46173,
+    "coverage_preserving_deletions": [],
+    "deletion_seconds": 0.0006739
+  },
+  "scope": "Deterministic plan replay, literal coverage/deletion checking, Python plan spelling, base/table regeneration, and canonical corpus comparison; no randomized rediscovery or minimality claim."
+}

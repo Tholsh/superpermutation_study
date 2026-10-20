@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-20",
+  "environment": "Windows, MSYS2 UCRT64 GCC/G++, GNU Make under Bash; Python 3 from existing local environment",
+  "source_build_exit": 0,
+  "make_check_exit": 0,
+  "make_check_python_exit": 0,
+  "selection_to_base_exit": 0,
+  "parent_replay_byte_identical": true,
+  "solution_replay_byte_identical": true,
+  "python_spelling_byte_identical": true,
+  "regenerated_base_byte_identical": true,
+  "solution_sha256_including_LF": "9ec23c8c05d60e51786d5fedea27aa3b6b2841c96fe15cf82c6095ecede7b475",
+  "literal_checker_exit": 0,
+  "literal_checker_result": {
+    "n": 8,
+    "alphabet": "01234567",
+    "normalization": "discard exactly one optional final LF",
+    "final_lf_present": true,
+    "length": 46173,
+    "permutation_occurrences": 40376,
+    "distinct_permutations": 40320,
+    "required_permutations": 40320,
+    "missing_permutations": 0,
+    "extra_occurrences": 56,
+    "load_seconds": 0.0001278,
+    "scan_seconds": 0.000622,
+    "tested_deletions": 46173,
+    "coverage_preserving_deletions": [],
+    "deletion_seconds": 0.0007142
+  },
+  "scope": "Build, deterministic plan replay, literal scan, Python replay, and base regeneration; randomized rediscovery is not guaranteed."
+}
