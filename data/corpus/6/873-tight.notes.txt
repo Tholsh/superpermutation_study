@@ -1,1 +1,0 @@
-# All known 873-symbol superpermutations on 6 symbols that have no two consecutive wasted symbols
