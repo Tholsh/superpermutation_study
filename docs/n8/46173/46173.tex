@@ -1,9 +1,11 @@
 \documentclass[11pt]{article}
-\usepackage[margin=0.75in]{geometry}
-\usepackage{amsmath,amssymb,booktabs}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.78in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
 \usepackage[hidelinks]{hyperref}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
+\emergencystretch=2em
 \title{\vspace{-1.5em}Opening phase as a boundary interaction\\
 \large A verified \(46\,173\)-letter superpermutation on eight symbols}
 \author{}
@@ -12,85 +14,148 @@
 \maketitle
 \vspace{-2.5em}
 
-The improvement retains all sixteen closed trails of Jakub Halfar's
+The reported improvement retains all sixteen closed trails of Jakub Halfar's
 selected instance of Jay Pantone's construction: four large trails arising
-from four \(27\)-loop walks, and twelve trails completing the remaining
-source loops. No trail is split or deleted, and no opening drops a
-permutation occurrence. Only trail order and opening positions change.
-The input selection and the search program are Halfar's; the experiment
-reported here is a boundary reassembly, not a new all-order construction.
+from four walks through 27 source loops each, and twelve trails completing the
+remaining source loops. No trail is split or deleted, and no \emph{designated}
+permutation window within a trail is discarded. Only the order of the trails
+and their cyclic opening positions change. The selection of source loops and
+the search program are Halfar's; the experiment reported here is a boundary
+reassembly, not a new all-order construction.
+
+\section*{Definitions and conventions}
+A \emph{superpermutation of order \(n\)} is a finite word containing all \(n!\)
+permutations of its alphabet as contiguous substrings. An \emph{\(n\)-window}
+is any substring of length \(n\). It is \emph{valid} if its \(n\) symbols are
+distinct and hence form a permutation, and \emph{dirty} otherwise. A
+\emph{repeated permutation occurrence} is a valid window beyond the first
+occurrence of its permutation.
+
+We work with an alphabet of \(n\) distinct symbols and put \(h=n-3\).
+For the computation, \(n=8\), \(h=5\), and the alphabet is
+\(\{0,1,2,3,4,5,6,7\}\). A \emph{cyclic spelling} is a word read around a
+circle; its positions are understood modulo its length. The \emph{source
+loops} and \emph{closed trails} refer to the cyclic components and their
+assembled walks in the selected construction. A \emph{trail opening} cuts a
+cyclic spelling and extends it just far enough to preserve every designated
+permutation window on that trail.
 
 \section*{1. Phase determines two literal boundaries}
-For the general spelling identity, let \(n\geq4\), put \(h=n-3\), and
-let trail \(i\) have cyclic spelling length \(R_i\).
-An admissible opening \(\alpha\) specifies a cyclic start position and a
-gap \(g_{i,\alpha}\) between the adjacent permutation windows at that cut.
-The opened piece has length
+For general \(n\geq4\), let trail \(i\) have cyclic spelling length \(R_i\).
+An admissible opening \(\alpha\) selects a cyclic starting position for the
+first designated \(n\)-window. Let \(g_{i,\alpha}\) be the forward distance
+(in letters) from the last designated window's start to the first one's
+start, measured across the cut. In coordinates starting at the first
+window, the last starts at position \(R_i-g_{i,\alpha}\). Thus the linear
+piece containing both complete windows has length
 \[
-R_i+n-g_{i,\alpha}
- =R_i+h+a_i(\alpha),
-\qquad
-a_i(\alpha)=3-g_{i,\alpha}.
+\ell_{i,\alpha}
+=(R_i-g_{i,\alpha})+n
+=R_i+h+a_i(\alpha),
+\qquad a_i(\alpha):=3-g_{i,\alpha}.
 \]
-It exposes a starting \(h\)-word \(S_{i,\alpha}\) and an ending
-\(h\)-word \(E_{i,\alpha}\).
-\emph{Phase} here means the full cyclic position, not just a label modulo
-\(h\): equal coarse clock phases need not give equal boundary words.
-For this experiment, weight-\(3\) openings have \(a=0\), while
-weight-\(2\) openings have \(a=1\).
+The number \(a_i(\alpha)\) is the \emph{opening adjustment} relative to the
+baseline \(R_i+h\). For the openings in this experiment, a
+\emph{weight-\(w\) opening} means one with gap \(g=w\). Consequently,
+weight-3 openings have \(a=0\), and weight-2 openings have \(a=1\).
 
-\section*{2. One common matrix; different boundary states}
-Let \(\mathcal B_n\) be the ordered \(h\)-tuples of distinct alphabet
-symbols. Its size is \(n!/3!\), hence \(6\,720\) at \(n=8\).
-For \(E,S\in\mathcal B_n\), define
+Write \(P_{i,\alpha}\) for the resulting opened piece. Its starting and
+ending \(h\)-letter words are
 \[
-\begin{gathered}
+S_{i,\alpha}=\operatorname{prefix}_h(P_{i,\alpha}),
+\qquad
+E_{i,\alpha}=\operatorname{suffix}_h(P_{i,\alpha}).
+\]
+Here \emph{phase} denotes the complete cyclic start position, not merely
+its residue modulo \(h\) (the \emph{coarse clock phase}). Distinct openings
+with the same coarse phase can expose different \(S\) and \(E\).
+
+\section*{2. One boundary-cost matrix; coupled opening states}
+Let \(\mathcal B_n\) be the set of ordered \(h\)-letter words with distinct
+symbols from the alphabet. Since \(h=n-3\),
+\[
+|\mathcal B_n|=n(n-1)\cdots(n-h+1)=\frac{n!}{3!},
+\qquad |\mathcal B_8|=6\,720.
+\]
+For \(E,S\in\mathcal B_n\), define the longest suffix-to-prefix overlap
+and the resulting boundary cost:
+\[
+\begin{aligned}
 \operatorname{ov}(E,S)
- =\max\{k\in\{0,\ldots,h\}:\operatorname{suffix}_k(E)
-                         =\operatorname{prefix}_k(S)\},\\
-D[E,S]=h-\operatorname{ov}(E,S).
-\end{gathered}
+ &=\max\bigl\{k\in\{0,\ldots,h\}:
+ \operatorname{suffix}_k(E)=\operatorname{prefix}_k(S)\bigr\},\\
+D[E,S]&=h-\operatorname{ov}(E,S).
+\end{aligned}
 \]
-The length-zero prefix and suffix are both the empty word.
-Thus \(D\) is a directed boundary-cost matrix, common to every pair of
-trails. It need not be stored densely. If \(\mathbf e_E\) denotes the
-one-hot vector for boundary word \(E\), the exact cost of a join is
-\[
-\mathbf e_{E_{i,\alpha}}^{T}D\,
-\mathbf e_{S_{j,\beta}}.
-\]
-Collect the endpoint vectors as columns of matrices
-\(\mathsf E_i\) and \(\mathsf S_i\). The interaction between opening
-choices of two trails is then
-\[
-\boxed{C_{ij}=\mathsf E_i^{T}D\,\mathsf S_j},
-\qquad
-C_{ij}=
-\begin{pmatrix}
-D[E_{i,1},S_{j,1}] & D[E_{i,1},S_{j,2}] & \cdots\\
-D[E_{i,2},S_{j,1}] & D[E_{i,2},S_{j,2}] & \cdots\\
-\vdots & \vdots & \ddots
-\end{pmatrix}.
-\]
-For order \(\sigma\) on the sixteen trails, let \(x_i\) be a one-hot
-opening-choice vector, and let \(a_i\) be the vector of opening costs.
-The exact spelling identity for these unsplit, non-dropping pieces is
-\[
-\boxed{
-L=h+\sum_{i=1}^{16}R_i
- +\sum_{i=1}^{16}a_i^{T}x_i
- +\sum_{k=1}^{15}
- x_{\sigma(k)}^{T}C_{\sigma(k),\sigma(k+1)}x_{\sigma(k+1)}.
-}
-\]
-The two ends of a trail are coupled through the \emph{same} \(x_i\).
-Optimizing its incoming and outgoing boundaries independently would
-therefore admit choices that no single opening realizes.
+The length-zero prefix and suffix are both the empty word. The matrix
+\(D\in\mathbb R^{|\mathcal B_n|\times|\mathcal B_n|}\) is \emph{directed}:
+in general, \(D[E,S]\neq D[S,E]\). It can be evaluated entry by entry
+without allocating a dense array.
 
-\section*{3. An actual expanded matrix from the new word}
-The three weight-\(2\) openings occur consecutively, in the order
-\(14,15,13\). Trail numbers below are the zero-based IDs in the saved
-plan; offsets are positions in their cyclic spellings.
+For a boundary word \(b\), let \(\mathbf e_b\) be its \emph{one-hot vector},
+with one entry equal to 1 at the index of \(b\) in \(\mathcal B_n\) and all
+other entries equal to 0. Thus an actual join from \(E\) to \(S\) costs
+\[
+\mathbf e_E^T D\,\mathbf e_S=D[E,S].
+\]
+Let \(\mathcal T=\{0,1,\ldots,15\}\) be the set of trail IDs,
+matching the zero-based saved plan. Suppose trail \(i\in\mathcal T\)
+has \(m_i\) admissible openings, labeled
+\(\alpha=1,\ldots,m_i\). Define the matrices whose columns are its
+possible boundary vectors, and its vector of opening adjustments:
+\[
+\begin{aligned}
+\mathsf E_i&=
+ [\,\mathbf e_{E_{i,1}}\ \cdots\ \mathbf e_{E_{i,m_i}}\,],\\
+\mathsf S_i&=
+ [\,\mathbf e_{S_{i,1}}\ \cdots\ \mathbf e_{S_{i,m_i}}\,],\\
+\mathbf a_i&=(a_i(1),\ldots,a_i(m_i))^T.
+\end{aligned}
+\]
+The complete table of interactions between opening choices of distinct
+trails \(i,j\) is
+\[
+\boxed{C_{ij}=\mathsf E_i^T D\,\mathsf S_j},
+\qquad
+C_{ij}[\alpha,\beta]
+=D[E_{i,\alpha},S_{j,\beta}].
+\]
+
+An \emph{opening-choice vector} \(x_i\in\{0,1\}^{m_i}\) has exactly one
+nonzero entry: \(\mathbf1^T x_i=1\). The nonzero entry selects a single
+opening of trail \(i\), fixing \emph{both} ends at once. Let
+\(\sigma:\{1,\ldots,16\}\to\mathcal T\) be a bijection; the
+sequence \(\sigma(1),\ldots,\sigma(16)\) specifies trail order. The opening and joining totals are
+\[
+A=\sum_{i\in\mathcal T}\mathbf a_i^T x_i,
+\qquad
+J=\sum_{k=1}^{15}
+x_{\sigma(k)}^T C_{\sigma(k),\sigma(k+1)}
+x_{\sigma(k+1)}.
+\]
+In this assembly rule, adjacent pieces are joined using the maximum
+overlap of their exposed \(h\)-letter boundaries (at most \(h\) letters).
+Each piece has length \(R_i+h+\mathbf a_i^Tx_i\); the join of consecutive
+pieces removes \(h-D[E,S]\) repeated boundary letters. Therefore
+\[
+\begin{aligned}
+L&=\sum_{i\in\mathcal T}\bigl(R_i+h+\mathbf a_i^T x_i\bigr)
+   -\sum_{k=1}^{15}\bigl(h-
+     x_{\sigma(k)}^T C_{\sigma(k),\sigma(k+1)}
+     x_{\sigma(k+1)}\bigr)\\
+ &=\boxed{h+\sum_{i\in\mathcal T}R_i+A+J}.
+\end{aligned}
+\]
+This is an exact identity for the \emph{specified opening-and-joining
+procedure}, not a claim of globally optimal overlap for arbitrary words.
+Optimizing incoming and outgoing endpoints independently would generally
+choose two different openings of the same trail and thus describe an
+unrealizable assembly.
+
+\section*{3. An expanded matrix from the new word}
+The three weight-2 openings appear consecutively in trail order
+\(14,15,13\). Trail IDs are zero-based identifiers in the saved plan;
+offsets are positions in the corresponding cyclic spellings.
 \[
 \begin{array}{c|r|c|c|c}
 \text{trail}&\text{offset}&g&S&E\\ \hline
@@ -99,85 +164,106 @@ plan; offsets are positions in their cyclic spellings.
 13&3415&2&03254&32541
 \end{array}
 \]
-Using row order \(E_{14},E_{15},E_{13}\) and column order
-\(S_{14},S_{15},S_{13}\), the literal overlap and cost matrices are
+Using the row order \(E_{14},E_{15},E_{13}\) and column order
+\(S_{14},S_{15},S_{13}\), direct string comparison yields
 \[
-O=
-\begin{pmatrix}
-0&5&2\\
-1&0&3\\
-0&1&0
-\end{pmatrix},
+O=\begin{pmatrix}0&5&2\\1&0&3\\0&1&0\end{pmatrix},
 \qquad
-M=5\mathbf1\mathbf1^{T}-O
-=
-\begin{pmatrix}
-5&\boxed{0}&3\\
-4&5&\boxed{2}\\
-5&4&5
-\end{pmatrix}.
+M=5\mathbf1\mathbf1^T-O
+ =\begin{pmatrix}5&\boxed{0}&3\\4&5&\boxed{2}\\5&4&5\end{pmatrix},
 \]
-Here \(\mathbf1=(1,1,1)^T\). These are exact boundary costs for the
-displayed openings, not hypothetical examples. Diagonal entries are
-shown for completeness; revisiting a trail is not allowed.
+where \(\mathbf1=(1,1,1)^T\) and \(M\) is the restriction of \(D\) to
+these specific boundary words. Diagonal entries are displayed for
+completeness; the assembly never revisits a trail. Notice the direction:
+\(M_{1,2}=0\), but \(M_{2,1}=4\).
 
-The two joins actually used in this subchain are the matrix elements
+The consecutive joins actually selected are
 \[
-\begin{pmatrix}1&0&0\end{pmatrix}
-M\begin{pmatrix}0\\1\\0\end{pmatrix}=0,
-\qquad
-\begin{pmatrix}0&1&0\end{pmatrix}
-M\begin{pmatrix}0\\0\\1\end{pmatrix}=2.
+\mathbf u_1^T M\mathbf u_2=0,
+\qquad \mathbf u_2^T M\mathbf u_3=2,
 \]
-The zero is the literal equality \(E_{14}=S_{15}=17503\).
-The next join shares the three-symbol boundary \(032\).
-This small matrix illustrates the boundary mechanism; the net saving
-must still be accounted for over the entire sixteen-trail assembly.
+where \(\mathbf u_1=(1,0,0)^T\), \(\mathbf u_2=(0,1,0)^T\),
+and \(\mathbf u_3=(0,0,1)^T\) index the displayed rows and columns.
+The first join has the complete five-letter equality
+\(E_{14}=S_{15}=17503\); the second uses the three-letter equality
+\(\operatorname{suffix}_3(75032)=032
+ =\operatorname{prefix}_3(03254)\), so it adds two boundary letters.
+These are genuine entries for the reported openings; the total gain must
+be counted across the complete sixteen-trail order.
 
-\section*{4. Three extra opening symbols buy four joining symbols}
-Write \(A=\sum_i a_i^Tx_i\), and write \(J\) for the sum of the fifteen
-join costs. The fixed cyclic spelling length is
-\(\sum_iR_i=46\,144=46\,080+64\), so \(h+\sum_iR_i=46\,149\).
-The exact comparison is
+\section*{4. Three extra opening letters save four joining letters}
+The fixed total cyclic spelling length reported by the assembly plan is
+\[
+\sum_{i\in\mathcal T}R_i=46\,144
+=(8!+7!+6!)+64.
+\]
+The extra 64 is part of the fixed trail data, not something derived by
+this boundary-cost argument. Hence \(h+\sum_iR_i=46\,149\),
+and the length accounting is
 \[
 \begin{array}{l|r|r}
-&\text{Halfar reference}&\text{new assembly}\\ \hline
+ &\text{Halfar reference}&\text{new assembly}\\ \hline
 h+\sum_iR_i&46\,149&46\,149\\
 A&0&3\\
 J&25&21\\ \hline
 L&46\,174&46\,173
 \end{array}
 \]
-For the new plan the fifteen joins, in order, expand to
+For the new plan, the fifteen directed boundary costs are, in order,
 \[
 J=1+1+3+1+1+2+2+0+2+1+1+1+3+1+1=21.
 \]
-Consequently
+Consequently,
 \[
 \boxed{\Delta L=\Delta A+\Delta J=3+(21-25)=-1.}
 \]
-The gain is collective: the accounting does not assign an independent
-saving to each of the three changed openings.
+Three more letters are needed to open the selected trails, but four
+fewer letters are needed to join the sixteen pieces. The net saving is
+collective; it cannot be assigned independently to each changed opening.
 
-\section*{5. Occupation and scope}
-Every required permutation remains covered by the complete trail
-pieces, and overlapping equal boundary strings preserves their
-substrings. This preserves final coverage, not the intermediate
-Bellman states or the count of repeated occurrences.
-Two independent literal scanners accepted length \(46\,173\) and all
-\(8!=40\,320\) permutations. The new word has \(56\) repeated permutation
-occurrences, versus \(57\) in the reference, and both have \(5\,790\)
-dirty windows.
+\section*{5. Coverage, occupation, and scope}
+For a linear word \(W\), let \(q_W(\pi)\) count its contiguous occurrences
+of permutation \(\pi\), and define the \emph{occupied support}
+\[
+\operatorname{supp}(W)=\{\pi\in S_n:q_W(\pi)>0\}.
+\]
+Here \(S_n\) denotes the symmetric group, viewed as the set of all
+permutations of the alphabet. In this note, \emph{occupation-preserving}
+means that every permutation remains in this support; it does
+\emph{not} mean that all multiplicities \(q_W(\pi)\) are unchanged.
+All designated permutation windows are preserved inside their complete
+opened pieces, and joining on equal substrings preserves those pieces.
+Additional permutation windows spanning a join may change.
 
-In our Albion picture, this is an occupation-preserving change of
-boundary phase. The matrix formulation explains the coupled cost;
-Halfar's existing randomized \texttt{trailsearch} found the discrete
-choices. Fourier diagonalization of an internal clock does not
-automatically diagonalize \(D\), and no general analytic selection rule
-or minimality theorem is claimed.
+Independent sliding-window scans of the supplied reference and improved
+words give \(8!=40\,320\) distinct permutations in each. The new word
+has 56 repeated permutation occurrences, compared with 57 in the
+reference, and both have 5,790 dirty windows. In particular,
+\(46\,173-8+1=40\,320+56+5\,790\), as required.
+
+This is an occupation-support-preserving change of boundary phase. The
+matrix formulation explains the coupled costs; Halfar's randomized
+\texttt{trailsearch} supplies the discrete choices reported in the plan.
+The argument does not establish minimality or a general analytic selection
+rule. A discrete Fourier transform diagonalizes the cyclic-shift operator
+of an internal clock, but that fact alone does not diagonalize the directed
+boundary matrix \(D\).
+
+\smallskip
+\noindent\textit{Symmetry remark.}
+For every simultaneous relabeling of the alphabet
+\(\pi\in S_n\), the boundary matrix obeys
+\[
+D[\pi(E),\pi(S)]=D[E,S].
+\]
+Thus \(D\) commutes with the natural \(S_n\)-action on boundary words.
+This may allow a representation-theoretic block decomposition, but does
+not on its own give a scalar Fourier diagonalization or solve the opening
+selection problem.
 
 {\small\textit{Reproducibility.}
-The adjacent \texttt{../PROBE27.md} records commands, attribution and
-verification. The plan is \texttt{../n8-46173.plan}; the word is
-\texttt{../n8-46173.txt}.}
+Search and attribution: \texttt{../PROBE27.md}.\par
+Sixteen-trail assembly plan: \texttt{../n8-46173.plan}.\par
+Improved word: \texttt{../n8-46173.txt}.
+A single optional final newline is excluded from length and coverage checks.}
 \end{document}
