@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Theo H.
 // Distributed without warranty; see the repository LICENSE for full terms.
 
-// Version 1 is a strict, one-byte-per-tuple preconditioner for gzip. See
+// A strict, configurable-width tuple preconditioner for gzip. See
 // docs/reduced_binary.md for the wire format and its representability limits.
 #include <algorithm>
 #include <array>
@@ -25,22 +25,41 @@ namespace {
 using Byte = std::uint8_t;
 using Count = std::uint64_t;
 constexpr std::size_t BUFFER_SIZE = 65536;
-constexpr unsigned MAX_N = 16;
+constexpr unsigned MAX_N = 32;
+constexpr unsigned MAX_OFFSET_REACH = 32;
 constexpr std::array<Byte, 4> MAGIC{'S', 'P', 'R', 'A'};
 constexpr Byte VERSION = 1;
-constexpr Byte LAYOUT = 0x44;
-constexpr std::string_view ONE_BASED = "123456789ABCDEFG";
-constexpr std::string_view ZERO_BASED = "0123456789ABCDEF";
+constexpr std::string_view ONE_BASED = "123456789ABCDEFGHIJKLMNOPQRSTUVW";
+constexpr std::string_view ZERO_BASED = "0123456789ABCDEFGHIJKLMNOPQRSTUV";
+static_assert(ONE_BASED.size() == MAX_N && ZERO_BASED.size() == MAX_N);
 constexpr const char* USAGE =
-    "usage: reduced-codec encode [-z|--zero-based] N [INPUT|-]\n"
+    "usage: reduced-codec encode [--bits 4|6] [-z|--zero-based] N [INPUT|-]\n"
     "       reduced-codec decode [INPUT|-]\n"
-    "  N: 1..16; omitted INPUT or '-' reads stdin.\n"
+    "  N: 1..32; omitted INPUT or '-' reads stdin.\n"
+    "  --bits: bits per field (default 4); tuples use 8 or 12 packed bits.\n"
+    "  decode detects the layout from the header.\n"
     "  encode writes binary to stdout; decode writes symbols without a newline.\n"
     "  Errors go to stderr. Redirect stdout to save the result.\n";
 
 [[noreturn]] void fail(const std::string& message) {
     throw std::runtime_error(message);
 }
+
+// Keep field ranges and wire identifiers together. Packing and word semantics
+// use this description rather than separate implementations for each layout.
+struct Layout {
+    unsigned bits;
+    explicit Layout(unsigned width) : bits(width) {
+        if (bits != 4 && bits != 6) fail("--bits must be 4 or 6");
+    }
+    unsigned mask() const { return (1u << bits) - 1; }
+    unsigned sign() const { return 1u << (bits - 1); }
+    Byte id() const { return static_cast<Byte>((bits << 4) | bits); }
+    static Layout from_id(Byte id) {
+        if (id != 0x44 && id != 0x66) fail("unsupported tuple layout (expected 0x44 or 0x66)");
+        return Layout(id & 15);
+    }
+};
 
 void binary_mode(std::FILE* file) {
 #ifdef _WIN32
@@ -120,12 +139,62 @@ public:
     }
 };
 
-// A nibble reference reaches at most N+8 symbols into the past. The longest
+// Tuple bits are most-significant first, with zero padding to the final byte.
+// This preserves the original 4+4 bytes and packs two 6+6 tuples into 3 bytes.
+class TupleWriter {
+    Writer& output_;
+    Layout layout_;
+    unsigned pending_ = 0, count_ = 0;
+public:
+    TupleWriter(Writer& output, Layout layout) : output_(output), layout_(layout) {}
+    void put(unsigned depth, int offset) {
+        const unsigned tuple = (depth << layout_.bits) | (static_cast<unsigned>(offset) & layout_.mask());
+        pending_ = (pending_ << (2 * layout_.bits)) | tuple;
+        count_ += 2 * layout_.bits;
+        while (count_ >= 8) {
+            count_ -= 8;
+            output_.put(static_cast<Byte>(pending_ >> count_));
+        }
+        pending_ &= (1u << count_) - 1;
+    }
+    void finish() {
+        if (count_) output_.put(static_cast<Byte>(pending_ << (8 - count_)));
+        pending_ = count_ = 0;
+    }
+};
+
+struct Tuple { unsigned depth; int offset; };
+
+class TupleReader {
+    Reader& input_;
+    Layout layout_;
+    unsigned pending_ = 0, count_ = 0;
+public:
+    TupleReader(Reader& input, Layout layout) : input_(input), layout_(layout) {}
+    Tuple get() {
+        const unsigned width = 2 * layout_.bits;
+        while (count_ < width) {
+            pending_ = (pending_ << 8) | input_.required("tuple body");
+            count_ += 8;
+        }
+        count_ -= width;
+        const unsigned tuple = pending_ >> count_;
+        pending_ &= (1u << count_) - 1;
+        const int low = static_cast<int>(tuple & layout_.mask());
+        const int offset = low < static_cast<int>(layout_.sign()) ? low : low - (1 << layout_.bits);
+        return {tuple >> layout_.bits, offset};
+    }
+    void finish() const {
+        if (pending_) fail("nonzero padding bits after final tuple");
+    }
+};
+
+// A six-bit reference reaches at most N+32 symbols into the past. The longest
 // distinct suffix detects clean windows without an N!-sized coverage bitmap.
 class WordState {
     unsigned n_;
     unsigned suffix_ = 0;
-    std::array<Byte, MAX_N + 8> history_{};
+    std::array<Byte, MAX_N + MAX_OFFSET_REACH> history_{};
     std::array<Count, MAX_N> last_{};
 public:
     Count length = 0;
@@ -150,11 +219,11 @@ public:
         // Once a window is clean, further clean steps are distance-N copies.
         if (clean()) return back(n_);
         if (suffix_ < n_ - 1) fail("clean run follows a repeated suffix at symbol " + std::to_string(length + 1));
-        unsigned used = 0;
+        std::uint32_t used = 0;
         for (unsigned distance = 1; distance < n_; ++distance)
-            used |= 1u << back(distance);
+            used |= std::uint32_t{1} << back(distance);
         for (unsigned symbol = 0; symbol < n_; ++symbol)
-            if (!(used & (1u << symbol))) return static_cast<Byte>(symbol);
+            if (!(used & (std::uint32_t{1} << symbol))) return static_cast<Byte>(symbol);
         fail("clean window has no missing symbol");
     }
 };
@@ -163,11 +232,12 @@ bool whitespace(int c) {
     return c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f' || c == '\v';
 }
 
-void encode(std::FILE* source, unsigned n, bool zero_based) {
+void encode(std::FILE* source, unsigned n, bool zero_based, Layout layout) {
     File spool(std::tmpfile());
     if (!spool) fail("cannot create temporary tuple file");
     binary_mode(spool.get());
-    Writer tuples(spool.get());
+    Writer body(spool.get());
+    TupleWriter tuples(body, layout);
     Reader input(source);
     WordState state(n);
     std::vector<Byte> seed;
@@ -191,29 +261,30 @@ void encode(std::FILE* source, unsigned n, bool zero_based) {
             continue;
         }
         const auto location = " at symbol " + std::to_string(state.length);
-        if (clean_run > 15)
-            fail("nibble depth " + std::to_string(clean_run) + " exceeds 15" + location);
+        if (clean_run > layout.mask())
+            fail("depth " + std::to_string(clean_run) + " exceeds " + std::to_string(layout.mask()) + location);
         if (previous == 0)
-            fail("dirty symbol has no earlier occurrence" + location + "; nibble version 1 cannot encode it");
+            fail("dirty symbol has no earlier occurrence" + location + "; copy-only layouts cannot encode it");
         const Count distance = state.length - previous;
-        const unsigned minimum_distance = n > 7 ? n - 7 : 1;
-        if (distance < minimum_distance || distance > n + 8)
-            fail("copy distance " + std::to_string(distance) + " is outside nibble range " +
-                 std::to_string(minimum_distance) + ".." + std::to_string(n + 8) + location);
+        const unsigned minimum_distance = n >= layout.sign() ? n - (layout.sign() - 1) : 1;
+        const unsigned maximum_distance = n + layout.sign();
+        if (distance < minimum_distance || distance > maximum_distance)
+            fail("copy distance " + std::to_string(distance) + " is outside " + std::to_string(layout.bits) +
+                 "-bit range " + std::to_string(minimum_distance) + ".." + std::to_string(maximum_distance) + location);
         const int offset = static_cast<int>(n) - static_cast<int>(distance);
-        const unsigned nibble = offset < 0 ? static_cast<unsigned>(offset + 16) : static_cast<unsigned>(offset);
-        tuples.put(static_cast<Byte>((clean_run << 4) | nibble));
+        tuples.put(static_cast<unsigned>(clean_run), offset);
         ++tuple_count;
         clean_run = 0;
     }
     tuples.finish();
+    body.finish();
     if (std::fseek(spool.get(), 0, SEEK_SET) != 0) fail("cannot rewind temporary tuple file");
 
-    // Publish only after the whole input and all nibble ranges are validated.
+    // Publish only after the whole input and all field ranges are validated.
     Writer output(stdout);
     output.bytes(MAGIC.data(), MAGIC.size());
     output.put(VERSION);
-    output.put(LAYOUT);
+    output.put(layout.id());
     output.put(zero_based ? 1 : 0);
     output.put(static_cast<Byte>(n));
     output.little_u64(state.length);
@@ -231,11 +302,11 @@ void decode(std::FILE* source) {
     for (Byte expected : MAGIC)
         if (input.required("header") != expected) fail("not an SPRA binary file");
     if (input.required("header") != VERSION) fail("unsupported format version");
-    if (input.required("header") != LAYOUT) fail("unsupported tuple layout (expected 0x44)");
+    const Layout layout = Layout::from_id(input.required("header"));
     const Byte flags = input.required("header");
     if (flags & ~1u) fail("unsupported header flags");
     const unsigned n = input.required("header");
-    if (n == 0 || n > MAX_N) fail("header N must be 1..16");
+    if (n == 0 || n > MAX_N) fail("header N must be 1..32");
     const Count length = input.little_u64("header");
     const Count tuple_count = input.little_u64("header");
     const auto seed_length = static_cast<unsigned>(std::min<Count>(length, n - 1));
@@ -253,11 +324,9 @@ void decode(std::FILE* source) {
         output.put(static_cast<Byte>(alphabet[symbol]));
     };
     for (unsigned i = 0; i < seed_length; ++i) emit(seed[i]);
+    TupleReader tuples(input, layout);
     for (Count i = 0; i < tuple_count; ++i) {
-        const Byte tuple = input.required("tuple body");
-        const unsigned depth = tuple >> 4;
-        const int low = tuple & 15;
-        const int offset = low < 8 ? low : low - 16;
+        const auto [depth, offset] = tuples.get();
         if (Count(depth) >= length - state.length) fail("tuple exceeds decoded length");
         for (unsigned step = 0; step < depth; ++step) emit(state.next_clean());
         const int distance = static_cast<int>(n) - offset;
@@ -265,6 +334,7 @@ void decode(std::FILE* source) {
         emit(state.back(static_cast<unsigned>(distance)));
         if (state.clean()) fail("dirty tuple produces a clean window at symbol " + std::to_string(state.length));
     }
+    tuples.finish();
     if (input.get() != EOF) fail("extra bytes after tuple body");
     while (state.length < length) emit(state.next_clean());
     output.finish();
@@ -272,7 +342,7 @@ void decode(std::FILE* source) {
 
 struct Options {
     bool encode = false, zero_based = false;
-    unsigned n = 0;
+    unsigned n = 0, bits = 4;
     std::string input = "-";
 };
 
@@ -282,16 +352,28 @@ Options options(int argc, char** argv) {
     if (command != "encode" && command != "decode") fail(USAGE);
     Options result;
     result.encode = command == "encode";
-    bool has_input = false;
+    bool has_input = false, has_bits = false;
     for (int i = 2; i < argc; ++i) {
         const std::string_view arg = argv[i];
-        if (result.encode && (arg == "-z" || arg == "--zero-based")) {
+        if (result.encode && (arg == "--bits" || arg.starts_with("--bits="))) {
+            if (has_bits) fail("duplicate --bits option");
+            has_bits = true;
+            std::string_view value;
+            if (arg == "--bits") {
+                if (++i == argc) fail("--bits requires 4 or 6");
+                value = argv[i];
+            } else value = arg.substr(7);
+            const auto parsed = std::from_chars(value.data(), value.data() + value.size(), result.bits);
+            if (parsed.ec != std::errc{} || parsed.ptr != value.data() + value.size())
+                fail("--bits must be 4 or 6");
+            (void)Layout(result.bits);
+        } else if (result.encode && (arg == "-z" || arg == "--zero-based")) {
             if (result.zero_based) fail("duplicate zero-based flag");
             result.zero_based = true;
         } else if (result.encode && result.n == 0 && !arg.starts_with('-')) {
             const auto parsed = std::from_chars(arg.data(), arg.data() + arg.size(), result.n);
             if (parsed.ec != std::errc{} || parsed.ptr != arg.data() + arg.size() || result.n == 0 || result.n > MAX_N)
-                fail("N must be 1..16");
+                fail("N must be 1..32");
         } else if (!has_input && (arg == "-" || !arg.starts_with('-'))) {
             result.input = arg;
             has_input = true;
@@ -299,7 +381,7 @@ Options options(int argc, char** argv) {
             fail("unexpected argument: " + std::string(arg));
         }
     }
-    if (result.encode && result.n == 0) fail("encode requires N in 1..16");
+    if (result.encode && result.n == 0) fail("encode requires N in 1..32");
     return result;
 }
 } // namespace
@@ -321,7 +403,7 @@ int main(int argc, char** argv) try {
     }
     binary_mode(source);
     binary_mode(stdout);
-    if (args.encode) encode(source, args.n, args.zero_based);
+    if (args.encode) encode(source, args.n, args.zero_based, Layout(args.bits));
     else decode(source);
     return 0;
 } catch (const std::exception& error) {
