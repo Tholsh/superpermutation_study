@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Theo H.
 // Distributed without warranty; see the repository LICENSE for full terms.
 
-// A strict, configurable-width tuple preconditioner for gzip. See
+// A strict, configurable-width tuple preconditioner for xz. See
 // docs/reduced_binary.md for the wire format and its representability limits.
 #include <algorithm>
 #include <array>
