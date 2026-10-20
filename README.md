@@ -13,9 +13,11 @@ All seven N=9 records also have version-1, four-bit `.spra` copies and default-x
 
 [`docs/n11/improve_halfar/`](docs/n11/improve_halfar/) contains reconstruction and exchange reports, including `dependency-hashes.json`, which records the original search dependencies. Experiment reports and replay scripts may still refer to word paths recorded in the import manifest.
 
+[`data/n8/46173/`](data/n8/46173/) contains the complete source bundle for the N=8 reduction from 46,174 to 46,173 symbols, including Halfar's selection and replayer, Pantone's literal checker, saved plans, and original evidence. Run `python docs/n8/46173/reproduce.py` to build from source, replay both words, verify all 40,320 permutations and single-symbol deletions, regenerate the base, and compare the canonically relabeled solution with the corpus. See the [N=8 reproduction guide](docs/n8/46173/REPRODUCE.md) and [verified receipt](docs/n8/46173/reproduction-summary.json).
+
 ## Math
 
-You can find the writeup in [`docs/n11/improve_halfar/math/`](docs/n11/improve_halfar/math/)
+The N=11 writeup is in [`docs/n11/improve_halfar/math/`](docs/n11/improve_halfar/math/). The N=8 boundary interaction writeup is [`docs/n8/46173/46173.tex`](docs/n8/46173/46173.tex), with its [reproduction guide](docs/n8/46173/REPRODUCE.md) alongside it.
 
 ## Compression and extraction
 

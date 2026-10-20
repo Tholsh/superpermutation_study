@@ -1,2 +1,5 @@
 # Bash scripts need LF endings even in Windows checkouts.
 *.sh text eol=lf
+
+# Preserve the imported N=8 package byte-for-byte for its SHA256SUMS.
+data/n8/46173/** -text

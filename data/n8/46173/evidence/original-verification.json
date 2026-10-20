@@ -1,0 +1,13 @@
+{
+  "n": 8,
+  "length": 46173,
+  "literalCheckPassed": true,
+  "independentScannerPassed": true,
+  "independentPlanSpellingIdentical": true,
+  "reducedAlphabetScannerPassed": true,
+  "sha256_no_lf": "6ad59b18b8cd281fe0052a0e6898d74e533c6c56f68776948fb0f1c912c4a613",
+  "sha256_with_lf": "9ec23c8c05d60e51786d5fedea27aa3b6b2841c96fe15cf82c6095ecede7b475",
+  "parent": "Halfar 46174",
+  "parent_selection_unchanged": true,
+  "new_global_minimality_claim": false
+}
