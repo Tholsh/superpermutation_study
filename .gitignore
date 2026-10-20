@@ -9,7 +9,7 @@ paint-waste.exe
 *.pdb
 *.ilk
 
-# LaTeX preview output.
+# LaTeX auxiliary output; source-adjacent PDFs remain trackable.
 **/.latex-build/
 *.aux
 *.dvi
