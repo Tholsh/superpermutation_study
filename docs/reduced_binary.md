@@ -1,9 +1,10 @@
 # Reduced-alphabet binary codec
 
-`tools/reduced_codec.cpp` builds `reduced-codec`, a reversible first pass for gzip
-or another general-purpose compressor. Version 1 stores each reduced-alphabet
-tuple in **one byte**: an unsigned depth nibble and a signed copy-offset nibble.
-The header identifies the version, layout, alphabet, and word length.
+`tools/reduced_codec.cpp` builds `reduced-codec`, a reversible first pass for xz
+or another general-purpose compressor. Select `--bits 4` (the default) or
+`--bits 6` for both fields: unsigned clean-run depth and signed copy offset.
+Tuples occupy **8 or 12 packed bits**, respectively. The header identifies the
+version, layout, alphabet, and word length; decode detects the field width.
 
 Both commands write their result to **stdout**. The encoder writes raw binary;
 the decoder writes word symbols with **no final newline**. Neither command opens
@@ -18,22 +19,26 @@ From the repository root, with a C++20 compiler:
 ```sh
 g++ -std=c++20 -O2 -Wall -Wextra -pedantic tools/reduced_codec.cpp -o reduced-codec
 ./reduced-codec encode 5 words/5/153/153-recursive.txt > word-n5.spra
+./reduced-codec encode --bits 6 5 words/5/153/153-recursive.txt > word-n5-six.spra
 ./reduced-codec decode word-n5.spra > restored-n5.txt
 ```
 
 The interface is:
 
 ```text
-reduced-codec encode [-z|--zero-based] N [INPUT|-]
+reduced-codec encode [--bits 4|6] [-z|--zero-based] N [INPUT|-]
 reduced-codec decode [INPUT|-]
 ```
 
-Omitting `INPUT`, or using `-`, reads stdin. `N` must be between 1 and 16. Decode
-reads N and the alphabet mode from the header; it takes no N or alphabet flag.
+Omitting `INPUT`, or using `-`, reads stdin. `N` must be between 1 and 32. The
+encoder also accepts `--bits=6` and `--bits=4`; options may appear before or after
+N. Decode reads N, the field width, and the alphabet mode from the header; it takes
+none of those flags. Four-bit output remains byte-for-byte compatible with
+existing version-1 files. An older decoder rejects the new `0x66` layout.
 
-Input labels are the first N characters of `123456789ABCDEFG`, or
-`0123456789ABCDEF` with `-z`. Each uppercase letter is one symbol. The encoder
-ignores ASCII spaces, tabs, CR, LF, form feeds, and vertical tabs, and rejects all
+Input labels are the first N characters of `123456789ABCDEFGHIJKLMNOPQRSTUVW`, or
+`0123456789ABCDEFGHIJKLMNOPQRSTUV` with `-z`. Each uppercase letter is one
+symbol. The encoder ignores ASCII spaces, tabs, CR, LF, form feeds, and vertical tabs, and rejects all
 other bytes outside the chosen alphabet. Decode restores those same labels in a
 single word; it does not restore whitespace. Several input lines are concatenated,
 so supply one word per invocation. Coverage of all N! permutations is not checked.
@@ -58,6 +63,8 @@ cmd /c '.\reduced-codec.exe encode 5 words\5\153\153-recursive.txt > word-n5.spr
 if ($LASTEXITCODE -ne 0) { throw 'Encoding failed; discard word-n5.spra.' }
 cmd /c '.\reduced-codec.exe decode word-n5.spra > restored-n5.txt'
 if ($LASTEXITCODE -ne 0) { throw 'Decoding failed; discard restored-n5.txt.' }
+# Select six-bit fields; decode uses the same command for either layout.
+cmd /c '.\reduced-codec.exe encode --bits 6 5 words\5\153\153-recursive.txt > word-n5-six.spra'
 ```
 
 Quote paths containing spaces inside the command string:
@@ -71,104 +78,159 @@ Do not pass `.spra` data through `Get-Content`, `Out-File`, or a text encoding.
 Redirection creates or truncates the destination before the program runs, so use
 different input and output paths and check the exit status before keeping a file.
 
-## Put gzip after the first pass
+## Converted N=9 corpus
 
-In Bash (for example WSL or MSYS2), enable `pipefail` so a failure anywhere in the
-pipeline returns a failing status:
+All seven records under `words/9/` have `.spra` and `.spra.xz` copies alongside
+their original `.txt` files, keeping the same base filenames. Every word fits
+version 1, layout `0x44`: four-bit depth and offset fields, with one-based labels.
+The original text files and their whitespace are preserved.
+
+| Representation, all seven records | Total bytes |
+| --- | ---: |
+| Original text files | 2,861,987 |
+| Normalized word symbols | 2,861,975 |
+| `.spra` binaries | 320,639 |
+| `.spra.xz` archives, default xz | 4,360 |
+
+Every saved archive was decompressed, compared with its binary copy, and decoded
+back to the normalized source word. The [conversion manifest](../data/corpus/reduced-n9.json)
+records source and output hashes, lengths, tuple counts, and verification results.
+
+Restore a raw binary in PowerShell:
+
+```powershell
+cmd /c '.\reduced-codec.exe decode words\9\408731\superpermutation-9-408731.spra > restored-n9.txt'
+```
+
+Or restore an xz archive in a POSIX shell:
 
 ```sh
 set -o pipefail
-./reduced-codec encode 5 words/5/153/153-recursive.txt | gzip -c > word-n5.spra.gz
-gzip -dc word-n5.spra.gz | ./reduced-codec decode > restored-n5.txt
+xz -dc words/9/408731/superpermutation-9-408731.spra.xz |
+  ./reduced-codec decode > restored-n9.txt
 ```
 
-For an existing zero-based xz corpus word that fits the nibble ranges:
+The restored file has no whitespace or final newline. N and the field width are
+read from the binary header.
+
+## Put xz after the first pass
+
+Use plain `xz` with its default settings. Compression needs no preset, filter,
+dictionary, threading, or checksum arguments. In a POSIX shell:
+
+```sh
+set -o pipefail
+./reduced-codec encode 5 words/5/153/153-recursive.txt | xz > word-n5.spra.xz
+xz -d < word-n5.spra.xz | ./reduced-codec decode > restored-n5.txt
+```
+
+For an existing zero-based xz corpus word:
 
 ```sh
 xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz |
-  ./reduced-codec encode -z 11 | gzip -c > word-n11.spra.gz
+  ./reduced-codec encode -z 11 | xz > word-n11.spra.xz
 ```
 
-Check each pipeline's status and discard incomplete results on failure. Gzip is
-an external second pass; the codec neither invokes it nor claims that every word
-will compress smaller. Compare total `.spra.gz` size, including the header, with
-gzip applied directly to the word.
+In PowerShell, after saving `word-n5.spra` with the commands above:
 
-### Measured corpus example
+```powershell
+cmd /c 'xz < word-n5.spra > word-n5.spra.xz'
+cmd /c 'xz -d < word-n5.spra.xz > unpacked-n5.spra'
+cmd /c '.\reduced-codec.exe decode unpacked-n5.spra > restored-n5.txt'
+```
 
-A full round trip of the [43,930,624-symbol N=11 word](../words/11/43930624/superpermutation-11-43930624.txt.xz), encoded with `-z`, produced:
+Check command exit statuses and discard incomplete results on failure. `xz` is
+an external second pass. Compare the complete `.spra.xz` file, including its
+header and seed, with xz applied directly to the same normalized word.
 
-| Representation | Bytes |
-| --- | ---: |
-| Word, with whitespace removed | 43,930,624 |
-| Version 1 `.spra`, including header and seed | 3,995,032 |
-| Word followed directly by gzip level 9 | 8,940,093 |
-| `.spra` followed by gzip level 9 | 29,073 |
+### Measured comparisons with default xz
 
-The binary contains 3,994,998 tuples. The decoded word's SHA-256 matches the
-normalized corpus word:
+These measurements were rerun with **xz (XZ Utils) 5.4.3**, invoking `xz` without
+compression arguments. Both inputs have ASCII whitespace removed. Every direct
+xz archive was decompressed and checked against the word's SHA-256. Each encoded
+archive was decompressed, checked against the binary, decoded, and checked
+against the normalized word. All successful round trips matched.
+
+The input corpus archives are decompressed first. Their existing archive sizes
+are not the baseline: the direct column recompresses the words with plain xz.
+Results can differ between xz versions. All sizes below are bytes.
+
+| N | Word length | Direct xz | Four-bit + xz | Six-bit + xz |
+| ---: | ---: | ---: | ---: | ---: |
+| 1 | 1 | 60 | 76 | 76 |
+| 2 | 3 | 60 | 76 | 76 |
+| 3 | 9 | 68 | 84 | 84 |
+| 4 | 33 | 88 | 88 | 92 |
+| 5 | 153 | 132 | 96 | 104 |
+| 6 | 872 | 308 | 140 | 156 |
+| 7 | 5,913 | 640 | 132 | 156 |
+| 8 | 46,181 | 3,420 | 264 | 320 |
+| 9 | 408,731 | 23,564 | 856 | 1,152 |
+| 10 | 4,034,889 | 204,820 | 5,192 | 6,952 |
+| 11 | 43,930,624 | 1,968,180 | 45,752 | 57,412 |
+
+N=1..4 use recursive words. The corpus examples are `153-recursive`,
+`872-treelike/872-00001`, `5913-palindromic`, `superperm8_46181_1`,
+`superperm9_408731_19_canonical`, `superpermutation-10-4034889`, and
+`superpermutation-11-43930624`. N=10 and N=11 use zero-based labels.
+
+The transform increases or ties compressed size on the tiny N=1..4 examples and
+starts winning at N=5 in this sample. On all seven selected N=5..11 words,
+six-bit output compresses larger than four-bit output. It provides more range.
+These are construction-dependent measurements.
+
+### Full N=11 example
+
+The [43,930,624-symbol word](../words/11/43930624/superpermutation-11-43930624.txt.xz)
+contains 3,994,998 tuples. Before xz, the four-bit file is 3,995,032 bytes and the
+six-bit file is 5,992,531 bytes. With default xz they become **45,752** and
+**57,412** bytes, respectively; direct xz takes **1,968,180** bytes. Six-bit xz
+output is about 25.5% larger than four-bit output on this word.
+
+Both layouts decode to this normalized SHA-256:
 
 ```text
 0f3b2dcf607aaf3e7985c9daf2d87c07f8947522490dfea90b05a90c7fd5aa6b
 ```
 
-These gzip measurements used Python's `gzip.GzipFile` with `compresslevel=9`, an
-empty filename, and `mtime=0` for both inputs. Other gzip implementations may
-produce different sizes; this is a corpus example, not a general size guarantee.
+### N=13 prefix beyond the four-bit range
 
-The same level-9 comparison on other selected words gave the following sizes.
-Both inputs use the word with whitespace removed, and the reduced column includes
-the complete binary header and seed:
+The **first 16 MiB only** of
+`words/13/6747918058/superpermutation-13-6747918058.txt.xz` gives:
 
-| N | Word length | Direct gzip | Reduced format + gzip |
-| ---: | ---: | ---: | ---: |
-| 1 | 1 | 21 | 31 |
-| 2 | 3 | 23 | 31 |
-| 3 | 9 | 29 | 36 |
-| 4 | 33 | 42 | 43 |
-| 5 | 153 | 77 | 49 |
-| 6 | 872 | 300 | 94 |
-| 7 | 5,913 | 1,500 | 73 |
-| 8 | 46,181 | 11,579 | 186 |
-| 9 | 408,731 | 100,267 | 550 |
-| 10 | 4,034,889 | 891,364 | 3,450 |
-| 11 | 43,930,624 | 8,940,093 | 29,073 |
+| Representation | Bytes |
+| --- | ---: |
+| Normalized word prefix | 16,777,216 |
+| Direct xz | 660,684 |
+| Four-bit codec | Rejected: offset +10 at symbol 9,374,975 |
+| Six-bit binary | 1,949,766 |
+| Six-bit binary + xz | 736 |
 
-The examples at N=1..4 are the recursive words of lengths 1, 3, 9, and 33.
-The corpus examples are `153-recursive`, `872-treelike/872-00001`,
-`5913-palindromic`, `superperm8_46181_1`,
-`superperm9_408731_19_canonical`, `superpermutation-10-4034889`, and
-`superpermutation-11-43930624`. N=10 and N=11 use zero-based labels.
-The header costs more than the transform saves on these tiny N=1..4 examples;
-the crossover is N=5 in this sample. This is construction-dependent, not a
-general theorem about N.
+The six-bit archive round trip matches the whole tested prefix, including the
+later offset -10. This does not test the complete N=13 word or its permutation
+coverage.
 
-### Exploring wider tuples
+### Reproduce the measurements
 
-Equivalent reserializations of the N=11 tuples give the following comparison.
-The wider layouts are experiments for a future format; the current codec accepts
-only the version-1 `0x44` layout.
+[`tools/benchmark_reduced_codec.py`](../tools/benchmark_reduced_codec.py) accepts
+plain or `.xz` input, compares direct xz with both layouts, verifies round trips,
+and reports JSON to stdout. It uses bounded memory and temporary files. Build
+the codec and make sure `xz` is on PATH, then run:
 
-| Depth bits + offset bits | Uncompressed file bytes | Gzip level-9 bytes |
-| --- | ---: | ---: |
-| 4 + 4, byte-aligned | 3,995,032 | 29,073 |
-| 6 + 6, packed across bytes | 5,992,531 | 43,585 |
-| 8 + 8, byte-aligned | 7,990,030 | 50,971 |
+```sh
+python tools/benchmark_reduced_codec.py 8 words/8/46181/superperm8_46181_1.txt
+python tools/benchmark_reduced_codec.py -z 11 words/11/43930624/superpermutation-11-43930624.txt.xz
+python tools/benchmark_reduced_codec.py -z --prefix-bytes 16777216 13 words/13/6747918058/superpermutation-13-6747918058.txt.xz
+```
 
-The 8+8 experiment writes a depth byte followed by a sign-extended offset byte
-for each tuple. The 6+6 experiment packs two 12-bit tuples into three bytes;
-an odd final tuple has four zero padding bits. Both retain the seed and counts
-and identify their proposed layout in the header. These measurements use the
-same normalized word and gzip settings as above. Gzip recovers much of the
-expanded stream's redundancy, but compressed size still rises about 75% for
-8+8 on this word. Bit packing is not always smaller after gzip: for the N=9
-example, 6+6 gives 839 bytes and 8+8 gives 831 bytes.
+Use `--codec PATH` for another executable or `--bits 6` to measure only that
+layout. A rejected layout is reported with its error. The script clears
+`XZ_DEFAULTS` and `XZ_OPT` for its child processes so environment overrides do
+not change the default settings. The runs above used Python 3.10.12.
 
-A 6+6 layout represents depth 0..63 and signed offset -32..+31. At N=32 that
-supports every copy distance from 1 through 64, although longer runs and farther
-references would still need an extension or rejection rule. Format-wide support
-for complete N=32 words also needs wider lengths and position counters: 32!
-requires 118 bits, and even 21! exceeds the current uint64 decoded-length field.
+The [complete measurement report](reduced_xz_benchmarks.json) records source
+paths, normalized lengths and hashes, raw and compressed sizes, xz version, and
+round-trip results.
 
 ### Normalized 3+5 experiment
 
@@ -191,10 +253,13 @@ copy distances without retaining the entire decoded history. Symbol IDs up to
 
 For the complete N=11 example, seven of 3,994,998 tuples have depths outside the
 table. A trial serialization with those seven escapes has 3,995,046 bytes and
-compresses to 29,074 bytes with gzip level 9, versus 3,995,032 and 29,073 bytes for
+compresses to 45,760 bytes with plain xz, versus 3,995,032 and 45,752 bytes for
 the current 4+4 format. The trial parser checked every reconstructed dirty symbol
-against the original word. This is an exploratory format, not implemented by
-`reduced-codec`; the version-1 wire format below is unchanged.
+against the original word, and the xz round trip preserved the trial bytes.
+This was rerun with the same default xz settings as the main measurements.
+It is an exploratory format, not implemented by `reduced-codec`; the trial uses
+a hypothetical version-2 `0x35` header and remains separate from the implemented
+4+4 and 6+6 layouts.
 
 ## Tuple semantics
 
@@ -205,8 +270,8 @@ or dirty (some symbol repeated), just like `paint-waste`.
 For every dirty window it emits:
 
 ```text
-bits 7..4: depth       number of clean windows since the preceding dirty window
-bits 3..0: offset      signed four-bit two's complement
+high B bits: depth     number of clean windows since the preceding dirty window
+low B bits: offset     signed B-bit two's complement (B = 4 or 6)
 ```
 
 The first depth counts clean windows starting with the first length-N window;
@@ -230,7 +295,8 @@ distance-N copies. A clean step after a repeated N-1-symbol suffix is invalid.
 After all tuples, the decoded length specifies how many trailing clean symbols
 remain. No trailing-run tuple is stored.
 
-Two's complement is decoded as `low < 8 ? low : low - 16`. For example:
+Two's complement is decoded as `low < 2^(B-1) ? low : low - 2^B`.
+For four-bit fields, for example:
 
 | Low nibble | Signed offset | Copy distance |
 | --- | ---: | --- |
@@ -240,7 +306,8 @@ Two's complement is decoded as `low < 8 ? low : low - 16`. For example:
 | `0xF` | -1 | N+1 |
 | `0x8` | -8 | N+8 |
 
-Zero is an ordinary offset in version 1, and byte `0x00` is an ordinary tuple.
+Zero is an ordinary offset in version 1. An all-zero tuple is ordinary in either
+layout (`0x00` in 4+4, twelve zero bits in 6+6).
 There are no cycle macros, repeat markers, or extension opcodes in this version.
 The tuple count provides framing; a zero byte does not terminate the body.
 
@@ -258,20 +325,34 @@ host. Offsets in this table are byte offsets from the beginning of the file.
 | ---: | ---: | --- |
 | 0 | 4 | ASCII magic `SPRA` (`53 50 52 41` in hex). |
 | 4 | 1 | Format version: `0x01`. |
-| 5 | 1 | Tuple layout: `0x44` (four depth bits, four offset bits). |
+| 5 | 1 | Tuple layout: `0x44` (four bits per field) or `0x66` (six bits per field). |
 | 6 | 1 | Flags: bit 0 selects zero-based labels; all other bits must be zero. |
-| 7 | 1 | N, stored directly as an integer from 1 through 16. |
+| 7 | 1 | N, stored directly as an integer from 1 through 32. |
 | 8 | 8 | Decoded symbol count, excluding whitespace. |
 | 16 | 8 | Tuple count. |
 | 24 | `min(decoded_length, N-1)` | Seed symbol IDs, one byte each, in `0..N-1`. |
-| After seed | `tuple_count` | Packed tuple bytes, in order. |
+| After seed | `ceil(2 * B * tuple_count / 8)` | Packed tuples in order, B given by the layout. |
 
-The exact file size is `24 + min(decoded_length, N-1) + tuple_count` bytes. Empty
-words have just a 24-byte header. N=1 needs no seed and no tuples; its length alone
+The exact file size is `24 + min(decoded_length, N-1) + body_bytes`. The body is
+`tuple_count` bytes for 4+4, or `3 * floor(tuple_count / 2) + 2 * (tuple_count % 2)`
+bytes for 6+6. Empty words have just a 24-byte header. N=1 needs no seed and no
+tuples; its length alone
 determines the word. Decode rejects unknown versions/layouts, reserved flags,
-invalid seeds or references, impossible clean/dirty steps, missing bytes, tuples
-that exceed the decoded length, and extra bytes after the body. It handles one
+invalid seeds or references, impossible clean/dirty steps, nonzero padding,
+missing bytes, tuples that exceed the decoded length, and extra bytes after the body. It handles one
 file per invocation; concatenated `.spra` files are not accepted.
+
+The tuple body is a most-significant-bit-first stream, separate from the
+little-endian header counters. For B=6 each tuple is the 12-bit value
+`(depth << 6) | (offset & 63)`. Two successive values `a`, `b` occupy:
+
+```text
+a >> 4, ((a & 15) << 4) | (b >> 8), b & 255
+```
+
+An odd final value `a` occupies `a >> 4, (a & 15) << 4`: the unused low four bits
+must be zero. Tuple count determines how many values to read, so padding cannot
+be confused with another tuple. No padding is needed for B=4.
 
 For `123121321` at N=3, the full file is:
 
@@ -286,27 +367,44 @@ For `123121321` at N=3, the full file is:
 Decode produces seed `12`, three clean steps `312`, dirty copy `1`, and three
 trailing clean steps `321`, yielding `123121321`.
 
+With `--bits 6`, the same word has layout byte `66` and tuple bytes `0C 10`
+instead of `31`. Its file size is 28 bytes. The decoded tuple is still depth 3,
+offset +1.
+
 ## Range limits and failure behavior
 
-This is a **strict nibble format**, not a universal codec for all words. A word
-is encodable only when every recorded depth fits 0..15, every dirty symbol has an
-earlier occurrence, and its nearest-reference offset fits -8..+7. Copy distances
-must therefore lie in `max(1, N-7)..N+8`. N in the header is not a guarantee that
-every construction at that N fits. In particular, the corpus contains N=13 bends
-outside this range. A first appearance inside a dirty window cannot be represented
-by a copy reference and is rejected too.
+Both layouts have **strict field limits**; neither encodes every possible word.
+
+| `--bits` | Tuple bits | Recorded depth | Signed offset | Allowed copy distance |
+| ---: | ---: | ---: | ---: | --- |
+| 4 | 8 | 0..15 | -8..+7 | `max(1, N-7)..N+8` |
+| 6 | 12 | 0..63 | -32..+31 | `max(1, N-31)..N+32` |
+
+A word is encodable only when every recorded depth fits, every dirty symbol has
+an earlier occurrence, and its nearest-reference offset fits the selected
+range. N in the header does not guarantee that every construction at that N fits.
+A first appearance inside a dirty window cannot be represented by a copy
+reference and is rejected too. Four-bit mode remains the default; the encoder
+does not retry with six-bit fields automatically.
 
 Trailing clean runs can be arbitrarily long because they are represented by the
-decoded length. A clean run longer than 15 **before a dirty symbol** is rejected.
-Values never wrap or truncate to fit. Wider fields or escapes can be introduced
-through a future version/layout; none are guessed by this decoder.
+decoded length. A clean run longer than 15 or 63, respectively, **before a dirty
+symbol** is rejected. Values never wrap or truncate to fit. Zero-offset escapes
+and cycle macros are not implemented.
 
-### Concrete N=13 failure
+At N=32, six-bit mode supports copy distances 1..64, but still rejects longer
+recorded runs and farther references. Header counts and position counters remain
+unsigned 64-bit: words cannot exceed `2^64-1` symbols. A complete N=32
+superpermutation would require at least 32! windows, whose count needs 118 bits;
+even 21! exceeds the current length field. Supporting the N=32 alphabet therefore
+does not mean this format can store a complete superpermutation at that N.
+
+### Concrete four-bit N=13 failure
 
 In `words/13/6747918058/superpermutation-13-6747918058.txt.xz`, the encoder first
 rejects symbol 9,374,975 (one-based): its nearest occurrence is three positions
 back, giving offset `13-3 = +10`. An older occurrence 16 positions back could
-encode that particular symbol with offset -3; version 1's encoder selects the
+encode that particular symbol with offset -3; the encoder selects the
 nearest occurrence.
 
 There is also a failure that choosing another occurrence cannot fix: at symbol
@@ -324,11 +422,15 @@ positive suffix/prefix overlap, so the actual 13-symbol connector is already
 shortest for these fixed endpoints. The out-of-range reference by itself does
 not demonstrate removable padding or prove the whole word nonminimal.
 
+Six-bit mode represents both offsets; the prefix test above verifies this with
+the implemented encoder and decoder.
+
 ### Resource use and errors
 
 The encoder reads its input once, checks it completely, and temporarily spools
 the tuple body to disk to determine the header's counts. Memory use is fixed I/O
-buffers plus O(N) state; temporary disk use is approximately one byte per tuple.
+buffers plus O(N) state; temporary disk use is one byte per four-bit tuple, or
+three bytes per pair of six-bit tuples plus two bytes for any final odd tuple.
 The temporary file is removed when closed. Input validation or range failures
 publish no bytes to stdout, though shell redirection may already have created an
 empty destination. Output/device errors can still leave a partial file.
@@ -336,18 +438,23 @@ empty destination. Output/device errors can still leave a partial file.
 The decoder streams without spooling the restored word. A late error can leave
 a decoded prefix on stdout; discard that output on a nonzero exit status.
 Version 1 has no checksum: structural validation does not detect every bit flip.
-An outer gzip stream supplies its usual integrity check.
+An outer xz stream supplies its integrity check with the default settings.
 
 ## Regression checks
 
 ```sh
-python tests/test_reduced_codec.py
-python tests/test_reduced_alphabet.py
+python -m unittest discover -s tests -v
 ```
 
-The codec suite compiles into a temporary directory and checks an independently
-specified binary vector, signed boundaries and zero offsets, N=16, both label
+The codec suite compiles into a temporary directory and checks independently
+specified binary vectors, signed boundaries and zero offsets, N=32, both label
 modes, empty/short words, whitespace normalization, corpus round trips, the former
-bounded-history collision, large buffers, outer gzip, range rejection, malformed
-files, and named-input/stdin behavior. The existing paint-waste suite verifies
-that the diagnostic tool still behaves as before.
+bounded-history collision, large buffers, outer xz, range rejection, malformed
+files, odd/even tuple packing, zero padding, layout selection, and named-input/stdin
+behavior. The existing paint-waste suite verifies that the diagnostic tool still
+behaves as before.
+
+All **31 regression tests passed** after switching the outer-compression checks
+to default xz. The codec corpus tests exercise binary -> xz -> binary -> word
+for both field widths. The separate benchmark runs above also verify the full
+N=10/N=11 words and the N=13 prefix through xz before decoding.

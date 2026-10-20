@@ -1,0 +1,374 @@
+{
+  "compressor": "xz",
+  "compression_arguments": [],
+  "regression_tests_passed": 31,
+  "measurements": [
+    {
+      "input": "recursive N=1 word",
+      "n": 1,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 1,
+      "word_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 60,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 24,
+          "xz_bytes": 76,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 24,
+          "xz_bytes": 76,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "recursive N=2 word",
+      "n": 2,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 3,
+      "word_sha256": "89aa1e580023722db67646e8149eb246c748e180e34a1cf679ab0b41a416d904",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 60,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 25,
+          "xz_bytes": 76,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 25,
+          "xz_bytes": 76,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "recursive N=3 word",
+      "n": 3,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 9,
+      "word_sha256": "46d2ecd3450ec4c89a707d13bf3d8fb6380f15faf4d5bec021d4d5dbb66ee138",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 68,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 27,
+          "xz_bytes": 84,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 28,
+          "xz_bytes": 84,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "recursive N=4 word",
+      "n": 4,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 33,
+      "word_sha256": "e48e28dddfecb2c4db580da20f5927d317f80b5dc99fb2a16aec9d223e4a35d4",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 88,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 33,
+          "xz_bytes": 88,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 36,
+          "xz_bytes": 92,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/5/153/153-recursive.txt",
+      "n": 5,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 153,
+      "word_sha256": "cee563a81468f756f5865332f4bb8636d6fcafa1790e2648696f8069ff9de34c",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 132,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 57,
+          "xz_bytes": 96,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 72,
+          "xz_bytes": 104,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/6/872/872-treelike/872-00001.txt",
+      "n": 6,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 872,
+      "word_sha256": "4b736b3db1b061c35c9cd95659537f73e08e063a201a3b4a439b66f826bb22f3",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 308,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 176,
+          "xz_bytes": 140,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 250,
+          "xz_bytes": 156,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/7/5913/5913-palindromic.txt",
+      "n": 7,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 5913,
+      "word_sha256": "115550fd796c1db7babe54ea6fe1d9bd6b77530e2a8280030e9e7b89ac3f9ae2",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 640,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 897,
+          "xz_bytes": 132,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 1331,
+          "xz_bytes": 156,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/8/46181/superperm8_46181_1.txt",
+      "n": 8,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 46181,
+      "word_sha256": "e75b44d8dc5033778d151a974bd3ae5555e82b81d729b07c2b003c39ba4aee12",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 3420,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 5789,
+          "xz_bytes": 264,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 8668,
+          "xz_bytes": 320,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/9/408731/superperm9_408731_19_canonical.txt",
+      "n": 9,
+      "zero_based": false,
+      "prefix_bytes_limit": null,
+      "word_bytes": 408731,
+      "word_sha256": "0374f56ed5abe6d5012205299d38792ffbeae6a9e8c527c183ff58cb8670de8f",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 23564,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 45539,
+          "xz_bytes": 856,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 68293,
+          "xz_bytes": 1152,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/10/4034889/superpermutation-10-4034889.txt",
+      "n": 10,
+      "zero_based": true,
+      "prefix_bytes_limit": null,
+      "word_bytes": 4034889,
+      "word_sha256": "1365ff341c59e39255de4f664d2b1acf80d7ff26b809ceca94d84c9868e52d78",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 204820,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 403761,
+          "xz_bytes": 5192,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 605625,
+          "xz_bytes": 6952,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/11/43930624/superpermutation-11-43930624.txt.xz",
+      "n": 11,
+      "zero_based": true,
+      "prefix_bytes_limit": null,
+      "word_bytes": 43930624,
+      "word_sha256": "0f3b2dcf607aaf3e7985c9daf2d87c07f8947522490dfea90b05a90c7fd5aa6b",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 1968180,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": true,
+          "spra_bytes": 3995032,
+          "xz_bytes": 45752,
+          "round_trip_sha256_matches": true
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 5992531,
+          "xz_bytes": 57412,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "input": "words/13/6747918058/superpermutation-13-6747918058.txt.xz",
+      "n": 13,
+      "zero_based": true,
+      "prefix_bytes_limit": 16777216,
+      "word_bytes": 16777216,
+      "word_sha256": "dcd2001476f2a26df421263a0884d997211c8bc03ddb200d8c1529a41d05e538",
+      "compressor": "xz",
+      "settings": "defaults",
+      "xz_version": "xz (XZ Utils) 5.4.3",
+      "python": "3.10.12",
+      "direct_xz_bytes": 660684,
+      "direct_round_trip_sha256_matches": true,
+      "layouts": [
+        {
+          "bits_per_field": 4,
+          "fits": false,
+          "error": "reduced-codec: copy distance 3 is outside 4-bit range 6..21 at symbol 9374975"
+        },
+        {
+          "bits_per_field": 6,
+          "fits": true,
+          "spra_bytes": 1949766,
+          "xz_bytes": 736,
+          "round_trip_sha256_matches": true
+        }
+      ]
+    }
+  ],
+  "normalized_3plus5_experiment": {
+    "n": 11,
+    "logical_tuples": 3994998,
+    "escapes": 7,
+    "spra_bytes": 3995046,
+    "xz_bytes": 45760,
+    "dirty_symbols_verified": true,
+    "xz_round_trip_matches": true
+  }
+}

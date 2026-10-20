@@ -2,7 +2,9 @@
 
 The corpus uses `words/N/LENGTH/` throughout N=5 through N=13. Existing collection folders stay inside their length folder; filenames and word contents are preserved. For example, `words/5/153/153-recursive.txt` and `words/8/46181/superpermutation-8-46181.txt` have lengths 153 and 46181 respectively. Archives and extracted copies share the same length folder.
 
-Every file under `words/5` through `words/9` is a plain `.txt` containing one complete superpermutation, with one-based labels `123…N`. Each word was checked for all `N!` permutations after normalization. N=10 and above keep their original labels and compression.
+Every `.txt` file under `words/5` through `words/9` contains one complete superpermutation, with one-based labels `123…N`. Each word was checked for all `N!` permutations after normalization. N=10 and above keep their original labels and compression.
+
+All seven N=9 records additionally have `.spra` binary copies and `.spra.xz` archives in the same length folders. They use SPRA version 1, layout `0x44` (four bits per field), and preserve the one-based symbol labels. Compression uses default xz settings. Original text files remain unchanged; decoding restores their word symbols without whitespace. [`reduced-n9.json`](reduced-n9.json) records every source and output path, byte sizes, SHA-256 hashes, and successful round-trip verification. See the [binary codec guide](../../docs/reduced_binary.md#converted-n9-corpus) for restoration commands.
 
 Individual source files keep their names. A former collection such as `words/6/872-treelike.txt.gz` becomes a folder, `words/6/872/872-treelike/`, containing `872-00001.txt`, `872-00002.txt`, and so on. The number is the word's ordinal in the original collection. ZIP collections have an archive folder followed by a member-collection folder. Repeated source occurrences are retained separately.
 
