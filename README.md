@@ -8,6 +8,8 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 Author notes and cycle descriptions live in [`data/corpus/`](data/corpus/), outside the word files. The [normalization manifest](data/corpus/normalization-n1-n9.json) records source hashes, collection order, relocated metadata, and full permutation-coverage validation. N=10 and above retain their original labels and compression; check the import manifests and use `-z` for zero-based words. Tools that read stdin can consume a decompression pipe; tools that take a filename need an extracted file.
 
+All seven N=9 records also have version-1, four-bit `.spra` copies and default-xz `.spra.xz` archives alongside their original text files. The binaries total 320,639 bytes; the xz archives total 4,360 bytes. Every archive was decompressed and decoded back to its normalized source word. The [N=9 conversion manifest](data/corpus/reduced-n9.json) records paths, sizes, hashes, and verification results. See the [restore commands](docs/reduced_binary.md#converted-n9-corpus).
+
 
 [`docs/n11/improve_halfar/`](docs/n11/improve_halfar/) contains reconstruction and exchange reports, including `dependency-hashes.json`, which records the original search dependencies. Experiment reports and replay scripts may still refer to word paths recorded in the import manifest.
 
@@ -19,33 +21,34 @@ You can find the writeup in [`docs/n11/improve_halfar/math/`](docs/n11/improve_h
 
 Use the following commands in a POSIX shell (Linux, macOS, WSL, or MSYS2 Bash). Binary compression output should not be passed through older PowerShell text pipelines.
 
-The imported N=11 words match the corpus's permutation-specific xz format: delta distance `11`, LZMA2 with a `256 MiB` dictionary, and SHA-256 integrity checks. Existing corpus archives also include plain LZMA2/CRC64 files. The new archives use LZMA2 preset `9`; the original archives do not record their encoder preset.
+Use `xz` with its default compression settings. Redirecting input and output keeps the source file in place. Existing corpus archives can be read with the usual xz decompression command.
 
 ```sh
-# Compress a new N=11 word; keep the original with -k.
-xz -k -T1 --check=sha256 --delta=dist=11 --lzma2=preset=9,dict=256MiB word-n11.txt
+# Compress a new N=11 word, keeping the original.
+xz < word-n11.txt > word-n11.txt.xz
 
 # Compress stdin directly into an archive.
-cat word-n11.txt | xz -T1 --check=sha256 --delta=dist=11 --lzma2=preset=9,dict=256MiB > word-n11-copy.txt.xz
+cat word-n11.txt | xz > word-n11-copy.txt.xz
 
 # Extract an xz word to a normal .txt file, keeping its archive.
-xz -dk words/11/43930667/superpermutation-11-43930667.txt.xz
+xz -d < words/11/43930667/superpermutation-11-43930667.txt.xz > word-n11-extracted.txt
 
 # N <= 9 collections are already split into individual text files.
 head -c 80 words/6/872/872-treelike/872-00001.txt
 ```
 
-For another alphabet size, set the delta distance to that size. `xz -t archive.txt.xz` checks archive integrity; it does not verify permutation coverage.
+The same compression command works for every alphabet size. `xz -t archive.txt.xz` checks archive integrity; it does not verify permutation coverage.
 
 ## Reduced-alphabet binary files
 
-[`tools/reduced_codec.cpp`](tools/reduced_codec.cpp) builds an encoder and decoder for the versioned `.spra` binary format. Each tuple occupies one byte: four bits of clean-run depth and a signed four-bit copy offset relative to N symbols ago. Both commands write **only their result to stdout**, so redirect it to a file or another compressor. Decode restores the word without whitespace or a final newline; the header preserves the alphabet mode. N may be 1 through 16, but version 1 rejects any word whose recorded depths or offsets do not fit its nibble ranges.
+[`tools/reduced_codec.cpp`](tools/reduced_codec.cpp) builds an encoder and decoder for the versioned `.spra` binary format. Choose `--bits 4` (the default) or `--bits 6` for each tuple field: unsigned clean-run depth and signed copy offset relative to N symbols ago. Four-bit fields use one byte per tuple; six-bit fields pack two tuples into three bytes. Decode detects the layout from the header and accepts existing four-bit files. Both commands write **only their result to stdout**, so redirect it to a file or another compressor. Decode restores the word without whitespace or a final newline. N may be 1 through 32; values outside the selected field ranges are rejected.
 
 In a POSIX shell:
 
 ```sh
 g++ -std=c++20 -O2 tools/reduced_codec.cpp -o reduced-codec
 ./reduced-codec encode 5 words/5/153/153-recursive.txt > word-n5.spra
+./reduced-codec encode --bits 6 5 words/5/153/153-recursive.txt > word-n5-six.spra
 ./reduced-codec decode word-n5.spra > restored-n5.txt
 ```
 
@@ -54,10 +57,13 @@ In PowerShell, build with `-o reduced-codec.exe` and use `cmd /c` for binary-saf
 ```powershell
 g++ -std=c++20 -O2 tools/reduced_codec.cpp -o reduced-codec.exe
 cmd /c '.\reduced-codec.exe encode 5 words\5\153\153-recursive.txt > word-n5.spra'
+cmd /c '.\reduced-codec.exe encode --bits 6 5 words\5\153\153-recursive.txt > word-n5-six.spra'
 cmd /c '.\reduced-codec.exe decode word-n5.spra > restored-n5.txt'
 ```
 
-Check the exit status before keeping output; errors go to stderr. See the [binary format and run guide](docs/reduced_binary.md) for stdin and gzip pipelines, zero-based labels, the complete header and decoding rules, representability limits, and regression checks. The painted-word tool and its historical displayed indices remain separate.
+Check the exit status before keeping output; errors go to stderr. See the [binary format and run guide](docs/reduced_binary.md) for stdin and xz pipelines, zero-based labels, the complete header and decoding rules, representability limits, and regression checks. The painted-word tool and its historical displayed indices remain separate.
+
+On the complete 43,930,624-symbol N=11 example, four-bit output plus plain xz takes 45,752 bytes; six-bit output plus xz takes 57,412 bytes; direct xz takes 1,968,180 bytes. Six-bit fields accommodate more words, but produce larger xz files on all seven tested N=5..11 examples. Reproduce comparisons and verify decoded SHA-256 hashes with `python tools/benchmark_reduced_codec.py -z 11 words/11/43930624/superpermutation-11-43930624.txt.xz`. The benchmark invokes `xz` without compression options. Lengths and position counters remain unsigned 64-bit, so complete N=21..32 superpermutations exceed the format's length limit.
 
 ## Relabel word files
 
@@ -141,8 +147,8 @@ To use an xz word directly through stdin, without extracting it first (POSIX she
 
 ```sh
 # Make a compressed N=5 example, then pipe it into the tool.
-xz -k -T1 --check=sha256 --delta=dist=5 --lzma2=preset=9,dict=256MiB words/5/153/153-recursive.txt
-xz -dc words/5/153/153-recursive.txt.xz | ./paint-waste 5
+xz < words/5/153/153-recursive.txt > word-n5.txt.xz
+xz -d < word-n5.txt.xz | ./paint-waste 5
 ```
 
 `-dc` decompresses to stdout and preserves the archive. To validate a zero-based N=11 corpus word directly:

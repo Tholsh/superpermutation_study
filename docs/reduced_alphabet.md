@@ -1,6 +1,6 @@
 # Paint waste: build, run, and validate
 
-For binary compression and decompression, use the separate [`reduced-codec` tool](reduced_binary.md). Its versioned one-byte tuples use signed offsets relative to N; they are not the historical diagnostic indices printed by this tool.
+For binary compression and decompression, use the separate [`reduced-codec` tool](reduced_binary.md). Select four- or six-bit tuple fields with `--bits 4|6`; the signed offsets are relative to N and differ from the historical diagnostic indices printed by this tool.
 
 `tools/reduced_alphabet.cpp` reads one word from stdin, with `1 <= N <= 13`, on a 64-bit platform. By default its alphabet is the first N characters of `123456789ABCD`. Use `-z` or `--zero-based` for the first N characters of `0123456789ABC`. Each character is one symbol; letters are uppercase. For example, zero-based N=11 uses `0123456789A`, not decimal numbers separated by spaces. Whitespace is ignored. Multiple lines are concatenated into a single word; a collection of separate words must be checked one word at a time. The repository corpus through N=9 is already one-based, with one word per text file; see the [corpus layout](../data/corpus/README.md).
 
@@ -16,11 +16,12 @@ On Linux, macOS, or MSYS2 Bash:
 ```sh
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste
 ./paint-waste 5 < words/5/153/153-recursive.txt
-# Read a compressed word without extracting it.
-xz -dc words/5/153/153-recursive.txt.xz | ./paint-waste -s 5
+# Compress with default xz, then read it without extracting a file.
+xz < words/5/153/153-recursive.txt > word-n5.txt.xz
+xz -d < word-n5.txt.xz | ./paint-waste -s 5
 ```
 
-The archive in the last command must exist first; see the README compression examples.
+The compression command keeps the original word file in place.
 
 ## Output and flags
 
