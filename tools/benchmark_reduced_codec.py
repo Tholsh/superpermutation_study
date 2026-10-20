@@ -1,19 +1,18 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Copyright (C) 2026 Theo H.
 
-"""Compare both codec layouts and direct gzip, checking every successful decode."""
+"""Compare both codec layouts and plain xz, checking every successful decode."""
 import argparse
-import gzip
 import hashlib
 import json
 import lzma
 import os
 from pathlib import Path
 import platform
+import shutil
 import subprocess
 import sys
 import tempfile
-import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 CHUNK = 1024 * 1024
@@ -28,15 +27,19 @@ def digest_file(path):
     return digest.hexdigest()
 
 
-def gzip_size(path, level):
-    # Empty filename and fixed time exclude per-run metadata from the comparison.
-    with tempfile.TemporaryFile() as sink:
-        with gzip.GzipFile(filename="", fileobj=sink, mode="wb",
-                           compresslevel=level, mtime=0) as compressed:
-            with path.open("rb") as source:
-                for chunk in iter(lambda: source.read(CHUNK), b""):
-                    compressed.write(chunk)
-        return sink.tell()
+def run_xz(xz, source, destination, environment, decompress=False):
+    # No compression arguments: measure the installed xz program's defaults.
+    command = [xz, "-d"] if decompress else [xz]
+    with source.open("rb") as input_file, destination.open("wb") as output_file:
+        result = subprocess.run(command, stdin=input_file, stdout=output_file,
+                                stderr=subprocess.PIPE, env=environment)
+    if result.returncode:
+        raise RuntimeError(result.stderr.decode(errors="replace").strip())
+
+
+def verify_file(path, expected_size, expected_hash):
+    if path.stat().st_size != expected_size or digest_file(path) != expected_hash:
+        raise RuntimeError(f"round trip differs from input: {path.name}")
 
 
 def positive_int(value):
@@ -56,9 +59,16 @@ def main():
     parser.add_argument("--bits", type=int, choices=[4, 6], nargs="+", default=[4, 6])
     parser.add_argument("--prefix-bytes", type=positive_int,
                         help="test only this many decompressed input bytes, before whitespace removal")
-    parser.add_argument("--gzip-level", type=int, choices=range(1, 10), default=9)
     args = parser.parse_args()
     codec = str(args.codec.resolve())
+    xz = shutil.which("xz")
+    if xz is None:
+        raise RuntimeError("xz is required on PATH")
+    environment = os.environ.copy()
+    for name in ("XZ_DEFAULTS", "XZ_OPT"):
+        environment.pop(name, None)
+    version = subprocess.run([xz, "--version"], capture_output=True, check=True,
+                             env=environment).stdout.decode().splitlines()[0]
     with tempfile.TemporaryDirectory(prefix="reduced-codec-benchmark-") as directory:
         work = Path(directory)
         word = work / "word.txt"
@@ -73,13 +83,20 @@ def main():
                     remaining -= len(chunk)
                 output.write(chunk.translate(None, WHITESPACE))
         expected_hash = digest_file(word)
+        word_size = word.stat().st_size
+        direct_archive = work / "word.txt.xz"
+        direct_restored = work / "direct-restored.txt"
+        run_xz(xz, word, direct_archive, environment)
+        run_xz(xz, direct_archive, direct_restored, environment, decompress=True)
+        verify_file(direct_restored, word_size, expected_hash)
         result = {
             "input": str(args.input), "n": args.n, "zero_based": args.zero_based,
             "prefix_bytes_limit": args.prefix_bytes,
-            "word_bytes": word.stat().st_size, "word_sha256": expected_hash,
-            "gzip_level": args.gzip_level,
-            "python": platform.python_version(), "zlib": zlib.ZLIB_RUNTIME_VERSION,
-            "direct_gzip_bytes": gzip_size(word, args.gzip_level), "layouts": [],
+            "word_bytes": word_size, "word_sha256": expected_hash,
+            "compressor": "xz", "settings": "defaults", "xz_version": version,
+            "python": platform.python_version(),
+            "direct_xz_bytes": direct_archive.stat().st_size,
+            "direct_round_trip_sha256_matches": True, "layouts": [],
         }
         for bits in args.bits:
             packed = work / f"word-{bits}.spra"
@@ -93,17 +110,21 @@ def main():
                 result["layouts"].append({"bits_per_field": bits, "fits": False,
                                           "error": encoded.stderr.decode(errors="replace").strip()})
                 continue
+            archive = work / f"word-{bits}.spra.xz"
+            unpacked = work / "unpacked.spra"
+            run_xz(xz, packed, archive, environment)
+            run_xz(xz, archive, unpacked, environment, decompress=True)
+            verify_file(unpacked, packed.stat().st_size, digest_file(packed))
             restored = work / "restored.txt"
             with restored.open("wb") as output:
-                decoded = subprocess.run([codec, "decode", str(packed)],
+                decoded = subprocess.run([codec, "decode", str(unpacked)],
                                          stdout=output, stderr=subprocess.PIPE)
             if decoded.returncode:
                 raise RuntimeError(decoded.stderr.decode(errors="replace").strip())
-            if restored.stat().st_size != word.stat().st_size or digest_file(restored) != expected_hash:
-                raise RuntimeError(f"{bits}-bit round trip differs from input")
+            verify_file(restored, word_size, expected_hash)
             result["layouts"].append({"bits_per_field": bits, "fits": True,
                                       "spra_bytes": packed.stat().st_size,
-                                      "gzip_bytes": gzip_size(packed, args.gzip_level),
+                                      "xz_bytes": archive.stat().st_size,
                                       "round_trip_sha256_matches": True})
         print(json.dumps(result, indent=2))
 
