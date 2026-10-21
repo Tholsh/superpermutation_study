@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "bundled_dependency_modules": 163,
+  "exact_source_hash_mismatches": 0,
+  "upstream_pantone_modules": 69,
+  "placeholder_proof_hits": 0,
+  "custom_axiom_declaration_hits": 0,
+  "native_decide_proof_hits": 0,
+  "scan_scope": "All 163 bundled dependency modules; two raw regex hits were comments, inspected manually",
+  "not_claimed": "Formal correctness of native solver or complete concrete n8 certificate"
+}

@@ -1,0 +1,26 @@
+Occupation / transport Lean audit bundle, 2026-10-20.
+
+The files retain their original source bytes, module names, author headers
+and license notices. See sources.json for each source path and SHA-256.
+
+Coeff2's foundational word/walk/loop/charge development credits Uku Raudvere
+in its original headers. The Charlie-prefixed extensions are local work in
+Theo's Superperm research workspace. This bundle does not claim authorship
+of the imported mathematical foundations or of the Pantone/Halfar recipes.
+
+The SuperpermutationUpperBound sources are unmodified files from Jay
+Pantone's superperm-upper-43-80 repository, commit
+c8fb7ffdd69be1375580710ae11b47a295b1f0f6, under Apache License 2.0.
+https://github.com/jaypantone/superperm-upper-43-80
+
+Jakub Halfar supplied the 27-loop selection and the published construction
+description. His pinned n=8 README is included as evidence, with its original
+wording and attribution. Repository revision recorded by the original audit:
+8a306f3e0a41f8bac1381767fc8e5018ec17f436.
+https://github.com/jhalfar/superpermutations
+
+Mathlib and its dependencies are not redistributed here; lake-manifest.json
+records their exact revisions. Their own licenses continue to apply.
+
+PublicClaims.lean, AxiomAudit.lean, Verify.ps1 and the new documentation are
+local additions to this bundle; the enclosed Apache-2.0 license applies.

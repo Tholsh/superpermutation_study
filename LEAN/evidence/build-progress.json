@@ -1,0 +1,992 @@
+[
+  {
+    "module": "Coeff2.Words",
+    "exit_code": 0,
+    "seconds": 229.0749711,
+    "log": "Coeff2.Words.log"
+  },
+  {
+    "module": "Coeff2.Walks",
+    "exit_code": 0,
+    "seconds": 17.1385952,
+    "log": "Coeff2.Walks.log"
+  },
+  {
+    "module": "Coeff2.Loops",
+    "exit_code": 0,
+    "seconds": 12.1102193,
+    "log": "Coeff2.Loops.log"
+  },
+  {
+    "module": "Coeff2.Breaks",
+    "exit_code": 0,
+    "seconds": 12.1091505,
+    "log": "Coeff2.Breaks.log"
+  },
+  {
+    "module": "Coeff2.Charges",
+    "exit_code": 0,
+    "seconds": 12.0678698,
+    "log": "Coeff2.Charges.log"
+  },
+  {
+    "module": "Coeff2.Defs",
+    "exit_code": 0,
+    "seconds": 11.9227229,
+    "log": "Coeff2.Defs.log"
+  },
+  {
+    "module": "Coeff2.Helpers",
+    "exit_code": 0,
+    "seconds": 13.4125295,
+    "log": "Coeff2.Helpers.log"
+  },
+  {
+    "module": "Coeff2.Auxiliary",
+    "exit_code": 0,
+    "seconds": 16.8728089,
+    "log": "Coeff2.Auxiliary.log"
+  },
+  {
+    "module": "Coeff2.ParityCycles",
+    "exit_code": 0,
+    "seconds": 12.9273609,
+    "log": "Coeff2.ParityCycles.log"
+  },
+  {
+    "module": "Coeff2.CharlieEganOccupationLift",
+    "exit_code": 0,
+    "seconds": 4.4749875,
+    "log": "Coeff2.CharlieEganOccupationLift.log"
+  },
+  {
+    "module": "Coeff2.CharlieEganProcedure",
+    "exit_code": 0,
+    "seconds": 4.9363663,
+    "log": "Coeff2.CharlieEganProcedure.log"
+  },
+  {
+    "module": "Coeff2.CharlieEganComponentGraph",
+    "exit_code": 0,
+    "seconds": 4.5570046,
+    "log": "Coeff2.CharlieEganComponentGraph.log"
+  },
+  {
+    "module": "Coeff2.CharliePhaseDetour",
+    "exit_code": 0,
+    "seconds": 12.6766385,
+    "log": "Coeff2.CharliePhaseDetour.log"
+  },
+  {
+    "module": "Coeff2.CharlieNonwholeOccupation",
+    "exit_code": 0,
+    "seconds": 12.6214716,
+    "log": "Coeff2.CharlieNonwholeOccupation.log"
+  },
+  {
+    "module": "Coeff2.CharlieTwoMarkerPartition",
+    "exit_code": 0,
+    "seconds": 13.3675823,
+    "log": "Coeff2.CharlieTwoMarkerPartition.log"
+  },
+  {
+    "module": "Coeff2.CharliePacketAssembly",
+    "exit_code": 0,
+    "seconds": 12.4024912,
+    "log": "Coeff2.CharliePacketAssembly.log"
+  },
+  {
+    "module": "Coeff2.CharliePacketPorts",
+    "exit_code": 0,
+    "seconds": 12.6742701,
+    "log": "Coeff2.CharliePacketPorts.log"
+  },
+  {
+    "module": "Coeff2.CharliePacketOccupationBridge",
+    "exit_code": 0,
+    "seconds": 18.2742373,
+    "log": "Coeff2.CharliePacketOccupationBridge.log"
+  },
+  {
+    "module": "Coeff2.CharlieSignedBoundaryLift",
+    "exit_code": 0,
+    "seconds": 13.2796568,
+    "log": "Coeff2.CharlieSignedBoundaryLift.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockRouting",
+    "exit_code": 0,
+    "seconds": 13.4879477,
+    "log": "Coeff2.CharlieClockRouting.log"
+  },
+  {
+    "module": "Coeff2.CharlieRecursiveClockLift",
+    "exit_code": 0,
+    "seconds": 12.7544808,
+    "log": "Coeff2.CharlieRecursiveClockLift.log"
+  },
+  {
+    "module": "Coeff2.CharlieAttachmentReduction",
+    "exit_code": 0,
+    "seconds": 12.5155577,
+    "log": "Coeff2.CharlieAttachmentReduction.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockMacro",
+    "exit_code": 0,
+    "seconds": 7.2208468,
+    "log": "Coeff2.CharlieClockMacro.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockBudget",
+    "exit_code": 0,
+    "seconds": 7.8468294,
+    "log": "Coeff2.CharlieClockBudget.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockWrapCount",
+    "exit_code": 0,
+    "seconds": 7.0808426,
+    "log": "Coeff2.CharlieClockWrapCount.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockBellman",
+    "exit_code": 0,
+    "seconds": 8.3318487,
+    "log": "Coeff2.CharlieClockBellman.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockBidirectional",
+    "exit_code": 0,
+    "seconds": 8.0270539,
+    "log": "Coeff2.CharlieClockBidirectional.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockHybrid",
+    "exit_code": 0,
+    "seconds": 7.6923354,
+    "log": "Coeff2.CharlieClockHybrid.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockSlack",
+    "exit_code": 0,
+    "seconds": 7.0842971,
+    "log": "Coeff2.CharlieClockSlack.log"
+  },
+  {
+    "module": "Coeff2.Statements",
+    "exit_code": 0,
+    "seconds": 34.1695422,
+    "log": "Coeff2.Statements.log"
+  },
+  {
+    "module": "Coeff2.CharlieCayleyFourier",
+    "exit_code": 0,
+    "seconds": 7.6927235,
+    "log": "Coeff2.CharlieCayleyFourier.log"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationCayley",
+    "exit_code": 0,
+    "seconds": 8.9379035,
+    "log": "Coeff2.CharlieOccupationCayley.log"
+  },
+  {
+    "module": "Coeff2.Charlieplex",
+    "exit_code": 0,
+    "seconds": 13.8072883,
+    "log": "Coeff2.Charlieplex.log"
+  },
+  {
+    "module": "Coeff2.CharlieGeometry",
+    "exit_code": 0,
+    "seconds": 13.1820599,
+    "log": "Coeff2.CharlieGeometry.log"
+  },
+  {
+    "module": "Coeff2.CharlieBipartite",
+    "exit_code": 0,
+    "seconds": 12.8888176,
+    "log": "Coeff2.CharlieBipartite.log"
+  },
+  {
+    "module": "Coeff2.CharlieGauge",
+    "exit_code": 0,
+    "seconds": 13.2577024,
+    "log": "Coeff2.CharlieGauge.log"
+  },
+  {
+    "module": "Coeff2.CharlieCacheMachine",
+    "exit_code": 0,
+    "seconds": 12.6075708,
+    "log": "Coeff2.CharlieCacheMachine.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralBridge",
+    "exit_code": 0,
+    "seconds": 12.992541,
+    "log": "Coeff2.CharlieLiteralBridge.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralCertificate",
+    "exit_code": 0,
+    "seconds": 12.9954863,
+    "log": "Coeff2.CharlieLiteralCertificate.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralState",
+    "exit_code": 0,
+    "seconds": 13.1297099,
+    "log": "Coeff2.CharlieLiteralState.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralCompletions",
+    "exit_code": 0,
+    "seconds": 13.0068828,
+    "log": "Coeff2.CharlieLiteralCompletions.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralBellman",
+    "exit_code": 0,
+    "seconds": 13.1511798,
+    "log": "Coeff2.CharlieLiteralBellman.log"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationBinomial",
+    "exit_code": 0,
+    "seconds": 12.9960554,
+    "log": "Coeff2.CharlieOccupationBinomial.log"
+  },
+  {
+    "module": "Coeff2.CharliePascalTransfer",
+    "exit_code": 0,
+    "seconds": 13.1726812,
+    "log": "Coeff2.CharliePascalTransfer.log"
+  },
+  {
+    "module": "Coeff2.CharlieDegenerationSets",
+    "exit_code": 0,
+    "seconds": 15.3003256,
+    "log": "Coeff2.CharlieDegenerationSets.log"
+  },
+  {
+    "module": "Coeff2.CharlieKernelScaling",
+    "exit_code": 0,
+    "seconds": 9.2304635,
+    "log": "Coeff2.CharlieKernelScaling.log"
+  },
+  {
+    "module": "Coeff2.CharlieKernelPositive",
+    "exit_code": 0,
+    "seconds": 12.9297612,
+    "log": "Coeff2.CharlieKernelPositive.log"
+  },
+  {
+    "module": "Coeff2.CharlieCycleCompression",
+    "exit_code": 0,
+    "seconds": 12.7039086,
+    "log": "Coeff2.CharlieCycleCompression.log"
+  },
+  {
+    "module": "Coeff2.CharlieFragmentBendGate",
+    "exit_code": 0,
+    "seconds": 12.6489828,
+    "log": "Coeff2.CharlieFragmentBendGate.log"
+  },
+  {
+    "module": "Coeff2.CharlieJayCompletionParity",
+    "exit_code": 0,
+    "seconds": 25.0531169,
+    "log": "Coeff2.CharlieJayCompletionParity.log"
+  },
+  {
+    "module": "Coeff2.CharlieDigitClock",
+    "exit_code": 0,
+    "seconds": 7.7895995,
+    "log": "Coeff2.CharlieDigitClock.log"
+  },
+  {
+    "module": "Coeff2.CharlieReducedAlphabetLedger",
+    "exit_code": 0,
+    "seconds": 13.4799117,
+    "log": "Coeff2.CharlieReducedAlphabetLedger.log"
+  },
+  {
+    "module": "Coeff2.CharlieReducedDepthStream",
+    "exit_code": 0,
+    "seconds": 12.672062,
+    "log": "Coeff2.CharlieReducedDepthStream.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockRefraction",
+    "exit_code": 0,
+    "seconds": 12.9931902,
+    "log": "Coeff2.CharlieClockRefraction.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiftEigenoperators",
+    "exit_code": 0,
+    "seconds": 7.3500809,
+    "log": "Coeff2.CharlieLiftEigenoperators.log"
+  },
+  {
+    "module": "Coeff2.CharlieThreeLevelEigenoperatorTransport",
+    "exit_code": 0,
+    "seconds": 7.6374458,
+    "log": "Coeff2.CharlieThreeLevelEigenoperatorTransport.log"
+  },
+  {
+    "module": "Coeff2.CharliePhaseOrder",
+    "exit_code": 0,
+    "seconds": 15.0540329,
+    "log": "Coeff2.CharliePhaseOrder.log"
+  },
+  {
+    "module": "Coeff2.CharlieFreeRowCoverage",
+    "exit_code": 0,
+    "seconds": 13.028386,
+    "log": "Coeff2.CharlieFreeRowCoverage.log"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationSuperoperator",
+    "exit_code": 0,
+    "seconds": 13.4774061,
+    "log": "Coeff2.CharlieOccupationSuperoperator.log"
+  },
+  {
+    "module": "Coeff2.CharlieExactSymbolTransformer",
+    "exit_code": 0,
+    "seconds": 13.0366405,
+    "log": "Coeff2.CharlieExactSymbolTransformer.log"
+  },
+  {
+    "module": "Coeff2.CharliePartialRowPort",
+    "exit_code": 0,
+    "seconds": 18.3746614,
+    "log": "Coeff2.CharliePartialRowPort.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Words",
+    "exit_code": 0,
+    "seconds": 0.9233172,
+    "log": "SuperpermutationUpperBound.Foundation.Words.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Rows",
+    "exit_code": 0,
+    "seconds": 0.9822652,
+    "log": "SuperpermutationUpperBound.Rows.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Rotation",
+    "exit_code": 0,
+    "seconds": 1.0993153,
+    "log": "SuperpermutationUpperBound.Foundation.Rotation.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Local",
+    "exit_code": 0,
+    "seconds": 1.1922346,
+    "log": "SuperpermutationUpperBound.Transport.Local.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CyclicBlocks",
+    "exit_code": 0,
+    "seconds": 1.0291563,
+    "log": "SuperpermutationUpperBound.CyclicBlocks.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Packing",
+    "exit_code": 0,
+    "seconds": 1.0084899,
+    "log": "SuperpermutationUpperBound.Packing.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Blocks",
+    "exit_code": 0,
+    "seconds": 1.1764736,
+    "log": "SuperpermutationUpperBound.Transport.Blocks.log"
+  },
+  {
+    "module": "Coeff2.CharlieSourceReversal",
+    "exit_code": 0,
+    "seconds": 7.7328049,
+    "log": "Coeff2.CharlieSourceReversal.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Ports",
+    "exit_code": 0,
+    "seconds": 1.3961017,
+    "log": "SuperpermutationUpperBound.Transport.Ports.log"
+  },
+  {
+    "module": "Coeff2.CharlieBalancedSourceSelection",
+    "exit_code": 0,
+    "seconds": 7.7548023,
+    "log": "Coeff2.CharlieBalancedSourceSelection.log"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationCommutator",
+    "exit_code": 0,
+    "seconds": 7.1622016,
+    "log": "Coeff2.CharlieOccupationCommutator.log"
+  },
+  {
+    "module": "Coeff2.CharlieCommutatorConnector",
+    "exit_code": 0,
+    "seconds": 13.1825524,
+    "log": "Coeff2.CharlieCommutatorConnector.log"
+  },
+  {
+    "module": "Coeff2.CharlieJayClassCut",
+    "exit_code": 0,
+    "seconds": 12.4870843,
+    "log": "Coeff2.CharlieJayClassCut.log"
+  },
+  {
+    "module": "Coeff2.CharlieCyclicOccupationDebt",
+    "exit_code": 0,
+    "seconds": 12.8987619,
+    "log": "Coeff2.CharlieCyclicOccupationDebt.log"
+  },
+  {
+    "module": "Coeff2.CharlieTopologyFlowDual",
+    "exit_code": 0,
+    "seconds": 7.46239,
+    "log": "Coeff2.CharlieTopologyFlowDual.log"
+  },
+  {
+    "module": "Coeff2.CharlieBoundarySpine",
+    "exit_code": 0,
+    "seconds": 13.1294317,
+    "log": "Coeff2.CharlieBoundarySpine.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralAttachmentCut",
+    "exit_code": 0,
+    "seconds": 12.8307275,
+    "log": "Coeff2.CharlieLiteralAttachmentCut.log"
+  },
+  {
+    "module": "Coeff2.CharlieReservedExitConnector",
+    "exit_code": 0,
+    "seconds": 12.8907305,
+    "log": "Coeff2.CharlieReservedExitConnector.log"
+  },
+  {
+    "module": "Coeff2.CharlieClockBalanceElimination",
+    "exit_code": 0,
+    "seconds": 13.692266,
+    "log": "Coeff2.CharlieClockBalanceElimination.log"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationRecoveryClock",
+    "exit_code": 0,
+    "seconds": 13.1688422,
+    "log": "Coeff2.CharlieOccupationRecoveryClock.log"
+  },
+  {
+    "module": "Coeff2.CharlieTraversal",
+    "exit_code": 0,
+    "seconds": 13.4511497,
+    "log": "Coeff2.CharlieTraversal.log"
+  },
+  {
+    "module": "Coeff2.CharlieFrobeniusLedger",
+    "exit_code": 0,
+    "seconds": 22.2106204,
+    "log": "Coeff2.CharlieFrobeniusLedger.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralReservoir",
+    "exit_code": 0,
+    "seconds": 15.2903635,
+    "log": "Coeff2.CharlieLiteralReservoir.log"
+  },
+  {
+    "module": "Coeff2.CharlieThreeLevelBoundary",
+    "exit_code": 0,
+    "seconds": 13.3549581,
+    "log": "Coeff2.CharlieThreeLevelBoundary.log"
+  },
+  {
+    "module": "Coeff2.CharlieThreeSymbolFibers",
+    "exit_code": 0,
+    "seconds": 15.2778539,
+    "log": "Coeff2.CharlieThreeSymbolFibers.log"
+  },
+  {
+    "module": "Coeff2.CharlieThreeLevelCoverage",
+    "exit_code": 0,
+    "seconds": 12.4535175,
+    "log": "Coeff2.CharlieThreeLevelCoverage.log"
+  },
+  {
+    "module": "Coeff2.CharlieContextReplacement",
+    "exit_code": 0,
+    "seconds": 12.629937,
+    "log": "Coeff2.CharlieContextReplacement.log"
+  },
+  {
+    "module": "Coeff2.CharlieCoordinatedExchange",
+    "exit_code": 0,
+    "seconds": 13.1849907,
+    "log": "Coeff2.CharlieCoordinatedExchange.log"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationWriteTransport",
+    "exit_code": 0,
+    "seconds": 6.9904769,
+    "log": "Coeff2.CharlieOccupationWriteTransport.log"
+  },
+  {
+    "module": "Coeff2.CharlieSharedWasteResponse",
+    "exit_code": 0,
+    "seconds": 12.7724205,
+    "log": "Coeff2.CharlieSharedWasteResponse.log"
+  },
+  {
+    "module": "Coeff2.CharlieSharedWasteGluing",
+    "exit_code": 0,
+    "seconds": 12.3458756,
+    "log": "Coeff2.CharlieSharedWasteGluing.log"
+  },
+  {
+    "module": "Coeff2.CharlieSharedWasteResponseCheck",
+    "exit_code": 0,
+    "seconds": 13.9614821,
+    "log": "Coeff2.CharlieSharedWasteResponseCheck.log"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationConeQuotient",
+    "exit_code": 0,
+    "seconds": 12.1818535,
+    "log": "Coeff2.CharlieOccupationConeQuotient.log"
+  },
+  {
+    "module": "Coeff2.CharlieBellmanExactQuotient",
+    "exit_code": 0,
+    "seconds": 12.4879643,
+    "log": "Coeff2.CharlieBellmanExactQuotient.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralGaugeRigidity",
+    "exit_code": 0,
+    "seconds": 4.8774283,
+    "log": "Coeff2.CharlieLiteralGaugeRigidity.log"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralRelabelProblem",
+    "exit_code": 0,
+    "seconds": 6.9116431,
+    "log": "Coeff2.CharlieLiteralRelabelProblem.log"
+  },
+  {
+    "module": "Coeff2.CharlieBellmanGauge",
+    "exit_code": 0,
+    "seconds": 12.6736797,
+    "log": "Coeff2.CharlieBellmanGauge.log"
+  },
+  {
+    "module": "Coeff2.CharlieBellmanJointFrontier",
+    "exit_code": 0,
+    "seconds": 12.3106652,
+    "log": "Coeff2.CharlieBellmanJointFrontier.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.RowSpelling",
+    "exit_code": 0,
+    "seconds": 1.1405032,
+    "log": "SuperpermutationUpperBound.RowSpelling.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Overlap",
+    "exit_code": 0,
+    "seconds": 1.0507717,
+    "log": "SuperpermutationUpperBound.Foundation.Overlap.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.TrailSpelling",
+    "exit_code": 0,
+    "seconds": 1.0467291,
+    "log": "SuperpermutationUpperBound.TrailSpelling.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.WordSupport",
+    "exit_code": 0,
+    "seconds": 0.8978279,
+    "log": "SuperpermutationUpperBound.Foundation.WordSupport.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.MacroWords",
+    "exit_code": 0,
+    "seconds": 0.9946287,
+    "log": "SuperpermutationUpperBound.Assembly.MacroWords.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Paths",
+    "exit_code": 0,
+    "seconds": 1.2388409,
+    "log": "SuperpermutationUpperBound.Transport.Paths.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.IndexedPaths",
+    "exit_code": 0,
+    "seconds": 1.229556,
+    "log": "SuperpermutationUpperBound.Transport.IndexedPaths.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Successor",
+    "exit_code": 0,
+    "seconds": 4.0053831,
+    "log": "SuperpermutationUpperBound.Transport.Successor.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.OrbitAssembly",
+    "exit_code": 0,
+    "seconds": 1.0393578,
+    "log": "SuperpermutationUpperBound.Transport.OrbitAssembly.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Relabeling",
+    "exit_code": 0,
+    "seconds": 0.9240598,
+    "log": "SuperpermutationUpperBound.Foundation.Relabeling.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.FiniteOrbits",
+    "exit_code": 0,
+    "seconds": 4.8124775,
+    "log": "SuperpermutationUpperBound.Transport.FiniteOrbits.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Counts",
+    "exit_code": 0,
+    "seconds": 1.0199669,
+    "log": "SuperpermutationUpperBound.Transport.Counts.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.SupportedWords",
+    "exit_code": 0,
+    "seconds": 0.9168063,
+    "log": "SuperpermutationUpperBound.Foundation.SupportedWords.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Closed",
+    "exit_code": 0,
+    "seconds": 5.140943,
+    "log": "SuperpermutationUpperBound.Transport.Closed.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CycleSplicing",
+    "exit_code": 0,
+    "seconds": 1.0247618,
+    "log": "SuperpermutationUpperBound.Assembly.CycleSplicing.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CycleConnectivity",
+    "exit_code": 0,
+    "seconds": 4.1416906,
+    "log": "SuperpermutationUpperBound.Assembly.CycleConnectivity.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.BalancedGraph",
+    "exit_code": 0,
+    "seconds": 4.6790797,
+    "log": "SuperpermutationUpperBound.Assembly.BalancedGraph.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.DisjointCycles",
+    "exit_code": 0,
+    "seconds": 4.802614,
+    "log": "SuperpermutationUpperBound.Assembly.DisjointCycles.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.MacroSpelling",
+    "exit_code": 0,
+    "seconds": 0.9446526,
+    "log": "SuperpermutationUpperBound.Assembly.MacroSpelling.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.OpenCycles",
+    "exit_code": 0,
+    "seconds": 0.9173717,
+    "log": "SuperpermutationUpperBound.Assembly.OpenCycles.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RemoveEdges",
+    "exit_code": 0,
+    "seconds": 4.7141679,
+    "log": "SuperpermutationUpperBound.Assembly.RemoveEdges.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.WordTrails",
+    "exit_code": 0,
+    "seconds": 4.8676775,
+    "log": "SuperpermutationUpperBound.Assembly.WordTrails.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RowEdges",
+    "exit_code": 0,
+    "seconds": 4.6792801,
+    "log": "SuperpermutationUpperBound.Assembly.RowEdges.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.OccurrencePaths",
+    "exit_code": 0,
+    "seconds": 4.7885608,
+    "log": "SuperpermutationUpperBound.Assembly.OccurrencePaths.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CycleTrailCount",
+    "exit_code": 0,
+    "seconds": 4.9319232,
+    "log": "SuperpermutationUpperBound.Assembly.CycleTrailCount.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CoveredComponents",
+    "exit_code": 0,
+    "seconds": 4.8258241,
+    "log": "SuperpermutationUpperBound.Assembly.CoveredComponents.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RotationConnectors",
+    "exit_code": 0,
+    "seconds": 1.0561106,
+    "log": "SuperpermutationUpperBound.Assembly.RotationConnectors.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.BalancedChoices",
+    "exit_code": 0,
+    "seconds": 0.9461243,
+    "log": "SuperpermutationUpperBound.Assembly.BalancedChoices.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CircleModules",
+    "exit_code": 0,
+    "seconds": 2.1024303,
+    "log": "SuperpermutationUpperBound.Assembly.CircleModules.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RotationEdges",
+    "exit_code": 0,
+    "seconds": 4.7403654,
+    "log": "SuperpermutationUpperBound.Assembly.RotationEdges.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CoveredModuleWords",
+    "exit_code": 0,
+    "seconds": 5.1216919,
+    "log": "SuperpermutationUpperBound.Assembly.CoveredModuleWords.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.ModuleCosts",
+    "exit_code": 0,
+    "seconds": 4.8593303,
+    "log": "SuperpermutationUpperBound.Assembly.ModuleCosts.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.ConnectorFamily",
+    "exit_code": 0,
+    "seconds": 4.9562448,
+    "log": "SuperpermutationUpperBound.Assembly.ConnectorFamily.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Definitions",
+    "exit_code": 0,
+    "seconds": 4.4304758,
+    "log": "SuperpermutationUpperBound.BalancedCuts.Definitions.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.UniformChoices",
+    "exit_code": 0,
+    "seconds": 4.4477882,
+    "log": "SuperpermutationUpperBound.BalancedCuts.UniformChoices.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.SparseSupport",
+    "exit_code": 0,
+    "seconds": 4.9625357,
+    "log": "SuperpermutationUpperBound.BalancedCuts.SparseSupport.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Fractional",
+    "exit_code": 0,
+    "seconds": 4.9348507,
+    "log": "SuperpermutationUpperBound.BalancedCuts.Fractional.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.SparseState",
+    "exit_code": 0,
+    "seconds": 5.2621446,
+    "log": "SuperpermutationUpperBound.BalancedCuts.SparseState.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Incidence",
+    "exit_code": 0,
+    "seconds": 4.3793283,
+    "log": "SuperpermutationUpperBound.BalancedCuts.Incidence.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Residual",
+    "exit_code": 0,
+    "seconds": 5.6973493,
+    "log": "SuperpermutationUpperBound.BalancedCuts.Residual.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Rounding",
+    "exit_code": 0,
+    "seconds": 5.0437832,
+    "log": "SuperpermutationUpperBound.BalancedCuts.Rounding.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Selection",
+    "exit_code": 0,
+    "seconds": 5.5388976,
+    "log": "SuperpermutationUpperBound.BalancedCuts.Selection.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.ImbalanceCounts",
+    "exit_code": 0,
+    "seconds": 5.1717045,
+    "log": "SuperpermutationUpperBound.Assembly.ImbalanceCounts.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.BalancingEdges",
+    "exit_code": 0,
+    "seconds": 5.0557418,
+    "log": "SuperpermutationUpperBound.Assembly.BalancingEdges.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.SelectedGraph",
+    "exit_code": 0,
+    "seconds": 5.5722074,
+    "log": "SuperpermutationUpperBound.BalancedCuts.SelectedGraph.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.GraphTrails",
+    "exit_code": 0,
+    "seconds": 5.3334758,
+    "log": "SuperpermutationUpperBound.Assembly.GraphTrails.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.WordAssembly",
+    "exit_code": 0,
+    "seconds": 5.491208,
+    "log": "SuperpermutationUpperBound.BalancedCuts.WordAssembly.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.CutWords",
+    "exit_code": 0,
+    "seconds": 5.4279863,
+    "log": "SuperpermutationUpperBound.BalancedCuts.CutWords.log"
+  },
+  {
+    "module": "Coeff2.CharlieTransportVocabulary",
+    "exit_code": 0,
+    "seconds": 7.5834078,
+    "log": "Coeff2.CharlieTransportVocabulary.log"
+  },
+  {
+    "module": "Coeff2.CharlieRestrictedCircleAssembly",
+    "exit_code": 0,
+    "seconds": 8.1648223,
+    "log": "Coeff2.CharlieRestrictedCircleAssembly.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Completion.Projection",
+    "exit_code": 0,
+    "seconds": 1.0978654,
+    "log": "SuperpermutationUpperBound.Completion.Projection.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Partition.FullCharts",
+    "exit_code": 0,
+    "seconds": 1.0570505,
+    "log": "SuperpermutationUpperBound.Partition.FullCharts.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.Circles",
+    "exit_code": 0,
+    "seconds": 0.9559398,
+    "log": "SuperpermutationUpperBound.CircleTransport.Circles.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Monodromy",
+    "exit_code": 0,
+    "seconds": 1.0457033,
+    "log": "SuperpermutationUpperBound.Transport.Monodromy.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.FullLap",
+    "exit_code": 0,
+    "seconds": 5.1303092,
+    "log": "SuperpermutationUpperBound.Transport.FullLap.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.OrbitCounts",
+    "exit_code": 0,
+    "seconds": 5.4373978,
+    "log": "SuperpermutationUpperBound.Transport.OrbitCounts.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.TwoInsertion",
+    "exit_code": 0,
+    "seconds": 5.6231191,
+    "log": "SuperpermutationUpperBound.CircleTransport.TwoInsertion.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Completion.Local",
+    "exit_code": 0,
+    "seconds": 1.2085445,
+    "log": "SuperpermutationUpperBound.Completion.Local.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Completion.Paths",
+    "exit_code": 0,
+    "seconds": 1.3560774,
+    "log": "SuperpermutationUpperBound.Completion.Paths.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Winding",
+    "exit_code": 0,
+    "seconds": 6.7599918,
+    "log": "SuperpermutationUpperBound.Transport.Winding.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.PairPaths",
+    "exit_code": 0,
+    "seconds": 5.8273314,
+    "log": "SuperpermutationUpperBound.CircleTransport.PairPaths.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.Transport",
+    "exit_code": 0,
+    "seconds": 7.3949752,
+    "log": "SuperpermutationUpperBound.CircleTransport.Transport.log"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RowMacroFamily",
+    "exit_code": 0,
+    "seconds": 5.1119623,
+    "log": "SuperpermutationUpperBound.Assembly.RowMacroFamily.log"
+  },
+  {
+    "module": "Coeff2.CharlieRestrictedRowConstruction",
+    "exit_code": 0,
+    "seconds": 7.8798154,
+    "log": "Coeff2.CharlieRestrictedRowConstruction.log"
+  },
+  {
+    "module": "PublicClaims",
+    "exit_code": 0,
+    "seconds": 12.7498648,
+    "log": "PublicClaims.log"
+  },
+  {
+    "module": "AxiomAudit",
+    "exit_code": 0,
+    "seconds": 12.8350976,
+    "log": "AxiomAudit.log"
+  }
+]
