@@ -1,10 +1,10 @@
 \documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
-\usepackage[margin=0.78in]{geometry}
+\usepackage[margin=0.68in]{geometry}
 \usepackage{amsmath,amssymb,booktabs,array}
 \usepackage[hidelinks]{hyperref}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt}
+\setlength{\parskip}{3pt}
 \emergencystretch=2em
 \title{\vspace{-1.5em}Opening phase as a boundary interaction\\
 \large A verified \(46{,}173\)-letter superpermutation on eight symbols}
@@ -164,18 +164,61 @@ offsets are positions in the corresponding cyclic spellings.
 13&3415&2&03254&32541
 \end{array}
 \]
-Using the row order \(E_{14},E_{15},E_{13}\) and column order
-\(S_{14},S_{15},S_{13}\), direct string comparison yields
+Let $t_1=14$, $t_2=15$, and $t_3=13$ denote the trails in the
+order shown. We now define two $3\times3$ matrices. The
+\emph{overlap matrix} $O$ records how many letters are shared by each
+possible directed pair of the selected trail boundaries:
 \[
-O=\begin{pmatrix}0&5&2\\1&0&3\\0&1&0\end{pmatrix},
-\qquad
+\boxed{
+O_{ij}:=\operatorname{ov}(E_{t_i},S_{t_j})
+=\max\bigl\{k\in\{0,1,\ldots,5\}:\;
+\operatorname{suffix}_k(E_{t_i})
+=\operatorname{prefix}_k(S_{t_j})\bigr\}.
+}
+\]
+An overlap must match at the \emph{end} of $E_{t_i}$ and the
+\emph{beginning} of $S_{t_j}$; a matching substring in the middle does
+not count. To compute an entry, test $k=5,4,\ldots,1$ and retain the
+first match, or assign zero if there is none.
+
+The matching boundary strings for all nine ordered pairs are given
+below; $\varepsilon$ denotes the empty word (an overlap of length zero).
+\[
+\begin{array}{c|ccc}
+  & S_{14}=\texttt{21750} & S_{15}=\texttt{17503} & S_{13}=\texttt{03254}\\\hline
+E_{14}=\texttt{17503}&\varepsilon&\texttt{17503}&\texttt{03}\\
+E_{15}=\texttt{75032}&\texttt{2}&\varepsilon&\texttt{032}\\
+E_{13}=\texttt{32541}&\varepsilon&\texttt{1}&\varepsilon
+\end{array}
+\]
+Taking the lengths of these strings yields
+\[
+O=\begin{pmatrix}0&5&2\\1&0&3\\0&1&0\end{pmatrix}.
+\]
+
+The \emph{joining-cost matrix} $M$ records the number of additional
+boundary letters that must be written when joining the same ordered
+pairs. Since every boundary has length $h=5$, define
+\[
+\boxed{M_{ij}:=5-O_{ij}=D[E_{t_i},S_{t_j}].}
+\]
+Thus $M$ is the $3\times3$ table extracted from the universal
+boundary-cost matrix $D$ using rows $E_{14},E_{15},E_{13}$ and columns
+$S_{14},S_{15},S_{13}$. In matrix notation,
+\[
 M=5\mathbf1\mathbf1^T-O
  =\begin{pmatrix}5&\boxed{0}&3\\4&5&\boxed{2}\\5&4&5\end{pmatrix},
+\qquad\mathbf1=(1,1,1)^T,
 \]
-where \(\mathbf1=(1,1,1)^T\) and \(M\) is the restriction of \(D\) to
-these specific boundary words. Diagonal entries are displayed for
-completeness; the assembly never revisits a trail. Notice the direction:
-\(M_{1,2}=0\), but \(M_{2,1}=4\).
+where $\mathbf1\mathbf1^T$ is the $3\times3$ all-ones matrix.
+For instance, $E_{14}=S_{15}=\texttt{17503}$ gives $O_{1,2}=5$
+and $M_{1,2}=0$; the three-letter match $\texttt{032}$ between
+$E_{15}=\texttt{75032}$ and $S_{13}=\texttt{03254}$ gives
+$O_{2,3}=3$ and $M_{2,3}=2$.
+
+The entries are directed: $M_{1,2}=0$ whereas $M_{2,1}=4$.
+Diagonal entries are shown for completeness, though the assembly
+never revisits a trail.
 
 The consecutive joins actually selected are
 \[
@@ -206,7 +249,7 @@ and the length accounting is
 h+\sum_iR_i&46\,149&46\,149\\
 A&0&3\\
 J&25&21\\ \hline
-L&46\,174&46\,173
+L&46{,}174&46{,}173
 \end{array}
 \]
 For the new plan, the fifteen directed boundary costs are, in order,
@@ -239,7 +282,7 @@ Independent sliding-window scans of the supplied reference and improved
 words give \(8!=40\,320\) distinct permutations in each. The new word
 has 56 repeated permutation occurrences, compared with 57 in the
 reference, and both have 5,790 dirty windows. In particular,
-\(46\,173-8+1=40\,320+56+5\,790\), as required.
+\(46{,}173-8+1=40\,320+56+5\,790\), as required.
 
 This is an occupation-support-preserving change of boundary phase. The
 matrix formulation explains the coupled costs; Halfar's randomized
