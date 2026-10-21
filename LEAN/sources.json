@@ -1,0 +1,1143 @@
+[
+  {
+    "module": "Coeff2.Words",
+    "path": "Coeff2/Words.lean",
+    "source": "p/Coeff2/Words.lean",
+    "sha256": "a4dd2f36796b322b3fffaa7a536605e6364aaf4893fda79754f30e50b71fa963",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.Walks",
+    "path": "Coeff2/Walks.lean",
+    "source": "p/Coeff2/Walks.lean",
+    "sha256": "fc5196deb33a1f946b5efe6f483183b7d239867f65ad347d944bd3f372a71024",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.Loops",
+    "path": "Coeff2/Loops.lean",
+    "source": "p/Coeff2/Loops.lean",
+    "sha256": "1c7581326a63e55745d7037cdd07735bf9940f5e2df795f979ca33009561c937",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.Breaks",
+    "path": "Coeff2/Breaks.lean",
+    "source": "p/Coeff2/Breaks.lean",
+    "sha256": "c57929bc33bf966f2e0dc09026cf397de485820ef07b22cb72804adca87a8bbc",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.Charges",
+    "path": "Coeff2/Charges.lean",
+    "source": "p/Coeff2/Charges.lean",
+    "sha256": "50fc708c53385ccaea239ff9983c983cc936a5883f76b4796b05830735170a77",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.Defs",
+    "path": "Coeff2/Defs.lean",
+    "source": "p/Coeff2/Defs.lean",
+    "sha256": "26b0cd7d6327d2481958a5da9235114846d58eb600e18c116b226ce78df2e6d6",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.Helpers",
+    "path": "Coeff2/Helpers.lean",
+    "source": "p/Coeff2/Helpers.lean",
+    "sha256": "ab9adc38283b652ece4f330863a782b87d23d2ebb2eb5f46701e413f710d70f8",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.Auxiliary",
+    "path": "Coeff2/Auxiliary.lean",
+    "source": "p/Coeff2/Auxiliary.lean",
+    "sha256": "d4afc0f7341cd67a042994b1ca69a0010f53517062a520887a84b715d773a34d",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.ParityCycles",
+    "path": "Coeff2/ParityCycles.lean",
+    "source": "p/Coeff2/ParityCycles.lean",
+    "sha256": "2c27dfe284b1cefeea2a4f6c746ab568da5b26fd74cb5d31c425d403ee1d4cc3",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.CharlieEganOccupationLift",
+    "path": "Coeff2/CharlieEganOccupationLift.lean",
+    "source": "p/Coeff2/CharlieEganOccupationLift.lean",
+    "sha256": "3960d9832a7dc40cbf5b6ef4f1ee8a157043b7533acb442652e09eea4d9d310d",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieEganProcedure",
+    "path": "Coeff2/CharlieEganProcedure.lean",
+    "source": "p/Coeff2/CharlieEganProcedure.lean",
+    "sha256": "2bf400870ab3d013d23d5309390922698f2bb0d44a6b787db80c755f0176bfa5",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieEganComponentGraph",
+    "path": "Coeff2/CharlieEganComponentGraph.lean",
+    "source": "p/Coeff2/CharlieEganComponentGraph.lean",
+    "sha256": "10aa704233054d1721b4997ad71363021aaa654d0c824829e459dbc0c396e889",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharliePhaseDetour",
+    "path": "Coeff2/CharliePhaseDetour.lean",
+    "source": "p/Coeff2/CharliePhaseDetour.lean",
+    "sha256": "77a0d6e76bfceb606961a81219f54b0fc3610d7c2fbc49419d10a32d775566f5",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieNonwholeOccupation",
+    "path": "Coeff2/CharlieNonwholeOccupation.lean",
+    "source": "p/Coeff2/CharlieNonwholeOccupation.lean",
+    "sha256": "494720078892e1075db753ae2cba0196ff8ce321770abe0b85e2cdbaf293021e",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieTwoMarkerPartition",
+    "path": "Coeff2/CharlieTwoMarkerPartition.lean",
+    "source": "p/Coeff2/CharlieTwoMarkerPartition.lean",
+    "sha256": "c3b354666d54355fb67fe7099c4058fbb51a3929ad7e621a507df48ee4c64a23",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharliePacketAssembly",
+    "path": "Coeff2/CharliePacketAssembly.lean",
+    "source": "p/Coeff2/CharliePacketAssembly.lean",
+    "sha256": "a0077242df85a960789804fd2b25276f5ad07769f0f455361c569ccce6a536dd",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharliePacketPorts",
+    "path": "Coeff2/CharliePacketPorts.lean",
+    "source": "p/Coeff2/CharliePacketPorts.lean",
+    "sha256": "e7954b5ad8dc1e6513cf13c72c834641459de681a3fa719518ea2bc64f0779ce",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharliePacketOccupationBridge",
+    "path": "Coeff2/CharliePacketOccupationBridge.lean",
+    "source": "p/Coeff2/CharliePacketOccupationBridge.lean",
+    "sha256": "0319b000acf342fb20cc43ca78c5398615993fb7006adb5ec2321680fc0e1daf",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieSignedBoundaryLift",
+    "path": "Coeff2/CharlieSignedBoundaryLift.lean",
+    "source": "p/Coeff2/CharlieSignedBoundaryLift.lean",
+    "sha256": "9c492c870fb8d0c2ca28174a7342d95fd7599968e83f506fc161241f813ea4cf",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockRouting",
+    "path": "Coeff2/CharlieClockRouting.lean",
+    "source": "p/Coeff2/CharlieClockRouting.lean",
+    "sha256": "ade60320b78699a58245275062b27404c50e48cde949f483be463c43e6bb2e44",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieRecursiveClockLift",
+    "path": "Coeff2/CharlieRecursiveClockLift.lean",
+    "source": "p/Coeff2/CharlieRecursiveClockLift.lean",
+    "sha256": "67afee088d76031cb5f67292249b026ae56e65d237b718cd76faf1f7f6e366cc",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieAttachmentReduction",
+    "path": "Coeff2/CharlieAttachmentReduction.lean",
+    "source": "p/Coeff2/CharlieAttachmentReduction.lean",
+    "sha256": "85360d070aa5fb4032d334f2c55479358f7eb676414a5ef24c62d5c173d1665d",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockMacro",
+    "path": "Coeff2/CharlieClockMacro.lean",
+    "source": "p/Coeff2/CharlieClockMacro.lean",
+    "sha256": "61e273ce8c7f446ffd934abcea61cf025190ea7e49c670271ab74465b8d41846",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockBudget",
+    "path": "Coeff2/CharlieClockBudget.lean",
+    "source": "p/Coeff2/CharlieClockBudget.lean",
+    "sha256": "03804b8c7c89e22640a78d738d039e5ea927073f60f4a3d6b682e584e055d33e",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockWrapCount",
+    "path": "Coeff2/CharlieClockWrapCount.lean",
+    "source": "p/Coeff2/CharlieClockWrapCount.lean",
+    "sha256": "40bb9fa5762fda1ba22fb09ecba088f6e7e260cbcc5aa7e5501a73c896820550",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockBellman",
+    "path": "Coeff2/CharlieClockBellman.lean",
+    "source": "p/Coeff2/CharlieClockBellman.lean",
+    "sha256": "376d9c8ded9265184b8809c60fa38cb1b1b18243ec97be51180ccd76b7b70c9f",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockBidirectional",
+    "path": "Coeff2/CharlieClockBidirectional.lean",
+    "source": "p/Coeff2/CharlieClockBidirectional.lean",
+    "sha256": "c6bc9d8dc75cf630d568885dc964b54c25904bd14a4a59bd2401d58beea09209",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockHybrid",
+    "path": "Coeff2/CharlieClockHybrid.lean",
+    "source": "p/Coeff2/CharlieClockHybrid.lean",
+    "sha256": "55e9a2051f4831a53c117c775f316f31d597f34810298a742818a9381375e283",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockSlack",
+    "path": "Coeff2/CharlieClockSlack.lean",
+    "source": "p/Coeff2/CharlieClockSlack.lean",
+    "sha256": "cfa1b24ec07ef16390bdbfa88cd893702e2feaf1250761d014e9906afa74954a",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.Statements",
+    "path": "Coeff2/Statements.lean",
+    "source": "p/Coeff2/Statements.lean",
+    "sha256": "27dbf07b3f520e0a8cd4f10f7578f225e63b81f571405a9979ea5b42f49e1233",
+    "origin": "Uku Raudvere, Coeff2 development; original file headers retained"
+  },
+  {
+    "module": "Coeff2.CharlieCayleyFourier",
+    "path": "Coeff2/CharlieCayleyFourier.lean",
+    "source": "p/Coeff2/CharlieCayleyFourier.lean",
+    "sha256": "5f4ed73f71d7590db1fc056e1d4077a4889fa3b572ae129b8737b79a7fc02043",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationCayley",
+    "path": "Coeff2/CharlieOccupationCayley.lean",
+    "source": "p/Coeff2/CharlieOccupationCayley.lean",
+    "sha256": "09d4d4008dc38f1be2f6630a7109393f5db0d204b37919cb42f56f4d45d4b378",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.Charlieplex",
+    "path": "Coeff2/Charlieplex.lean",
+    "source": "p/Coeff2/Charlieplex.lean",
+    "sha256": "3464cc31144d8735b8f590c5ddb8550898d2abceda086064703e264dc4b50be0",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieGeometry",
+    "path": "Coeff2/CharlieGeometry.lean",
+    "source": "p/Coeff2/CharlieGeometry.lean",
+    "sha256": "58758505f5c72f73db8d7f157bcb3f4675a362827947319558842b197c51bf4a",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieBipartite",
+    "path": "Coeff2/CharlieBipartite.lean",
+    "source": "p/Coeff2/CharlieBipartite.lean",
+    "sha256": "e79e05515ef134f1c558cc30c8881e52481a68c4cc5c25dfc3d4574dee365437",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieGauge",
+    "path": "Coeff2/CharlieGauge.lean",
+    "source": "p/Coeff2/CharlieGauge.lean",
+    "sha256": "bb37ea960a5e7f56492c7ddb3d6f1a1c31dc2c3a7c4cb831ef0641bc92afe49e",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieCacheMachine",
+    "path": "Coeff2/CharlieCacheMachine.lean",
+    "source": "p/Coeff2/CharlieCacheMachine.lean",
+    "sha256": "0b79c6cbddea61c24301a2be8707327eea3d42cd72c4451b0896580a080ac457",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralBridge",
+    "path": "Coeff2/CharlieLiteralBridge.lean",
+    "source": "p/Coeff2/CharlieLiteralBridge.lean",
+    "sha256": "d3eeed5c4fa90f95c7689028b5710deafd2875d6124188899c76063007afb403",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralCertificate",
+    "path": "Coeff2/CharlieLiteralCertificate.lean",
+    "source": "p/Coeff2/CharlieLiteralCertificate.lean",
+    "sha256": "de9ed9fc95a04cf7a826e9d8883d475a6e77256c4f73deb8092a672168fb09d3",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralState",
+    "path": "Coeff2/CharlieLiteralState.lean",
+    "source": "p/Coeff2/CharlieLiteralState.lean",
+    "sha256": "b0212f3f8badef3955d53525287de71495185e574b57dd0a56a3f5571b504a92",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralCompletions",
+    "path": "Coeff2/CharlieLiteralCompletions.lean",
+    "source": "p/Coeff2/CharlieLiteralCompletions.lean",
+    "sha256": "4363730a194e40182672ded90e00c9965abf134f87cbf453a45aee2f79d39fbe",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralBellman",
+    "path": "Coeff2/CharlieLiteralBellman.lean",
+    "source": "p/Coeff2/CharlieLiteralBellman.lean",
+    "sha256": "98676e53409fc320b5f4d6a82d293a43d4ba9288d5281a4bdb2f2fd39530c191",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationBinomial",
+    "path": "Coeff2/CharlieOccupationBinomial.lean",
+    "source": "p/Coeff2/CharlieOccupationBinomial.lean",
+    "sha256": "82342bb5940b7a5513aed22c888a010fe154220d47c15216f125beccdc258ab9",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharliePascalTransfer",
+    "path": "Coeff2/CharliePascalTransfer.lean",
+    "source": "p/Coeff2/CharliePascalTransfer.lean",
+    "sha256": "c9a0a551f56b432ac7a87e83d5e0594df68167f69d6571dcce4b09105cea2ffe",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieDegenerationSets",
+    "path": "Coeff2/CharlieDegenerationSets.lean",
+    "source": "p/Coeff2/CharlieDegenerationSets.lean",
+    "sha256": "265b5da6ad3d02e52312cfc11f75eabc3c8830cb13c79deda8e6c8147ac9643e",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieKernelScaling",
+    "path": "Coeff2/CharlieKernelScaling.lean",
+    "source": "p/Coeff2/CharlieKernelScaling.lean",
+    "sha256": "14d7e82d7d52244af57cd6f84233ed02393b38cfd6ce96ccf00d4d8ebd52f1b6",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieKernelPositive",
+    "path": "Coeff2/CharlieKernelPositive.lean",
+    "source": "p/Coeff2/CharlieKernelPositive.lean",
+    "sha256": "5e3ca2c263f71f5a944b15e069c16c3ceb87a67bbe651df9abfb59a0ef24f4f5",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieCycleCompression",
+    "path": "Coeff2/CharlieCycleCompression.lean",
+    "source": "p/Coeff2/CharlieCycleCompression.lean",
+    "sha256": "547b622f4f3e29e8eecea6cc6e1c1570230815ab76b4e4054b75815e5d5f5623",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieFragmentBendGate",
+    "path": "Coeff2/CharlieFragmentBendGate.lean",
+    "source": "p/Coeff2/CharlieFragmentBendGate.lean",
+    "sha256": "47e448b79db0013fd48dfd65483429eeb31fb6dec964bd2bbaa7dca06253ab50",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieJayCompletionParity",
+    "path": "Coeff2/CharlieJayCompletionParity.lean",
+    "source": "p/Coeff2/CharlieJayCompletionParity.lean",
+    "sha256": "52bc61a9a4d081727a71450d96066238284cb0223ebfebf61378fc26ac9ae4d1",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieDigitClock",
+    "path": "Coeff2/CharlieDigitClock.lean",
+    "source": "p/Coeff2/CharlieDigitClock.lean",
+    "sha256": "b287e24c66b0e71c28016a8796f2ae2da048018d5e2e15149ec334b22003b316",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieReducedAlphabetLedger",
+    "path": "Coeff2/CharlieReducedAlphabetLedger.lean",
+    "source": "p/Coeff2/CharlieReducedAlphabetLedger.lean",
+    "sha256": "7dfdde5e23145939094137451bbfa257f4b991a86f6d357ea46282a4c6160e1a",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieReducedDepthStream",
+    "path": "Coeff2/CharlieReducedDepthStream.lean",
+    "source": "p/Coeff2/CharlieReducedDepthStream.lean",
+    "sha256": "eb11f679cd5cb84e6922825807ec55a2d8c8e1c5b88896a04cd8d7b3ea7cee18",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockRefraction",
+    "path": "Coeff2/CharlieClockRefraction.lean",
+    "source": "p/Coeff2/CharlieClockRefraction.lean",
+    "sha256": "94bae2cce97a1db094a41e56fe3f1d3d63fa6f093f48e55bce9a2cc547ec1202",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiftEigenoperators",
+    "path": "Coeff2/CharlieLiftEigenoperators.lean",
+    "source": "p/Coeff2/CharlieLiftEigenoperators.lean",
+    "sha256": "016b10dbc9d0096a53db219edd11ce3a719e09351916cff579f102722a7a62c4",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieThreeLevelEigenoperatorTransport",
+    "path": "Coeff2/CharlieThreeLevelEigenoperatorTransport.lean",
+    "source": "p/Coeff2/CharlieThreeLevelEigenoperatorTransport.lean",
+    "sha256": "97eafe0165cc003d593fa04c6c271b2dcecf4023b7c77c84793a5e21418fdc6c",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharliePhaseOrder",
+    "path": "Coeff2/CharliePhaseOrder.lean",
+    "source": "p/Coeff2/CharliePhaseOrder.lean",
+    "sha256": "ac7414b0d6734b46c10375abd0959338130cd06ce3fff6f2136a4b358e567c40",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieFreeRowCoverage",
+    "path": "Coeff2/CharlieFreeRowCoverage.lean",
+    "source": "p/Coeff2/CharlieFreeRowCoverage.lean",
+    "sha256": "5064e41f01c74f68b56e12d557ac82e536e848830cf37363f29b8b350e200f15",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationSuperoperator",
+    "path": "Coeff2/CharlieOccupationSuperoperator.lean",
+    "source": "p/Coeff2/CharlieOccupationSuperoperator.lean",
+    "sha256": "8d5aa5c3092bdc8c738febb206b492620019061de3f4165f709e6304b1ab39df",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieExactSymbolTransformer",
+    "path": "Coeff2/CharlieExactSymbolTransformer.lean",
+    "source": "p/Coeff2/CharlieExactSymbolTransformer.lean",
+    "sha256": "46c8aedf5bf889fdbdecc4f5f20ff8d40d4f4b2f51f998876c8b1e3db2bd120c",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharliePartialRowPort",
+    "path": "Coeff2/CharliePartialRowPort.lean",
+    "source": "p/Coeff2/CharliePartialRowPort.lean",
+    "sha256": "fd53fc10bfa63171f5cd1a0caa9f3a9ab6e4ded49d8503d2b7e84b0679309cc9",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Words",
+    "path": "SuperpermutationUpperBound/Foundation/Words.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Foundation/Words.lean",
+    "sha256": "28a17c98cf60263d524199225b8479155044e6a2e0813c6620a9a5826d9c1355",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Rows",
+    "path": "SuperpermutationUpperBound/Rows.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Rows.lean",
+    "sha256": "867548e8ca1954a97ba83086fac3452d2e08d6b76180d2ca86c441a94ec521a0",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Rotation",
+    "path": "SuperpermutationUpperBound/Foundation/Rotation.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Foundation/Rotation.lean",
+    "sha256": "6161bb54af61d6ab0b2cb2b995f0b69c62b0ecc496504e8f705eb8ec48e300c6",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Local",
+    "path": "SuperpermutationUpperBound/Transport/Local.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Local.lean",
+    "sha256": "e8a142de11c1c05c5d996600da68d7577b447df200e50189cac0dc82ee910694",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CyclicBlocks",
+    "path": "SuperpermutationUpperBound/CyclicBlocks.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/CyclicBlocks.lean",
+    "sha256": "0eae0f6e7fed658522b9a5e61e595bd94c563a4139171c7a444c62db0eb09a27",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Packing",
+    "path": "SuperpermutationUpperBound/Packing.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Packing.lean",
+    "sha256": "25635464c123d06572672a733b08d4f94cf11a2a45fee09168c461a0f56cb155",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Blocks",
+    "path": "SuperpermutationUpperBound/Transport/Blocks.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Blocks.lean",
+    "sha256": "39094edb34bb7ba7729019fca5d20036dcf0a04b5e2769ccc2f36c7549f2db61",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "Coeff2.CharlieSourceReversal",
+    "path": "Coeff2/CharlieSourceReversal.lean",
+    "source": "p/Coeff2/CharlieSourceReversal.lean",
+    "sha256": "39667243e5e35091a36c0433110438ff85858d44fca166e26d9d7ce0b3887389",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Ports",
+    "path": "SuperpermutationUpperBound/Transport/Ports.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Ports.lean",
+    "sha256": "5c2e01e12ba1d4c033f1174d76a152739371bde4f9fa583497cff65762652701",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "Coeff2.CharlieBalancedSourceSelection",
+    "path": "Coeff2/CharlieBalancedSourceSelection.lean",
+    "source": "p/Coeff2/CharlieBalancedSourceSelection.lean",
+    "sha256": "5ebdad50c119b92d2d7e21ba37b0d52674a43453e29596f9162c2103c02fcbbc",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationCommutator",
+    "path": "Coeff2/CharlieOccupationCommutator.lean",
+    "source": "p/Coeff2/CharlieOccupationCommutator.lean",
+    "sha256": "d8288f7a0b3022878838be98223ef3fcf35c948d17e47166269367abff5d9d2a",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieCommutatorConnector",
+    "path": "Coeff2/CharlieCommutatorConnector.lean",
+    "source": "p/Coeff2/CharlieCommutatorConnector.lean",
+    "sha256": "7f037bc29afd946ab5a074c4f8c13a7d331caec62101f9b16e073d72605c03c4",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieJayClassCut",
+    "path": "Coeff2/CharlieJayClassCut.lean",
+    "source": "p/Coeff2/CharlieJayClassCut.lean",
+    "sha256": "42301a968fa90627f2deede378286fe9e58413cb73f4c920ebf54a18d7fd4042",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieCyclicOccupationDebt",
+    "path": "Coeff2/CharlieCyclicOccupationDebt.lean",
+    "source": "p/Coeff2/CharlieCyclicOccupationDebt.lean",
+    "sha256": "14ec6af1e7a9d6bb13a9e518f76f3699dd94156a32cdfc7c3799f742f49adb14",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieTopologyFlowDual",
+    "path": "Coeff2/CharlieTopologyFlowDual.lean",
+    "source": "p/Coeff2/CharlieTopologyFlowDual.lean",
+    "sha256": "d3e61c7237a7ed8c39669edcae90626c15882cc127058f06ff58478ee8c7c0c9",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieBoundarySpine",
+    "path": "Coeff2/CharlieBoundarySpine.lean",
+    "source": "p/Coeff2/CharlieBoundarySpine.lean",
+    "sha256": "b5c62b83d850f698499c906a940250013df58383a9c9e01d46374bd8444304c0",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralAttachmentCut",
+    "path": "Coeff2/CharlieLiteralAttachmentCut.lean",
+    "source": "p/Coeff2/CharlieLiteralAttachmentCut.lean",
+    "sha256": "52962adf9dc8679af3514763d63a8e2c42d62cc67daa8017c6f7a2e1ea9700e6",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieReservedExitConnector",
+    "path": "Coeff2/CharlieReservedExitConnector.lean",
+    "source": "p/Coeff2/CharlieReservedExitConnector.lean",
+    "sha256": "2c9914b7d8465ad23dc9e8614d320766b59960bbc2f9883530f4062510f6dab6",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieClockBalanceElimination",
+    "path": "Coeff2/CharlieClockBalanceElimination.lean",
+    "source": "p/Coeff2/CharlieClockBalanceElimination.lean",
+    "sha256": "bce4dda0f6f11ae9c7819110efcfddb7e4c742a159e1b9b0c6ddef2c88d3a951",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationRecoveryClock",
+    "path": "Coeff2/CharlieOccupationRecoveryClock.lean",
+    "source": "p/Coeff2/CharlieOccupationRecoveryClock.lean",
+    "sha256": "8bdb02412add1da506167bd422dec139d83642e1fcb7a35e2b6325f842b0fec1",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieTraversal",
+    "path": "Coeff2/CharlieTraversal.lean",
+    "source": "p/Coeff2/CharlieTraversal.lean",
+    "sha256": "57561c182aa06b1a4f3c7aeab79c69b3594b9c53972a1430a9cc596d033cf078",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieFrobeniusLedger",
+    "path": "Coeff2/CharlieFrobeniusLedger.lean",
+    "source": "p/Coeff2/CharlieFrobeniusLedger.lean",
+    "sha256": "693ad1dbc94b2218f3abee9d32fb9d78d080b8908b3923f76dc770266dbfbd9d",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralReservoir",
+    "path": "Coeff2/CharlieLiteralReservoir.lean",
+    "source": "p/Coeff2/CharlieLiteralReservoir.lean",
+    "sha256": "84aa551011bafbfa5e3c813232a77ed011af75191a7bb049746cd0c88bf7cf61",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieThreeLevelBoundary",
+    "path": "Coeff2/CharlieThreeLevelBoundary.lean",
+    "source": "p/Coeff2/CharlieThreeLevelBoundary.lean",
+    "sha256": "d1837174f0d585af6f98dcab98f78cbed788ee3e4981b4bfd47655921dedbbc1",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieThreeSymbolFibers",
+    "path": "Coeff2/CharlieThreeSymbolFibers.lean",
+    "source": "p/Coeff2/CharlieThreeSymbolFibers.lean",
+    "sha256": "5bf2f728705ec053f7511b1984e37a00c9dc6c9ca41f9eec0e5a4ec430f1f44d",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieThreeLevelCoverage",
+    "path": "Coeff2/CharlieThreeLevelCoverage.lean",
+    "source": "p/Coeff2/CharlieThreeLevelCoverage.lean",
+    "sha256": "6d6e28acc13663426fb746280a96ef6dd03fba964d18b4578c33f7a2c3892254",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieContextReplacement",
+    "path": "Coeff2/CharlieContextReplacement.lean",
+    "source": "p/Coeff2/CharlieContextReplacement.lean",
+    "sha256": "9b0e06388bc49093dd3a68aa9cbb9dff66690aab1b41cf808f72070fc3c10b73",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieCoordinatedExchange",
+    "path": "Coeff2/CharlieCoordinatedExchange.lean",
+    "source": "p/Coeff2/CharlieCoordinatedExchange.lean",
+    "sha256": "55404283f6543d0c60cf11228df19fcbcd9c73634f468ec0a80219c963a8b3a7",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationWriteTransport",
+    "path": "Coeff2/CharlieOccupationWriteTransport.lean",
+    "source": "p/Coeff2/CharlieOccupationWriteTransport.lean",
+    "sha256": "38c2dd0a717e603869c2e113c49e4aeddbdb300dc4dff7e293a4b451695d154a",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieSharedWasteResponse",
+    "path": "Coeff2/CharlieSharedWasteResponse.lean",
+    "source": "p/Coeff2/CharlieSharedWasteResponse.lean",
+    "sha256": "f225d76d59789e16372b928cf07b3339c83cfc809c1ba35880241a476659bafc",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieSharedWasteGluing",
+    "path": "Coeff2/CharlieSharedWasteGluing.lean",
+    "source": "p/Coeff2/CharlieSharedWasteGluing.lean",
+    "sha256": "ac9b99f19396430bee194b83e48e675f0509fcd23ac03af67d6c0abc7bfd1049",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieSharedWasteResponseCheck",
+    "path": "Coeff2/CharlieSharedWasteResponseCheck.lean",
+    "source": "p/Coeff2/CharlieSharedWasteResponseCheck.lean",
+    "sha256": "b2c15c70170ce89f3deff64c9c419b5426430fa6e487a2d7c9b96cccfeecdd07",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieOccupationConeQuotient",
+    "path": "Coeff2/CharlieOccupationConeQuotient.lean",
+    "source": "p/Coeff2/CharlieOccupationConeQuotient.lean",
+    "sha256": "1d1c54008262a2a31b68451b41b522e4c989b2e502542fb59aa6f61965e8b382",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieBellmanExactQuotient",
+    "path": "Coeff2/CharlieBellmanExactQuotient.lean",
+    "source": "p/Coeff2/CharlieBellmanExactQuotient.lean",
+    "sha256": "fa7544bce1e1877934b76ab50a8da40c2a598a845caae82170ebd5db77658b8b",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralGaugeRigidity",
+    "path": "Coeff2/CharlieLiteralGaugeRigidity.lean",
+    "source": "p/Coeff2/CharlieLiteralGaugeRigidity.lean",
+    "sha256": "4046c5a72e8f19088f9be26fac771e65f97737ca9b8309a5042ab4b55709201e",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieLiteralRelabelProblem",
+    "path": "Coeff2/CharlieLiteralRelabelProblem.lean",
+    "source": "p/Coeff2/CharlieLiteralRelabelProblem.lean",
+    "sha256": "b88d8c0cf34397c542dd12689ffbb707cd7b094db2ae61138b820b76916df802",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieBellmanGauge",
+    "path": "Coeff2/CharlieBellmanGauge.lean",
+    "source": "p/Coeff2/CharlieBellmanGauge.lean",
+    "sha256": "a336a1acaad9358f3a2315293064875f5512ec77a66fae39ba5356a04780ea9d",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieBellmanJointFrontier",
+    "path": "Coeff2/CharlieBellmanJointFrontier.lean",
+    "source": "p/Coeff2/CharlieBellmanJointFrontier.lean",
+    "sha256": "c12995f501e7de2090b7dbe98be915ddd7551841a78649b573f8532be8556911",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "SuperpermutationUpperBound.RowSpelling",
+    "path": "SuperpermutationUpperBound/RowSpelling.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/RowSpelling.lean",
+    "sha256": "58f3f54601f3b88f87688168bbfecd2d8e141767d8e252e6f9bbb8c0e5c17e5b",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Overlap",
+    "path": "SuperpermutationUpperBound/Foundation/Overlap.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Foundation/Overlap.lean",
+    "sha256": "2bb342d3e51704b57dc24ddf4f58bfd2f0e7fcb1e0fedd05aa001474b3d38c9f",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.TrailSpelling",
+    "path": "SuperpermutationUpperBound/TrailSpelling.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/TrailSpelling.lean",
+    "sha256": "f4115ad312d03803806b8167e65850b4a77ae5e48569b8993d391e2af3e0b300",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.WordSupport",
+    "path": "SuperpermutationUpperBound/Foundation/WordSupport.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Foundation/WordSupport.lean",
+    "sha256": "1b3549caacfe047ffefeceb45ef72b7cff23d109387c6cdf8c920c889b9acbdd",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.MacroWords",
+    "path": "SuperpermutationUpperBound/Assembly/MacroWords.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/MacroWords.lean",
+    "sha256": "eca140513e929558f8398c4e2ccd901df1fe54d42315420ac19db210c97446dd",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Paths",
+    "path": "SuperpermutationUpperBound/Transport/Paths.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Paths.lean",
+    "sha256": "6fb093bee109d48db4a7abe3b2fa20e40534117e44f48e81db914cbb87adb642",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.IndexedPaths",
+    "path": "SuperpermutationUpperBound/Transport/IndexedPaths.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/IndexedPaths.lean",
+    "sha256": "9002a360d8bb16481d4a700c3e3a7a05a25afa1416ce3d893a60a4e6cdcbc600",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Successor",
+    "path": "SuperpermutationUpperBound/Transport/Successor.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Successor.lean",
+    "sha256": "f75b39a1cb7dca926e8a3fd8837b5a86cbb155f2d20df3c4b71751813e7c714c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.OrbitAssembly",
+    "path": "SuperpermutationUpperBound/Transport/OrbitAssembly.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/OrbitAssembly.lean",
+    "sha256": "0c7993101e676580dbe44ca4fe5bc3b270314422a3819a8043587098765bd4e0",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.Relabeling",
+    "path": "SuperpermutationUpperBound/Foundation/Relabeling.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Foundation/Relabeling.lean",
+    "sha256": "24ef5d3d2493a2044f0e0379f80eaa420a6e777941d6392a9b058ffd3df1e71b",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.FiniteOrbits",
+    "path": "SuperpermutationUpperBound/Transport/FiniteOrbits.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/FiniteOrbits.lean",
+    "sha256": "bb67023392f0e6518f1e292dce26f0a77851ef9907407efd65d4c1767918cbc5",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Counts",
+    "path": "SuperpermutationUpperBound/Transport/Counts.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Counts.lean",
+    "sha256": "a0a08fb8911e463a0f88d54dc0243b6025894b87371411304d897f642f271714",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Foundation.SupportedWords",
+    "path": "SuperpermutationUpperBound/Foundation/SupportedWords.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Foundation/SupportedWords.lean",
+    "sha256": "f5e0dca05a3502c9fa63f25ce5128b8626a944727c7666107097e7f9b34cde52",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Closed",
+    "path": "SuperpermutationUpperBound/Transport/Closed.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Closed.lean",
+    "sha256": "ec99a3e6dd1a6fcc030c55d503cb0b42f21d3fcff2f47cd010a37857a5e791f4",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CycleSplicing",
+    "path": "SuperpermutationUpperBound/Assembly/CycleSplicing.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/CycleSplicing.lean",
+    "sha256": "43666ce498bf94cb590f8f8661431606740a6028b9d996443f3fd4aa14bac53d",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CycleConnectivity",
+    "path": "SuperpermutationUpperBound/Assembly/CycleConnectivity.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/CycleConnectivity.lean",
+    "sha256": "9484a3616f6487b05afef8b0e8a75d8fbe71604d277379656541eb9a203546a1",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.BalancedGraph",
+    "path": "SuperpermutationUpperBound/Assembly/BalancedGraph.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/BalancedGraph.lean",
+    "sha256": "758c84d6f5f2e062f50a7e813065d2abb48e33a67444724d8b1fa1298ae743d2",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.DisjointCycles",
+    "path": "SuperpermutationUpperBound/Assembly/DisjointCycles.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/DisjointCycles.lean",
+    "sha256": "9434c64b6121f46a25e6377dddf9e2ce393eb9acba71d6a88d85a9b2c1986b4b",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.MacroSpelling",
+    "path": "SuperpermutationUpperBound/Assembly/MacroSpelling.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/MacroSpelling.lean",
+    "sha256": "cc6fc340aef6794f20e8c5adfdbac136da0e2c53f60af9ebc7c2821c22a8e2d5",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.OpenCycles",
+    "path": "SuperpermutationUpperBound/Assembly/OpenCycles.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/OpenCycles.lean",
+    "sha256": "b43eb5fe8fe1277926f6e85f427724862642254cb7316249fbebdf832f824091",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RemoveEdges",
+    "path": "SuperpermutationUpperBound/Assembly/RemoveEdges.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/RemoveEdges.lean",
+    "sha256": "909eda49b1e1f876697a7c3e14fafe1a6950b943f938ed124e8837493cfe05e0",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.WordTrails",
+    "path": "SuperpermutationUpperBound/Assembly/WordTrails.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/WordTrails.lean",
+    "sha256": "d5913e5f1eddaa518c623806707eb9a9c2ec0d517002a47c30e2e092a08da5f6",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RowEdges",
+    "path": "SuperpermutationUpperBound/Assembly/RowEdges.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/RowEdges.lean",
+    "sha256": "3c18c8ea650c0d38ffddc383b9dab5d14fba282d35d16bddcc07c9eb4ad217d1",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.OccurrencePaths",
+    "path": "SuperpermutationUpperBound/Assembly/OccurrencePaths.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/OccurrencePaths.lean",
+    "sha256": "1bdaf73163f569b93f1fc8cc14d92d4ed59cd4ace9e3154fcc64eba963accf4e",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CycleTrailCount",
+    "path": "SuperpermutationUpperBound/Assembly/CycleTrailCount.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/CycleTrailCount.lean",
+    "sha256": "bf717bfe8ce6f595a5400d9b194055bc7a741161bd4865dd01fee423817acc71",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CoveredComponents",
+    "path": "SuperpermutationUpperBound/Assembly/CoveredComponents.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/CoveredComponents.lean",
+    "sha256": "d4d77f63661c30324830bdad8c5283c96459b9d2e3634ab1b7ca19e0f23c824b",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RotationConnectors",
+    "path": "SuperpermutationUpperBound/Assembly/RotationConnectors.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/RotationConnectors.lean",
+    "sha256": "ac6108767aba9d5127700bec1288f0177564df4daaf4767cf3e8deb5feaef38c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.BalancedChoices",
+    "path": "SuperpermutationUpperBound/Assembly/BalancedChoices.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/BalancedChoices.lean",
+    "sha256": "24af3388249d1f531e96ca90e677e79cd5cc0e4f34ba7e814bc4c4eda021ad99",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CircleModules",
+    "path": "SuperpermutationUpperBound/Assembly/CircleModules.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/CircleModules.lean",
+    "sha256": "879f29c5496ceb8e0bd5efa3578b6ec598fafee743e075e02b6d057f21ffaa26",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RotationEdges",
+    "path": "SuperpermutationUpperBound/Assembly/RotationEdges.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/RotationEdges.lean",
+    "sha256": "82ca943e7e49b9b64da9f3f7e42204f37341832fa2ec2c957727988c55e4122c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.CoveredModuleWords",
+    "path": "SuperpermutationUpperBound/Assembly/CoveredModuleWords.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/CoveredModuleWords.lean",
+    "sha256": "87d77a1f391429d71abfe5030295c72d153aefcd733d144222018a0c216c702c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.ModuleCosts",
+    "path": "SuperpermutationUpperBound/Assembly/ModuleCosts.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/ModuleCosts.lean",
+    "sha256": "b95318055b9eeac98734fe67363e870647c468b3fb868013d3ca745db4a93b62",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.ConnectorFamily",
+    "path": "SuperpermutationUpperBound/Assembly/ConnectorFamily.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/ConnectorFamily.lean",
+    "sha256": "22dd7e3116a5fa8a9290e029529d4176cf688f3753fea401b96e8d81004e5f6b",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Definitions",
+    "path": "SuperpermutationUpperBound/BalancedCuts/Definitions.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/Definitions.lean",
+    "sha256": "ef87b8eb50422396292c2ceb06e02d47587b705aa7900d53df3cf932e21f97e5",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.UniformChoices",
+    "path": "SuperpermutationUpperBound/BalancedCuts/UniformChoices.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/UniformChoices.lean",
+    "sha256": "06aa9c720bfba50a1a036d7d9fc55219d6dd620de96cf864ca5fd99a6f644056",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.SparseSupport",
+    "path": "SuperpermutationUpperBound/BalancedCuts/SparseSupport.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/SparseSupport.lean",
+    "sha256": "413fcf7cc818544168b74d8d15bef197bf14eb1848827a1ce14425a35228eadb",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Fractional",
+    "path": "SuperpermutationUpperBound/BalancedCuts/Fractional.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/Fractional.lean",
+    "sha256": "e75bfa4de74b73aa4a0d598644cbc94829ef6b26465d45f3ea428692498b3c8c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.SparseState",
+    "path": "SuperpermutationUpperBound/BalancedCuts/SparseState.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/SparseState.lean",
+    "sha256": "7ad35073a644b250d425c4a53cfd351e4b5607fc9bd1f1a94edf76b515444054",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Incidence",
+    "path": "SuperpermutationUpperBound/BalancedCuts/Incidence.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/Incidence.lean",
+    "sha256": "7b9bf7f3708f4b95a54ae4281094e610bcec0f04f312e37036bca279b6739d71",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Residual",
+    "path": "SuperpermutationUpperBound/BalancedCuts/Residual.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/Residual.lean",
+    "sha256": "8947c0a4f5a23c5ea84f38996eff66350ecb169cea3d26b3f6aba28d88008b76",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Rounding",
+    "path": "SuperpermutationUpperBound/BalancedCuts/Rounding.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/Rounding.lean",
+    "sha256": "b75b6d89dadf7b9cc9483391340266f148f009ec1f5afe554b40b9dbc34ca84e",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.Selection",
+    "path": "SuperpermutationUpperBound/BalancedCuts/Selection.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/Selection.lean",
+    "sha256": "9f81a432646575ebd811b3ab817b10c4c91d689c157b205e5ccced5d8ee9565c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.ImbalanceCounts",
+    "path": "SuperpermutationUpperBound/Assembly/ImbalanceCounts.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/ImbalanceCounts.lean",
+    "sha256": "8edf48b0f095b43cb130bc098a76570fed1fcbc969d05078f7c520b0ed5fbc8c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.BalancingEdges",
+    "path": "SuperpermutationUpperBound/Assembly/BalancingEdges.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/BalancingEdges.lean",
+    "sha256": "9c6be9e2f37dee945a7940fb630566201b583d4d9d12bf04fcfea313a57c5b85",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.SelectedGraph",
+    "path": "SuperpermutationUpperBound/BalancedCuts/SelectedGraph.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/SelectedGraph.lean",
+    "sha256": "b78c66d0aecf9528aeed7ade91912ab2ba4f99ebde7b5db8b34c1b866f022353",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.GraphTrails",
+    "path": "SuperpermutationUpperBound/Assembly/GraphTrails.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/GraphTrails.lean",
+    "sha256": "6e396d4a8d5e28211af21c50c117c30f0f4dc8ad7ba8776342dd1bf09d337979",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.WordAssembly",
+    "path": "SuperpermutationUpperBound/BalancedCuts/WordAssembly.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/WordAssembly.lean",
+    "sha256": "75031d424868088c047f32639c3abcfa69770b7431a5e591dbf208c92d1d8cc2",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.BalancedCuts.CutWords",
+    "path": "SuperpermutationUpperBound/BalancedCuts/CutWords.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/BalancedCuts/CutWords.lean",
+    "sha256": "2f7f97d5e2ce5be80ba4bbea3a1c53a2cbb5b6f624c930e2b030fb0b6714a151",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "Coeff2.CharlieTransportVocabulary",
+    "path": "Coeff2/CharlieTransportVocabulary.lean",
+    "source": "p/Coeff2/CharlieTransportVocabulary.lean",
+    "sha256": "2794e5c9d5418f01e86490a2cd4c7ce29c7bd4d6bb1003d496db10cadf2f5028",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "Coeff2.CharlieRestrictedCircleAssembly",
+    "path": "Coeff2/CharlieRestrictedCircleAssembly.lean",
+    "source": "p/Coeff2/CharlieRestrictedCircleAssembly.lean",
+    "sha256": "a20bb871fcbcbe7a468bc3dcb3243038bfce92e8dd3d84c632341ad1c1a19c4a",
+    "origin": "Local Coeff2 extensions; original source retained"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Completion.Projection",
+    "path": "SuperpermutationUpperBound/Completion/Projection.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Completion/Projection.lean",
+    "sha256": "f25c4a66d333d219b7aadfdc5696304a522cdf1eda292447282e21d205e71cf5",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Partition.FullCharts",
+    "path": "SuperpermutationUpperBound/Partition/FullCharts.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Partition/FullCharts.lean",
+    "sha256": "45f5f56fb1b3648eb49008c3f12869bde5e919f76cde33db38cfce5497f409bc",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.Circles",
+    "path": "SuperpermutationUpperBound/CircleTransport/Circles.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/CircleTransport/Circles.lean",
+    "sha256": "46ffd83eda9a0eb21e35ac07565e093d8d66c2b92fdcacce5465a9d98900a693",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Monodromy",
+    "path": "SuperpermutationUpperBound/Transport/Monodromy.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Monodromy.lean",
+    "sha256": "e4f1e4530d33b5ef15c757a7ae9799f78019c89a1b4dfdd4ba806a5c91c28708",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.FullLap",
+    "path": "SuperpermutationUpperBound/Transport/FullLap.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/FullLap.lean",
+    "sha256": "d4b52a34fd6ff40a410333de7751f79e88abdb28bc936ad39b9f68fd6cd3628c",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.OrbitCounts",
+    "path": "SuperpermutationUpperBound/Transport/OrbitCounts.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/OrbitCounts.lean",
+    "sha256": "7494dd37bb53e384ab303f2b96954f9cf02a21f785cac6e7e66eb67b0ba6f97b",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.TwoInsertion",
+    "path": "SuperpermutationUpperBound/CircleTransport/TwoInsertion.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/CircleTransport/TwoInsertion.lean",
+    "sha256": "b3e15a936a14d3f177e5ad7b006f2e1799b153844f7d08476ead5dd895c2def8",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Completion.Local",
+    "path": "SuperpermutationUpperBound/Completion/Local.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Completion/Local.lean",
+    "sha256": "7725e056d3e9e96510ebdd209efea795dd8205df6beba1fbc28ee52e0a7aa0de",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Completion.Paths",
+    "path": "SuperpermutationUpperBound/Completion/Paths.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Completion/Paths.lean",
+    "sha256": "74409d0e853591dbf09cd1f23e8219112710a3925b1e21d8d99086b46225efe6",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Transport.Winding",
+    "path": "SuperpermutationUpperBound/Transport/Winding.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Transport/Winding.lean",
+    "sha256": "88f5470fb6408d48b58a963af461270f48cb1defea9fd944d226670ff967b359",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.PairPaths",
+    "path": "SuperpermutationUpperBound/CircleTransport/PairPaths.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/CircleTransport/PairPaths.lean",
+    "sha256": "80b6b80837eff098b0e2a8ce7b5589e6671a1faccf8a9b60b8107fb3720afa82",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.CircleTransport.Transport",
+    "path": "SuperpermutationUpperBound/CircleTransport/Transport.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/CircleTransport/Transport.lean",
+    "sha256": "fbc52f54b4632579d618ce5fd2266683623474f48d848a6ba7b5ffc03c277fd4",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "SuperpermutationUpperBound.Assembly.RowMacroFamily",
+    "path": "SuperpermutationUpperBound/Assembly/RowMacroFamily.lean",
+    "source": "research/jay-constructive-bound-20261002/upstream/SuperpermutationUpperBound/Assembly/RowMacroFamily.lean",
+    "sha256": "e97b0d66440b2f2d34a8dd3ca3ee39fe44439f165863f771cb8641d4881ecdab",
+    "origin": "Jay Pantone, superperm-upper-43-80, c8fb7ffdd69be1375580710ae11b47a295b1f0f6"
+  },
+  {
+    "module": "Coeff2.CharlieRestrictedRowConstruction",
+    "path": "Coeff2/CharlieRestrictedRowConstruction.lean",
+    "source": "p/Coeff2/CharlieRestrictedRowConstruction.lean",
+    "sha256": "69f98fb21f5b9fbf3d44dcf35c0a893c92323db490122c44b59671cb9c066c02",
+    "origin": "Local Coeff2 extensions; original source retained"
+  }
+]

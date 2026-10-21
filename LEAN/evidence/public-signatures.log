@@ -1,0 +1,179 @@
+Coeff2.Charlieplex.literalStateRun_accept_iff (n budget : ℕ) (hn : 1 ≤ n) (text continuation : List ℕ) :
+  literalStateAccept n budget (literalStateRun n (literalStateOf n text) continuation) = true ↔
+    (∀ symbol ∈ text ++ continuation, 1 ≤ symbol ∧ symbol ≤ n) ∧
+      (text ++ continuation).length = budget ∧ IsSuperperm n (text ++ continuation)
+Coeff2.Charlieplex.LiteralReservoir.emitted_append (n : ℕ) (boundary left right : List ℕ) :
+  LiteralReservoir.emitted n boundary (left ++ right) =
+    LiteralReservoir.emitted n boundary left ++
+      LiteralReservoir.emitted n (LiteralReservoir.endBoundary n boundary left) right
+Coeff2.Charlieplex.BellmanExactQuotient.literal_bellman_bridge (n h : ℕ) (hn : 1 ≤ n) (text : List ℕ) :
+  BellmanExactQuotient.canFinish n h (literalStateOf n text) ↔
+    ∃ w, w.length ≤ h ∧ literalAlphabetTest n (text ++ w) = true ∧ IsSuperperm n (text ++ w)
+Coeff2.Charlieplex.BellmanExactQuotient.summary_same_bellman (n h : ℕ) (s t : LiteralSearchState)
+  (hs : BellmanExactQuotient.sameSummary n h s t) :
+  BellmanExactQuotient.canFinish n h s ↔ BellmanExactQuotient.canFinish n h t
+Coeff2.Charlieplex.FragmentBendGate.freshAvailable_insert_iff {n symbol : ℕ} {occupied : Finset (List ℕ)}
+  {boundary query : List ℕ} (valid : IsPermWord n (boundary ++ [symbol])) :
+  FragmentBendGate.FreshAvailable n (insert (boundary ++ [symbol]) occupied) query ↔
+    FragmentBendGate.FreshAvailable n occupied query ∧ query ≠ boundary
+Coeff2.Charlieplex.FragmentBendGate.gate_insert {n symbol : ℕ} {occupied : Finset (List ℕ)} {boundary : List ℕ}
+  (valid : IsPermWord n (boundary ++ [symbol])) (fresh : boundary ++ [symbol] ∉ occupied) (v : List ℕ → ℤ) :
+  FragmentBendGate.gate n (insert (boundary ++ [symbol]) occupied) v =
+    FragmentBendGate.gate n occupied v - FragmentBendGate.writeResponse boundary v
+Coeff2.Charlieplex.PartialRowPort.transport_formula {h : ℕ} [NeZero h] (k j : Fin h) (hk : 0 < ↑k) :
+  ↑((PartialRowPort.transport k hk) j) = ClockRefraction.deeperPort h ↑k ↑j
+Coeff2.Charlieplex.PartialRowPort.row_visit_conservation (K v : ℕ) (hv : v ≤ K) :
+  PartialRowPort.insertedVisits K v + (K - v) * (K + 1) = K * (K + 1)
+Coeff2.Charlieplex.PartialRowPort.cyclic_ledger (m Q : ℕ) :
+  ((m + 4) * ((m + 1) * (m + 2)) + (m + 1)) * m.factorial + Q =
+    (m + 3).factorial + (m + 2).factorial + (m + 1).factorial + Q
+Coeff2.Charlieplex.PartialRowPort.ordered_exchange.{u_1} {P : Type u_1} (before after left right : List (Equiv.Perm P))
+  (same : PartialRowPort.ordered left = PartialRowPort.ordered right) :
+  PartialRowPort.ordered (before ++ left ++ after) = PartialRowPort.ordered (before ++ right ++ after)
+Coeff2.Charlieplex.PartialRowPort.near_full_hidden_two_cycle.{u_1} {α : Type u_1} (p : List α) (a b s z : α) :
+  List.take (p.length + 1) ((p ++ [a, z, b]).rotate (p.length + 2)) = List.take (p.length + 1) (b :: (p ++ [a, s])) ∧
+    List.take (p.length + 1) ((b :: (p ++ [a, s])).rotate (p.length + 4)) = List.take (p.length + 1) (p ++ [a, z, b])
+Coeff2.Charlieplex.BalancedSourceSelection.circuit_boundary_conserved {α E : Type} [Fintype E] (p : Equiv.Perm E)
+  (port : E → List α) (old new : E → SuperpermutationUpperBound.Row α) (φ : List α → ℤ)
+  (h :
+    ∀ (e : E),
+      BalancedSourceSelection.boundary φ (new e) - BalancedSourceSelection.boundary φ (old e) =
+        φ (port (p e)) - φ (port e)) :
+  ∑ e, BalancedSourceSelection.boundary φ (new e) = ∑ e, BalancedSourceSelection.boundary φ (old e)
+Coeff2.Charlieplex.BalancedSourceSelection.circuit_charge_change {α E : Type} [Fintype E]
+  (old new : E → SuperpermutationUpperBound.Row α) (sign : E → ℤ)
+  (h : ∀ (e : E), ↑(new e).charge - ↑(old e).charge = 2 * sign e) :
+  ∑ e, ↑(new e).charge - ∑ e, ↑(old e).charge = 2 * ∑ e, sign e
+Coeff2.Charlieplex.RestrictedCircleAssembly.exists_restricted_word {I C α : Type} [Fintype I] [Fintype C]
+  [DecidableEq α] {h ell : ℕ} (rows : I → List (SuperpermutationUpperBound.MacroEdge α h)) (circle : C → List α)
+  (hlen : ∀ (c : C), (circle c).length = h) (hh : 0 < h) (hell : ell ≤ h)
+  (hr :
+    ∀ (i : I),
+      rows i ≠ [] ∧
+        ∃ v,
+          SuperpermutationUpperBound.EdgePath SuperpermutationUpperBound.MacroEdge.source
+            SuperpermutationUpperBound.MacroEdge.target v (rows i) v)
+  (hcover : ∀ (i : I), ∃ c, ∃ edge ∈ rows i, ∃ j < h, edge.source = SuperpermutationUpperBound.rot (circle c) j)
+  (A : Finset α) (hnd : ∀ (c : C), (circle c).Nodup) (hA : ∀ (c : C), ∀ a ∈ circle c, a ∈ A) (R : List α → Prop)
+  (hrp : ∀ (c : C) (j : ℕ), R (List.take ell (SuperpermutationUpperBound.rot (circle c) j)))
+  (hrt : ∀ (c : C) (j : ℕ), R (List.drop (h - ell) (SuperpermutationUpperBound.rot (circle c) j))) (P : α → Prop)
+  (hrows : ∀ (i : I), ∀ edge ∈ rows i, ∀ a ∈ edge.word, P a) (hcircles : ∀ (c : C), ∀ a ∈ circle c, P a) :
+  ∃ t J w,
+    t ≤ Fintype.card C ∧
+      J ≤ min t (RestrictedCircleAssembly.admissibleCount A ell R) ∧
+        w.length =
+            ∑ i, (List.map SuperpermutationUpperBound.MacroEdge.cost (rows i)).sum + h * Fintype.card C + (h - 1) * t -
+              ell * (t - J) ∧
+          (∀ (i : I), ∀ edge ∈ rows i, edge.word <:+: w) ∧ ∀ a ∈ w, P a
+Coeff2.Charlieplex.PacketAssembly.assembled_covers.{u_1} {α : Type u_1} {pieces : List (List α)} {w : List α}
+  {overlap : ℕ} (h : PacketAssembly.Assembled pieces w overlap) (alphabet : List α)
+  (hc : ∀ (p : List α), p.Perm alphabet → ∃ piece ∈ pieces, p <:+: piece) (p : List α) : p.Perm alphabet → p <:+: w
+Coeff2.Charlieplex.SharedWasteResponse.interaction_general (n : ℕ) (U : Finset (List ℕ)) (a b : List ℕ) (k : ℕ)
+  (hs : PacketAssembly.IsSeam a b k) :
+  SharedWasteResponse.interaction n U a b k =
+    ↑(n - 1) - ↑k + ↑((SharedWasteResponse.footprint n a ∩ SharedWasteResponse.footprint n b) \ U).card -
+      ↑(SharedWasteResponse.bridgeFresh n U a b k).card
+Coeff2.Charlieplex.SharedWasteResponse.negative_interaction_iff (n : ℕ) (hn : 1 ≤ n) (U : Finset (List ℕ))
+  (a b : List ℕ) (k : ℕ) (hs : PacketAssembly.IsSeam a b k) (hk : n - 1 ≤ k) :
+  SharedWasteResponse.interaction n U a b k < 0 ↔
+    ↑(SharedWasteResponse.extraShared n U a b (List.take k b)).card < SharedWasteResponse.charge n U (List.take k b)
+Coeff2.Charlieplex.SharedWasteGluing.response_compose (n : ℕ) (A B : Set (List ℕ)) (s t : SharedWasteGluing.State)
+  (c : ℤ) :
+  SharedWasteGluing.Responds n (SharedWasteGluing.concatFamily A B) s t c ↔
+    ∃ r a b, SharedWasteGluing.Responds n A s r a ∧ SharedWasteGluing.Responds n B r t b ∧ c = a + b
+Coeff2.Charlieplex.SharedWasteGluing.best_response_compose (n : ℕ) (A B : Set (List ℕ)) (s t : SharedWasteGluing.State)
+  (c : ℤ) :
+  SharedWasteGluing.BestResponse n (SharedWasteGluing.concatFamily A B) s t c ↔
+    (∃ r a b, SharedWasteGluing.Responds n A s r a ∧ SharedWasteGluing.Responds n B r t b ∧ c = a + b) ∧
+      ∀ (r : SharedWasteGluing.State) (a b : ℤ),
+        SharedWasteGluing.Responds n A s r a → SharedWasteGluing.Responds n B r t b → c ≤ a + b
+Coeff2.Charlieplex.SharedWasteGluing.sharedWaste_shorter_in_context (n : ℕ) (hn : 1 ≤ n) (U : Finset (List ℕ))
+  (a b c d before after : List ℕ) (k l : ℕ) (hold : PacketAssembly.IsSeam a b k) (hnew : PacketAssembly.IsSeam c d l)
+  (hk : n - 1 ≤ k) (hl : n - 1 ≤ l)
+  (hfirst : List.take (n - 1) (PacketAssembly.glue a b k) = List.take (n - 1) (PacketAssembly.glue c d l))
+  (hlast : lastSymbols (n - 1) (PacketAssembly.glue a b k) = lastSymbols (n - 1) (PacketAssembly.glue c d l))
+  (hocc :
+    SharedWasteResponse.footprint n a ∪ SharedWasteResponse.footprint n b =
+      SharedWasteResponse.footprint n c ∪ SharedWasteResponse.footprint n d)
+  (halpha : literalAlphabetTest n (PacketAssembly.glue a b k) = literalAlphabetTest n (PacketAssembly.glue c d l))
+  (hgain :
+    SharedWasteResponse.charge n U c + SharedWasteResponse.charge n U d +
+        (↑(SharedWasteResponse.extraShared n U c d (List.take l d)).card -
+          SharedWasteResponse.charge n U (List.take l d)) <
+      SharedWasteResponse.charge n U a + SharedWasteResponse.charge n U b +
+        (↑(SharedWasteResponse.extraShared n U a b (List.take k b)).card -
+          SharedWasteResponse.charge n U (List.take k b))) :
+  (before ++ PacketAssembly.glue c d l ++ after).length < (before ++ PacketAssembly.glue a b k ++ after).length ∧
+    (ThreeLevelBoundary.Valid n (before ++ PacketAssembly.glue a b k ++ after) ↔
+      ThreeLevelBoundary.Valid n (before ++ PacketAssembly.glue c d l ++ after))
+Coeff2.Charlieplex.SharedWasteGluing.coordinated_shorter (n : ℕ) (hn : 1 ≤ n)
+  (before oldFirst newFirst middle oldSecond newSecond after : List ℕ)
+  (hfirst :
+    LiteralReservoir.endBoundary n (lastSymbols (n - 1) before) oldFirst =
+      LiteralReservoir.endBoundary n (lastSymbols (n - 1) before) newFirst)
+  (hsecond :
+    LiteralReservoir.endBoundary n
+        (LiteralReservoir.endBoundary n (LiteralReservoir.endBoundary n (lastSymbols (n - 1) before) newFirst) middle)
+        oldSecond =
+      LiteralReservoir.endBoundary n
+        (LiteralReservoir.endBoundary n (LiteralReservoir.endBoundary n (lastSymbols (n - 1) before) newFirst) middle)
+        newSecond)
+  (hjoint :
+    (LiteralReservoir.emitted n (lastSymbols (n - 1) before) oldFirst).toFinset ∪
+        (LiteralReservoir.emitted n
+            (LiteralReservoir.endBoundary n (LiteralReservoir.endBoundary n (lastSymbols (n - 1) before) newFirst)
+              middle)
+            oldSecond).toFinset =
+      (LiteralReservoir.emitted n (lastSymbols (n - 1) before) newFirst).toFinset ∪
+        (LiteralReservoir.emitted n
+            (LiteralReservoir.endBoundary n (LiteralReservoir.endBoundary n (lastSymbols (n - 1) before) newFirst)
+              middle)
+            newSecond).toFinset)
+  (hgain : newFirst.length + newSecond.length < oldFirst.length + oldSecond.length) :
+  (before ++ (newFirst ++ middle ++ newSecond ++ after)).length <
+      (before ++ (oldFirst ++ middle ++ oldSecond ++ after)).length ∧
+    (IsSuperperm n (before ++ (oldFirst ++ middle ++ oldSecond ++ after)) ↔
+      IsSuperperm n (before ++ (newFirst ++ middle ++ newSecond ++ after)))
+Coeff2.Charlieplex.BellmanJointFrontier.union_allocation.{u_1} {X : Type u_1} [DecidableEq X] (target A B : Finset X) :
+  target ⊆ A ∪ B ↔ ∃ M ⊆ target, M ⊆ A ∧ target \ M ⊆ B
+Coeff2.Charlieplex.BellmanJointFrontier.frontier_dominance.{u_1} {X : Type u_1} [DecidableEq X]
+  (target A bigger B : Finset X) (cA cBig cB budget : ℕ) (hsub : A ⊆ bigger) (hcost : cBig ≤ cA)
+  (hcover : target ⊆ A ∪ B) (hbudget : cA + cB ≤ budget) : target ⊆ bigger ∪ B ∧ cBig + cB ≤ budget
+Coeff2.Charlieplex.OccupationRecoveryClock.coupled_recovery (m : ℕ) (h lower : Fin (m + 1) → ℤ) :
+  OccupationRecoveryClock.recovery m h lower =
+    ∑ j, lower j + ClockBalanceElimination.gamma m fun j => h j - OccupationRecoveryClock.charge m lower j
+Coeff2.Charlieplex.OccupationRecoveryClock.closed_charge_solver (m : ℕ) (h : ℕ → ℤ)
+  (closed : ∑ j ∈ Finset.range (m + 1), h j = 0) (lower : Fin (m + 1) → ℤ) :
+  ∃ x,
+    (OccupationRecoveryClock.charge m x = fun j => h ↑j) ∧
+      (∀ (j : Fin (m + 1)), lower j ≤ x j) ∧
+        OccupationRecoveryClock.recovery m (fun j => h ↑j) lower = ∑ j, x j ∧
+          ∀ (candidate : Fin (m + 1) → ℤ),
+            (OccupationRecoveryClock.charge m candidate = fun j => h ↑j) →
+              (∀ (j : Fin (m + 1)), lower j ≤ candidate j) → ∑ j, x j ≤ ∑ j, candidate j
+Coeff2.Charlieplex.OccupationRecoveryClock.fresh_write_cost (m : ℕ) (x lower : Fin (m + 1) → ℤ)
+  (above : ∀ (r : Fin (m + 1)), lower r ≤ x r) (tight : ∃ r, x r = lower r) (j : Fin (m + 1)) :
+  OccupationRecoveryClock.recovery m (OccupationRecoveryClock.charge m (OccupationRecoveryClock.consume m x j))
+      (OccupationRecoveryClock.consume m lower j) =
+    OccupationRecoveryClock.recovery m (OccupationRecoveryClock.charge m x) lower - 1
+Coeff2.Charlieplex.OccupationRecoveryClock.unallocated_repeat_cost (m : ℕ) (x lower : Fin (m + 1) → ℤ)
+  (above : ∀ (r : Fin (m + 1)), lower r ≤ x r) (j : Fin (m + 1)) (empty : x j = lower j) :
+  OccupationRecoveryClock.recovery m (OccupationRecoveryClock.charge m (OccupationRecoveryClock.consume m x j)) lower =
+    OccupationRecoveryClock.recovery m (OccupationRecoveryClock.charge m x) lower + ↑(m + 1) - 1
+Coeff2.Charlieplex.ReducedAlphabetLedger.covering_reduced_ledger (n : ℕ) (hn : 2 ≤ n) (word : List ℕ)
+  (long : n - 1 ≤ word.length) (covers : IsSuperperm n word) (_starts : ReducedAlphabetLedger.StartsClean n word)
+  (ends : ReducedAlphabetLedger.EndsClean n word) :
+  ↑word.length = ↑n.factorial + ↑(n - 1).factorial + ↑n - 2 + ReducedAlphabetLedger.reducedBudget n word
+Coeff2.Charlieplex.ReducedAlphabetLedger.logical_depth_roundtrip (n : ℕ) (word : List ℕ) :
+  ReducedAlphabetLedger.expandDepths (ReducedAlphabetLedger.depthsOf n word).1
+      (ReducedAlphabetLedger.depthsOf n word).2 =
+    ReducedAlphabetLedger.flags n word
+Coeff2.Charlieplex.ReducedAlphabetLedger.length_difference_eq_budget_difference (n : ℕ) (hn : 2 ≤ n)
+  (before after : List ℕ) (beforeLong : n - 1 ≤ before.length) (afterLong : n - 1 ≤ after.length)
+  (beforeCovers : IsSuperperm n before) (afterCovers : IsSuperperm n after)
+  (beforeStarts : ReducedAlphabetLedger.StartsClean n before) (afterStarts : ReducedAlphabetLedger.StartsClean n after)
+  (beforeEnds : ReducedAlphabetLedger.EndsClean n before) (afterEnds : ReducedAlphabetLedger.EndsClean n after) :
+  ↑after.length - ↑before.length =
+    ReducedAlphabetLedger.reducedBudget n after - ReducedAlphabetLedger.reducedBudget n before
+'OccupationTransportPublic.halfar27_one_port_cycle' depends on axioms: [propext]
+'OccupationTransportPublic.boolean_trace_not_occupation' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "lean": "Lean (version 4.31.0, x86_64-w64-windows-gnu, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)",
+  "modules": 165,
+  "borrowed_objects": "third-party Mathlib dependencies only",
+  "all_bundled_sources_recompiled": true,
+  "axiom_audit": "AXIOM_AUDIT_PASS imported_modules=164 declaring_modules=163 declarations=6787 theorems=5295 allowed=[propext, Classical.choice, Quot.sound]",
+  "seconds": 1606.7844300000004
+}
