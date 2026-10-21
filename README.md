@@ -17,6 +17,8 @@ All seven N=9 records also have version-1, four-bit `.spra` copies and default-x
 
 ## Math
 
+The new N=8 writeup is available at [`docs/n8/46173`](docs/n8/46173/46173.pdf)
+
 The N=11 writeup is in [`docs/n11/improve_halfar/math/`](docs/n11/improve_halfar/math/). The N=8 boundary interaction writeup is [`docs/n8/46173/46173.tex`](docs/n8/46173/46173.tex), with its [reproduction guide](docs/n8/46173/REPRODUCE.md) alongside it.
 
 In VS Code, LaTeX Workshop builds with LuaLaTeX whenever a `.tex` file is saved. The workspace sets `latex-workshop.latex.outDir` to `%DIR%`, so the PDF is written beside its root `.tex` file and can be tracked by Git. Auxiliary files stay in the ignored `.latex-build/` directory through `latex-workshop.latex.auxDir` and the MiKTeX `-aux-directory=%AUXDIR%` argument. Press **Ctrl+Alt+V** from the source to open the PDF preview, which refreshes after successful builds. Add each new PDF to Git once; later builds appear as changes to that tracked file.
