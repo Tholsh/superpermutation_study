@@ -17,7 +17,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[3]
 PACKAGE = ROOT / "data/n8/46173"
-CORPUS = ROOT / "words/8/46173/n8-46173_1indexed_canonical.txt"
+CORPUS = ROOT / "SPRA/words/8/46173/n8-46173_1indexed_canonical.txt"
 MANIFEST_SHA256 = "e03895c622bbc8b352b851564e1b090a5891f1339de6aa54cc6a22122e5904a8"
 
 

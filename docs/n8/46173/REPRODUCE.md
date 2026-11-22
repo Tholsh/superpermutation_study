@@ -22,11 +22,11 @@ The original ZIP was extracted byte-for-byte into [`data/n8/46173/`](../../../da
 | `SHA256SUMS` | Original checksums of the other 24 bundled files. |
 | `LICENSE`, `NOTICE`, `PROVENANCE.md` | Upstream terms, attribution, and pinned source revisions. |
 
-The bundled model and word files retain their original zero-based labels, because plans and checksums refer to those exact bytes. The corpus copy remains [`words/8/46173/n8-46173_1indexed_canonical.txt`](../../../words/8/46173/n8-46173_1indexed_canonical.txt). Canonicalization assigns `1` through `8` in order of first appearance; it is not simply adding one to every label. For this solution, `5,2,4,0,3,1,6,7` map to `1,2,3,4,5,6,7,8`.
+The bundled model and word files retain their original zero-based labels, because plans and checksums refer to those exact bytes. The corpus copy is supplied by the SPRA submodule at [`SPRA/words/8/46173/n8-46173_1indexed_canonical.txt`](../../../SPRA/words/8/46173/n8-46173_1indexed_canonical.txt). Canonicalization assigns `1` through `8` in order of first appearance; it is not simply adding one to every label. For this solution, `5,2,4,0,3,1,6,7` map to `1,2,3,4,5,6,7,8`.
 
 ## Run the complete reproduction
 
-Requires Python 3.8 or newer, GCC with OpenMP, and G++. No Make, network access, prebuilt executable, solver, or GPU is required by this runner. Run from the repository root in PowerShell or a POSIX shell:
+Initialize SPRA first with `git submodule update --init --recursive`. Requires Python 3.8 or newer, GCC with OpenMP, and G++. No Make, network access, prebuilt executable, solver, or GPU is required by this runner. Run from the repository root in PowerShell or a POSIX shell:
 
 ```sh
 python docs/n8/46173/reproduce.py

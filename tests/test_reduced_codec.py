@@ -3,12 +3,14 @@
 
 """Exercise the public binary format, stdout behavior, and lossless reconstruction."""
 import os
+import lzma
 from pathlib import Path
 import random
 import shutil
 import struct
 import subprocess
 import tempfile
+import tarfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +40,12 @@ class ReducedCodecTests(unittest.TestCase):
         subprocess.run(["g++", "-std=c++20", "-O2", "-Wall", "-Wextra",
                         "-pedantic", str(ROOT / "tools/reduced_codec.cpp"),
                         "-o", str(cls.binary)], check=True)
+
+        # The current SPRA decoder is used only to read compressed corpus fixtures.
+        cls.spra_decoder = Path(cls.directory.name) / "spra-decoder"
+        subprocess.run(["g++", "-std=c++20", "-O2",
+                        str(ROOT / "SPRA/tools/reduced_codec.cpp"),
+                        "-o", str(cls.spra_decoder)], check=True)
 
     @classmethod
     def tearDownClass(cls):
@@ -201,11 +209,20 @@ class ReducedCodecTests(unittest.TestCase):
             (6, "words/6/872/872-treelike/872-00001.txt"),
             (7, "words/7/5913/5913-palindromic.txt"),
             (8, "words/8/46181/superperm8_46181_1.txt"),
-            (9, "words/9/408731/superperm9_408731_19_canonical.txt"),
+            (9, "words/9/408731/superperm9_408731_19_canonical.spra.xz"),
         ]
         for n, relative in paths:
             with self.subTest(path=relative):
-                source = (ROOT / relative).read_bytes()
+                if n == 6:
+                    with tarfile.open(ROOT / "SPRA/words/6/872/872-treelike.tar.xz") as collection:
+                        with collection.extractfile("872-treelike/872-00001.txt") as member:
+                            source = member.read()
+                elif n == 9:
+                    packed = lzma.decompress((ROOT / "SPRA" / relative).read_bytes())
+                    source = subprocess.run([str(self.spra_decoder), "decode"], input=packed,
+                                            capture_output=True, check=True).stdout
+                else:
+                    source = (ROOT / "SPRA" / relative).read_bytes()
                 for bits in [4, 6]:
                     binary = self.encode(source, n, "--bits", bits)
                     self.assertEqual(self.decode(self.xz_round_trip(binary)), b"".join(source.split()))

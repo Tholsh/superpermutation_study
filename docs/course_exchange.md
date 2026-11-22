@@ -35,6 +35,10 @@ course_exchange.cpp -> coupled_cycle_search.cpp -> phase_cut_spectral.cpp
 
 All four library sources are in `boundary-spectral-n11-20261004/`. The model inputs are `data/n11/rows.txt.xz` and `data/n11/circles.txt`. [Local dependency hashes](n11/improve_halfar/local-dependencies.json) pin current sources and data; the [historical manifest](n11/improve_halfar/dependency-hashes.json) preserves their original locations.
 
+## SPRA corpus inputs
+
+The corpus is now in the `SPRA/` submodule. Decode `.spra.xz` words with SPRA's current decoder and translate to the model's zero-based alphabet before passing a filename to the search. See the [corpus guide](corpus.md) and [baseline preparation commands](n11/improve_halfar/REPRODUCE.md#run-the-complete-reproduction).
+
 ## Run
 
 ```text

@@ -31,7 +31,17 @@ The October 4, 2026 refactor was checked by building all five standalone program
 
 ## Run the complete reproduction
 
-From the repository root, in PowerShell:
+The baseline now comes from the SPRA submodule. First decode it and translate its one-based labels to the model's zero-based labels in WSL/Linux Bash:
+
+```sh
+git submodule update --init --recursive
+mkdir -p build/spra
+g++ -std=c++20 -O2 SPRA/tools/reduced_codec.cpp -o build/spra/reduced_codec
+set -o pipefail
+SPRA_CODEC="$PWD/build/spra/reduced_codec" bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930628/superpermutation-11-43930628.spra.xz | python3 tools/relabel_words.py --to 0 -n 11 > build/halfar-input.txt
+```
+
+Then, from the repository root in PowerShell:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File docs/n11/improve_halfar/reproduce.ps1
@@ -43,7 +53,7 @@ Defaults are GCC, GNU Make (`mingw32-make.exe`), and Python under `C:\msys64\ucr
 powershell -NoProfile -ExecutionPolicy Bypass -File docs/n11/improve_halfar/reproduce.ps1 -Compiler 'D:\msys64\ucrt64\bin\g++.exe' -Make 'D:\msys64\ucrt64\bin\mingw32-make.exe' -Python 'D:\msys64\ucrt64\bin\python.exe'
 ```
 
-The script checks required paths and pinned hashes, builds the optimizer and all three checkers, and extracts the rows and baseline word using Python's `lzma` module with binary I/O. It creates a fresh temporary working directory and a fresh `reproduction-<id>` report directory beside this document. Executables are built into the ignored repository `build/` directory through the root Makefile; extracted inputs and the generated word stay in the temporary directory. Only small reports are copied into the repository; existing runs are not overwritten.
+The script checks required paths and pinned hashes, builds the optimizer and all three checkers, and extracts the rows with Python's `lzma` module and copies the decoded baseline with binary I/O. `-Baseline PATH` selects another prepared baseline file; the default is `build/halfar-input.txt`. It creates a fresh temporary working directory and a fresh `reproduction-<id>` report directory beside this document. Executables are built into the ignored repository `build/` directory through the root Makefile; extracted inputs and the generated word stay in the temporary directory. Only small reports are copied into the repository; existing runs are not overwritten.
 
 Use 64-bit GCC: the libraries use `__int128` and the optimizer uses `__builtin_popcount`. GCC 13.1.0 from MSYS2 was used here. Cached openings alone occupy 958,454,784 bytes, with additional RAM needed for inputs, course ownership, traceback, and hash tables.
 
@@ -58,7 +68,7 @@ With the variables initialized by [reproduce.ps1](reproduce.ps1), the build and 
 
 The Makefile builds the optimizer and each source in `tools/verification/` with `-O3 -std=c++17`. See the [build and run guide](../../course_exchange.md) for incremental builds and flags. C++17 matches the original optimizer build; the paint-waste tool separately requires C++20. `2` satisfies the window-size argument requirement. `900` enables optimization, but the global mode does not enforce it as a strict timeout. The output directory must not already exist.
 
-The baseline archive is `words/11/43930628/superpermutation-11-43930628.txt.xz`. Its extracted SHA-256 is:
+The baseline archive is `SPRA/words/11/43930628/superpermutation-11-43930628.spra.xz`. After decoding and translating to zero-based labels without a final newline, its expected SHA-256 remains:
 
 ```text
 784c892b81283ece13f5b1ef8c49d13b0bcb4d3c1ec49882e5593f034e86b596

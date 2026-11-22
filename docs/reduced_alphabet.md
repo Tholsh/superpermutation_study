@@ -2,22 +2,22 @@
 
 For binary compression and decompression, use the separate [`reduced-codec` tool](reduced_binary.md). Select four- or six-bit tuple fields with `--bits 4|6`; the signed offsets are relative to N and differ from the historical diagnostic indices printed by this tool.
 
-`tools/reduced_alphabet.cpp` reads one word from stdin, with `1 <= N <= 13`, on a 64-bit platform. By default its alphabet is the first N characters of `123456789ABCD`. Use `-z` or `--zero-based` for the first N characters of `0123456789ABC`. Each character is one symbol; letters are uppercase. For example, zero-based N=11 uses `0123456789A`, not decimal numbers separated by spaces. Whitespace is ignored. Multiple lines are concatenated into a single word; a collection of separate words must be checked one word at a time. The repository corpus through N=9 is already one-based, with one word per text file; see the [corpus layout](../data/corpus/README.md).
+`tools/reduced_alphabet.cpp` reads one word from stdin, with `1 <= N <= 13`, on a 64-bit platform. By default its alphabet is the first N characters of `123456789ABCD`. Use `-z` or `--zero-based` for the first N characters of `0123456789ABC`. Each character is one symbol; letters are uppercase. For example, zero-based N=11 uses `0123456789A`, not decimal numbers separated by spaces. Whitespace is ignored. Multiple lines are concatenated into a single word; a collection of separate words must be checked one word at a time. The SPRA submodule supplies one-based corpus words; N>=9 archives require SPRA decoding. See the [corpus guide](corpus.md) for decoder setup and preparing `build/zero-based-n11.txt`.
 
 From the repository root, compile with GCC and C++20:
 
 ```powershell
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste.exe
-Get-Content words/5/153/153-recursive.txt | ./paint-waste.exe 5
+Get-Content SPRA/words/5/153/153-recursive.txt | ./paint-waste.exe 5
 ```
 
 On Linux, macOS, or MSYS2 Bash:
 
 ```sh
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste
-./paint-waste 5 < words/5/153/153-recursive.txt
+./paint-waste 5 < SPRA/words/5/153/153-recursive.txt
 # Compress with default xz, then read it without extracting a file.
-xz < words/5/153/153-recursive.txt > word-n5.txt.xz
+xz < SPRA/words/5/153/153-recursive.txt > word-n5.txt.xz
 xz -d < word-n5.txt.xz | ./paint-waste -s 5
 ```
 
@@ -54,13 +54,13 @@ Statistics-only mode streams the word instead of retaining it. Exact coverage us
 # Same valid N=3 word relabeled from 123 to 012.
 '012010210' | ./paint-waste.exe -z -s 3
 # Validate a zero-based N=11 word; explicit -s avoids the confirmation prompt.
-Get-Content words/11/43930624/superpermutation-11-43930624.txt | ./paint-waste.exe -z -s 11
+Get-Content build/zero-based-n11.txt | ./paint-waste.exe -z -s 11
 ```
 
 The second command requires an extracted word. For a compressed word in a POSIX shell:
 
 ```sh
-xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
+bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930624/superpermutation-11-43930624.spra.xz | ./paint-waste -s 11
 ```
 
 The N=3 example reports length 9, six distinct permutations, none missing, and `valid_superpermutation: 1`. Changing labels does not change coverage statistics or reduced pairs; painted output retains the selected labels.
@@ -112,7 +112,7 @@ valid_superpermutation: 1
 
 The six covered permutations are `123`, `231`, `312`, `213`, `132`, and `321`. The window `121` is dirty. The default output also includes the reduced pair `[3:3]` before the statistics.
 
-The corpus example `words/5/153/153-recursive.txt` reports length 153, 120 distinct permutations, and validity 1. Empty input or input shorter than N reports zero windows and validity 0. At N=1, any nonempty valid input covers the sole permutation.
+The corpus example `SPRA/words/5/153/153-recursive.txt` reports length 153, 120 distinct permutations, and validity 1. Empty input or input shorter than N reports zero windows and validity 0. At N=1, any nonempty valid input covers the sole permutation.
 
 Exit status is 0 for a completed analysis, including a word whose validity is 0. Bad arguments, characters, out-of-alphabet symbols, or input read errors exit with status 1. A script validating coverage must inspect `valid_superpermutation`.
 

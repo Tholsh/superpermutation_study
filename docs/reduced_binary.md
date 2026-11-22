@@ -1,5 +1,7 @@
 # Reduced-alphabet binary codec
 
+This guide describes the historical **version-1** codec. The SPRA submodule uses **SPRA 0.2** archives, which require SPRA's decoder. See the [corpus guide](corpus.md); the codec implementation and historical measurements below remain unchanged.
+
 `tools/reduced_codec.cpp` builds `reduced-codec`, a reversible first pass for xz
 or another general-purpose compressor. Select `--bits 4` (the default) or
 `--bits 6` for both fields: unsigned clean-run depth and signed copy offset.
@@ -18,8 +20,8 @@ From the repository root, with a C++20 compiler:
 
 ```sh
 g++ -std=c++20 -O2 -Wall -Wextra -pedantic tools/reduced_codec.cpp -o reduced-codec
-./reduced-codec encode 5 words/5/153/153-recursive.txt > word-n5.spra
-./reduced-codec encode --bits 6 5 words/5/153/153-recursive.txt > word-n5-six.spra
+./reduced-codec encode 5 SPRA/words/5/153/153-recursive.txt > word-n5.spra
+./reduced-codec encode --bits 6 5 SPRA/words/5/153/153-recursive.txt > word-n5-six.spra
 ./reduced-codec decode word-n5.spra > restored-n5.txt
 ```
 
@@ -59,12 +61,12 @@ Windows, including when binary input arrives on stdin.
 
 ```powershell
 g++ -std=c++20 -O2 -Wall -Wextra -pedantic tools/reduced_codec.cpp -o reduced-codec.exe
-cmd /c '.\reduced-codec.exe encode 5 words\5\153\153-recursive.txt > word-n5.spra'
+cmd /c '.\reduced-codec.exe encode 5 SPRA\words\5\153\153-recursive.txt > word-n5.spra'
 if ($LASTEXITCODE -ne 0) { throw 'Encoding failed; discard word-n5.spra.' }
 cmd /c '.\reduced-codec.exe decode word-n5.spra > restored-n5.txt'
 if ($LASTEXITCODE -ne 0) { throw 'Decoding failed; discard restored-n5.txt.' }
 # Select six-bit fields; decode uses the same command for either layout.
-cmd /c '.\reduced-codec.exe encode --bits 6 5 words\5\153\153-recursive.txt > word-n5-six.spra'
+cmd /c '.\reduced-codec.exe encode --bits 6 5 SPRA\words\5\153\153-recursive.txt > word-n5-six.spra'
 ```
 
 Quote paths containing spaces inside the command string:
@@ -78,40 +80,9 @@ Do not pass `.spra` data through `Get-Content`, `Out-File`, or a text encoding.
 Redirection creates or truncates the destination before the program runs, so use
 different input and output paths and check the exit status before keeping a file.
 
-## Converted N=9 corpus
+## Current corpus
 
-All seven records under `words/9/` have `.spra` and `.spra.xz` copies alongside
-their original `.txt` files, keeping the same base filenames. Every word fits
-version 1, layout `0x44`: four-bit depth and offset fields, with one-based labels.
-The original text files and their whitespace are preserved.
-
-| Representation, all seven records | Total bytes |
-| --- | ---: |
-| Original text files | 2,861,987 |
-| Normalized word symbols | 2,861,975 |
-| `.spra` binaries | 320,639 |
-| `.spra.xz` archives, default xz | 4,360 |
-
-Every saved archive was decompressed, compared with its binary copy, and decoded
-back to the normalized source word. The [conversion manifest](../data/corpus/reduced-n9.json)
-records source and output hashes, lengths, tuple counts, and verification results.
-
-Restore a raw binary in PowerShell:
-
-```powershell
-cmd /c '.\reduced-codec.exe decode words\9\408731\superpermutation-9-408731.spra > restored-n9.txt'
-```
-
-Or restore an xz archive in a POSIX shell:
-
-```sh
-set -o pipefail
-xz -dc words/9/408731/superpermutation-9-408731.spra.xz |
-  ./reduced-codec decode > restored-n9.txt
-```
-
-The restored file has no whitespace or final newline. N and the field width are
-read from the binary header.
+The former local version-1 corpus copies have been replaced by the complete `SPRA/` submodule. N>=9 now use SPRA 0.2 `.spra.xz` archives. Follow the [corpus guide](corpus.md) to decode them. The examples below describe version-1 files produced by the historical local encoder.
 
 ## Put xz after the first pass
 
@@ -120,14 +91,15 @@ dictionary, threading, or checksum arguments. In a POSIX shell:
 
 ```sh
 set -o pipefail
-./reduced-codec encode 5 words/5/153/153-recursive.txt | xz > word-n5.spra.xz
+./reduced-codec encode 5 SPRA/words/5/153/153-recursive.txt | xz > word-n5.spra.xz
 xz -d < word-n5.spra.xz | ./reduced-codec decode > restored-n5.txt
 ```
 
 For an existing zero-based xz corpus word:
 
 ```sh
-xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz |
+bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930624/superpermutation-11-43930624.spra.xz |
+  python3 tools/relabel_words.py --to 0 -n 11 |
   ./reduced-codec encode -z 11 | xz > word-n11.spra.xz
 ```
 
@@ -181,7 +153,7 @@ These are construction-dependent measurements.
 
 ### Full N=11 example
 
-The [43,930,624-symbol word](../words/11/43930624/superpermutation-11-43930624.txt.xz)
+The [43,930,624-symbol word](../SPRA/words/11/43930624/superpermutation-11-43930624.spra.xz)
 contains 3,994,998 tuples. Before xz, the four-bit file is 3,995,032 bytes and the
 six-bit file is 5,992,531 bytes. With default xz they become **45,752** and
 **57,412** bytes, respectively; direct xz takes **1,968,180** bytes. Six-bit xz
@@ -196,7 +168,7 @@ Both layouts decode to this normalized SHA-256:
 ### N=13 prefix beyond the four-bit range
 
 The **first 16 MiB only** of
-`words/13/6747918058/superpermutation-13-6747918058.txt.xz` gives:
+the historical zero-based N=13 input (`superpermutation-13-6747918058.txt.xz`) gives:
 
 | Representation | Bytes |
 | --- | ---: |
@@ -215,12 +187,12 @@ coverage.
 [`tools/benchmark_reduced_codec.py`](../tools/benchmark_reduced_codec.py) accepts
 plain or `.xz` input, compares direct xz with both layouts, verifies round trips,
 and reports JSON to stdout. It uses bounded memory and temporary files. Build
-the codec and make sure `xz` is on PATH, then run:
+the codec and make sure `xz` is on PATH. First decode and relabel the N=11 and N=13 SPRA archives to the indicated `build/` files (see [corpus inputs](corpus.md)), then run:
 
 ```sh
-python tools/benchmark_reduced_codec.py 8 words/8/46181/superperm8_46181_1.txt
-python tools/benchmark_reduced_codec.py -z 11 words/11/43930624/superpermutation-11-43930624.txt.xz
-python tools/benchmark_reduced_codec.py -z --prefix-bytes 16777216 13 words/13/6747918058/superpermutation-13-6747918058.txt.xz
+python tools/benchmark_reduced_codec.py 8 SPRA/words/8/46181/superperm8_46181_1.txt
+python tools/benchmark_reduced_codec.py -z 11 build/zero-based-n11.txt
+python tools/benchmark_reduced_codec.py -z --prefix-bytes 16777216 13 build/zero-based-n13.txt
 ```
 
 Use `--codec PATH` for another executable or `--bits 6` to measure only that
@@ -401,7 +373,7 @@ does not mean this format can store a complete superpermutation at that N.
 
 ### Concrete four-bit N=13 failure
 
-In `words/13/6747918058/superpermutation-13-6747918058.txt.xz`, the encoder first
+In the historical zero-based N=13 input (`superpermutation-13-6747918058.txt.xz`), the encoder first
 rejects symbol 9,374,975 (one-based): its nearest occurrence is three positions
 back, giving offset `13-3 = +10`. An older occurrence 16 positions back could
 encode that particular symbol with offset -3; the encoder selects the

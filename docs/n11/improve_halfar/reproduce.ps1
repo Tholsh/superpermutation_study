@@ -4,7 +4,8 @@
 param(
     [string]$Compiler = 'C:\msys64\ucrt64\bin\g++.exe',
     [string]$Make = 'C:\msys64\ucrt64\bin\mingw32-make.exe',
-    [string]$Python = 'C:\msys64\ucrt64\bin\python.exe'
+    [string]$Python = 'C:\msys64\ucrt64\bin\python.exe',
+    [string]$Baseline = 'build/halfar-input.txt'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -16,7 +17,8 @@ $outputDir = Join-Path $workDir 'output'
 $buildDir = Join-Path $repoRoot 'build'
 $binaryPath = Join-Path $buildDir 'course_exchange.exe'
 $inputPath = Join-Path $workDir 'halfar-input.txt'
-$archivePath = Join-Path $repoRoot 'words/11/43930628/superpermutation-11-43930628.txt.xz'
+$baselinePath = Join-Path $repoRoot $Baseline
+# Decode and relabel the SPRA baseline first; see REPRODUCE.md.
 $rowsPath = Join-Path $workDir 'rows.txt'
 $rowsArchive = Join-Path $repoRoot 'data/n11/rows.txt.xz'
 $circlesPath = Join-Path $repoRoot 'data/n11/circles.txt'
@@ -30,7 +32,7 @@ $checkerSources = @(
     (Join-Path $repoRoot 'tools/verification/verify_sorted.cpp')
 )
 
-foreach ($required in (@($Compiler, $Make, $Python, $archivePath, $rowsArchive, $circlesPath, $constructPath, (Join-Path $repoRoot 'Makefile')) + $checkerSources)) {
+foreach ($required in (@($Compiler, $Make, $Python, $baselinePath, $rowsArchive, $circlesPath, $constructPath, (Join-Path $repoRoot 'Makefile')) + $checkerSources)) {
     if (-not (Test-Path -LiteralPath $required)) { throw "Missing required path: $required" }
 }
 
@@ -64,11 +66,11 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Makefile build failed' }
 
     @'
-import lzma, pathlib, sys
-for archive, target in ((sys.argv[1], sys.argv[2]), (sys.argv[3], sys.argv[4])):
-    with lzma.open(archive, 'rb') as source:
-        pathlib.Path(target).write_bytes(source.read())
-'@ | & $Python - $archivePath $inputPath $rowsArchive $rowsPath
+import lzma, pathlib, shutil, sys
+shutil.copyfile(sys.argv[1], sys.argv[2])
+with lzma.open(sys.argv[3], 'rb') as source:
+    pathlib.Path(sys.argv[4]).write_bytes(source.read())
+'@ | & $Python - $baselinePath $inputPath $rowsArchive $rowsPath
     if ($LASTEXITCODE -ne 0) { throw 'Input extraction failed' }
     if ((Get-FileHash -Algorithm SHA256 -LiteralPath $rowsPath).Hash -ne '99F7F9AAC8F970126A1EB7668CBC5D0E5B6D9F362611F1258C44305EB2A3A015') {
         throw 'Pinned rows hash mismatch'

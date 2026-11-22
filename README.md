@@ -4,16 +4,28 @@ A corpus of superpermutation words and C++ tools for inspecting waste and search
 
 ## Corpus
 
-[`words/`](words/) groups words by alphabet size, from `5` through `13`, then by word length: `words/N/LENGTH/`. For example, the recursive N=5 word is [`words/5/153/153-recursive.txt`](words/5/153/153-recursive.txt). Through **N=9**, every `.txt` file contains exactly one superpermutation, using one-based labels `123…N`. Collections retain their own folders inside the length folder, such as `words/6/872/872-treelike/872-00001.txt` (length and source ordinal). Existing individual word filenames are retained. Repeated occurrences from different sources are preserved.
+The complete [Tholsh/SPRA](https://github.com/Tholsh/SPRA) repository is imported as the [`SPRA/`](SPRA/) Git submodule, pinned to `c11da7d4aac3d100deb705c7982aa890f4cba863`. Corpus words, provenance, codecs, and recipes are maintained there. The former local `words/` corpus has been removed from this repository and its local Git history.
 
-Author notes and cycle descriptions live in [`data/corpus/`](data/corpus/), outside the word files. The [normalization manifest](data/corpus/normalization-n1-n9.json) records source hashes, collection order, relocated metadata, and full permutation-coverage validation. N=10 and above retain their original labels and compression; check the import manifests and use `-z` for zero-based words. Tools that read stdin can consume a decompression pipe; tools that take a filename need an extracted file.
+```sh
+# New checkout:
+git clone --recurse-submodules https://github.com/Tholsh/superpermutation_study.git
+# Existing checkout:
+git submodule update --init --recursive
+```
 
-All seven N=9 records also have version-1, four-bit `.spra` copies and default-xz `.spra.xz` archives alongside their original text files. The binaries total 320,639 bytes; the xz archives total 4,360 bytes. Every archive was decompressed and decoded back to its normalized source word. The [N=9 conversion manifest](data/corpus/reduced-n9.json) records paths, sizes, hashes, and verification results. See the [restore commands](docs/reduced_binary.md#converted-n9-corpus).
+Words now live under `SPRA/words/N/LENGTH/`. N=5 through N=8 include plain text and archived collections; N>=9 use one-based SPRA 0.2 `.spra.xz` archives. Use SPRA's decoder for these archives: the historical `tools/reduced_codec.cpp` in this parent repository implements version 1. See the [corpus guide](docs/corpus.md) for decoding, submodule updates, and publishing the history cleanup.
 
+Build the current decoder in WSL/Linux Bash, keeping its output in the parent's ignored `build/` folder:
 
-[`docs/n11/improve_halfar/`](docs/n11/improve_halfar/) contains reconstruction and exchange reports, including `dependency-hashes.json`, which records the original search dependencies. Experiment reports and replay scripts may still refer to word paths recorded in the import manifest.
+```sh
+mkdir -p build/spra
+g++ -std=c++20 -O2 SPRA/tools/reduced_codec.cpp -o build/spra/reduced_codec
+export SPRA_CODEC="$PWD/build/spra/reduced_codec"
+# Stream a one-based N=11 word:
+bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930624/superpermutation-11-43930624.spra.xz
+```
 
-[`data/n8/46173/`](data/n8/46173/) contains the complete source bundle for the N=8 reduction from 46,174 to 46,173 symbols, including Halfar's selection and replayer, Pantone's literal checker, saved plans, and original evidence. Run `python docs/n8/46173/reproduce.py` to build from source, replay both words, verify all 40,320 permutations and single-symbol deletions, regenerate the base, and compare the canonically relabeled solution with the corpus. See the [N=8 reproduction guide](docs/n8/46173/REPRODUCE.md) and [verified receipt](docs/n8/46173/reproduction-summary.json).
+The original research models and evidence remain in `data/` and `docs/`. The complete [N=8 source package](data/n8/46173/) retains its original files and checksums; its [reproduction runner](docs/n8/46173/reproduce.py) now compares against the SPRA corpus. The [N=11 reproduction guide](docs/n11/improve_halfar/REPRODUCE.md) explains how to decode and relabel its baseline first.
 
 ## Math
 
@@ -27,7 +39,7 @@ In VS Code, LaTeX Workshop builds with LuaLaTeX whenever a `.tex` file is saved.
 
 Use the following commands in a POSIX shell (Linux, macOS, WSL, or MSYS2 Bash). Binary compression output should not be passed through older PowerShell text pipelines.
 
-Use `xz` with its default compression settings. Redirecting input and output keeps the source file in place. Existing corpus archives can be read with the usual xz decompression command.
+Use `xz` with its default compression settings. Redirecting input and output keeps the source file in place. Plain `.txt.xz` archives use ordinary xz decompression; `.spra.xz` corpus archives use the SPRA decoder shown above.
 
 ```sh
 # Compress a new N=11 word, keeping the original.
@@ -37,10 +49,10 @@ xz < word-n11.txt > word-n11.txt.xz
 cat word-n11.txt | xz > word-n11-copy.txt.xz
 
 # Extract an xz word to a normal .txt file, keeping its archive.
-xz -d < words/11/43930667/superpermutation-11-43930667.txt.xz > word-n11-extracted.txt
+bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930667/superpermutation-11-43930667.spra.xz > word-n11-extracted.txt
 
-# N <= 9 collections are already split into individual text files.
-head -c 80 words/6/872/872-treelike/872-00001.txt
+# Smaller words include individual text files; large N=6 collections are tar.xz archives.
+head -c 80 SPRA/words/6/872/1/872.158da2f.txt
 ```
 
 The same compression command works for every alphabet size. `xz -t archive.txt.xz` checks archive integrity; it does not verify permutation coverage.
@@ -53,8 +65,8 @@ In a POSIX shell:
 
 ```sh
 g++ -std=c++20 -O2 tools/reduced_codec.cpp -o reduced-codec
-./reduced-codec encode 5 words/5/153/153-recursive.txt > word-n5.spra
-./reduced-codec encode --bits 6 5 words/5/153/153-recursive.txt > word-n5-six.spra
+./reduced-codec encode 5 SPRA/words/5/153/153-recursive.txt > word-n5.spra
+./reduced-codec encode --bits 6 5 SPRA/words/5/153/153-recursive.txt > word-n5-six.spra
 ./reduced-codec decode word-n5.spra > restored-n5.txt
 ```
 
@@ -62,14 +74,14 @@ In PowerShell, build with `-o reduced-codec.exe` and use `cmd /c` for binary-saf
 
 ```powershell
 g++ -std=c++20 -O2 tools/reduced_codec.cpp -o reduced-codec.exe
-cmd /c '.\reduced-codec.exe encode 5 words\5\153\153-recursive.txt > word-n5.spra'
-cmd /c '.\reduced-codec.exe encode --bits 6 5 words\5\153\153-recursive.txt > word-n5-six.spra'
+cmd /c '.\reduced-codec.exe encode 5 SPRA\words\5\153\153-recursive.txt > word-n5.spra'
+cmd /c '.\reduced-codec.exe encode --bits 6 5 SPRA\words\5\153\153-recursive.txt > word-n5-six.spra'
 cmd /c '.\reduced-codec.exe decode word-n5.spra > restored-n5.txt'
 ```
 
 Check the exit status before keeping output; errors go to stderr. See the [binary format and run guide](docs/reduced_binary.md) for stdin and xz pipelines, zero-based labels, the complete header and decoding rules, representability limits, and regression checks. The painted-word tool and its historical displayed indices remain separate.
 
-On the complete 43,930,624-symbol N=11 example, four-bit output plus plain xz takes 45,752 bytes; six-bit output plus xz takes 57,412 bytes; direct xz takes 1,968,180 bytes. Six-bit fields accommodate more words, but produce larger xz files on all seven tested N=5..11 examples. Reproduce comparisons and verify decoded SHA-256 hashes with `python tools/benchmark_reduced_codec.py -z 11 words/11/43930624/superpermutation-11-43930624.txt.xz`. The benchmark invokes `xz` without compression options. Lengths and position counters remain unsigned 64-bit, so complete N=21..32 superpermutations exceed the format's length limit.
+On the complete 43,930,624-symbol N=11 example, four-bit output plus plain xz takes 45,752 bytes; six-bit output plus xz takes 57,412 bytes; direct xz takes 1,968,180 bytes. Six-bit fields accommodate more words, but produce larger xz files on all seven tested N=5..11 examples. Reproduce comparisons and verify decoded SHA-256 hashes with `python tools/benchmark_reduced_codec.py -z 11 build/zero-based-n11.txt` after decoding and relabeling the SPRA archive as described in the [corpus guide](docs/corpus.md). The benchmark invokes `xz` without compression options. Lengths and position counters remain unsigned 64-bit, so complete N=21..32 superpermutations exceed the format's length limit.
 
 ## Relabel word files
 
@@ -80,19 +92,19 @@ On the complete 43,930,624-symbol N=11 example, four-bit output plus plain xz ta
 python tools/relabel_words.py --to 0 -n 3 one-based.txt zero-based.txt
 python tools/relabel_words.py --to 1 -n 3 zero-based.txt restored.txt
 # Convert every .txt file recursively, retaining relative subdirectories.
-./tools/relabel-folder.ps1 -To 0 -N 5 -Source words/5 -Destination converted-zero -DryRun
-./tools/relabel-folder.ps1 -To 0 -N 5 -Source words/5 -Destination converted-zero
+./tools/relabel-folder.ps1 -To 0 -N 5 -Source SPRA/words/5 -Destination converted-zero -DryRun
+./tools/relabel-folder.ps1 -To 0 -N 5 -Source SPRA/words/5 -Destination converted-zero
 ./tools/relabel-folder.ps1 -To 1 -N 5 -Source converted-zero -Destination converted-one
 ```
 
 For Bash (Linux, macOS, WSL, or MSYS2):
 
 ```sh
-bash tools/relabel-folder.sh --to 0 -n 5 --dry-run words/5 converted-zero
-bash tools/relabel-folder.sh --to 0 -n 5 words/5 converted-zero
+bash tools/relabel-folder.sh --to 0 -n 5 --dry-run SPRA/words/5 converted-zero
+bash tools/relabel-folder.sh --to 0 -n 5 SPRA/words/5 converted-zero
 bash tools/relabel-folder.sh --to 1 -n 5 converted-zero converted-one
-# Stream a compressed zero-based N=11 word into a one-based text file.
-xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz | python3 tools/relabel_words.py --to 1 -n 11 > one-based-n11.txt
+# Decode a one-based SPRA word and relabel it for a zero-based model.
+bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930624/superpermutation-11-43930624.spra.xz | python3 tools/relabel_words.py --to 0 -n 11 > build/zero-based-n11.txt
 ```
 
 For example, `123121321` becomes `012010210` and converts back exactly. Folder conversion processes plain `.txt` files only, skips symlinks, and requires separate, non-nested input/output folders. Extract compressed archives first. `--dry-run` lists planned conversions without checking word contents. Existing outputs are refused unless you pass `--overwrite` (PowerShell: `-Overwrite`). File outputs are published only after complete validation; a failed file leaves no partial output. A folder run stops at the first error, retaining already completed files. Stream output can contain a valid prefix before an input error, so check the exit status. Run `python tools/relabel_words.py --help` for all options; PowerShell accepts `-Python PATH`, and Bash accepts a `RELABEL_PYTHON` environment override.
@@ -107,7 +119,7 @@ Run these commands from the repository root with a C++20 compiler such as GCC. I
 
 ```powershell
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste.exe
-Get-Content words/5/153/153-recursive.txt | ./paint-waste.exe 5
+Get-Content SPRA/words/5/153/153-recursive.txt | ./paint-waste.exe 5
 ```
 
 A concrete coverage check, showing four fields from the statistics-only output:
@@ -146,21 +158,21 @@ On Linux/macOS with GCC:
 
 ```sh
 g++ -std=c++20 -O2 tools/reduced_alphabet.cpp -o paint-waste
-./paint-waste 5 < words/5/153/153-recursive.txt
+./paint-waste 5 < SPRA/words/5/153/153-recursive.txt
 ```
 
 To use an xz word directly through stdin, without extracting it first (POSIX shell):
 
 ```sh
 # Make a compressed N=5 example, then pipe it into the tool.
-xz < words/5/153/153-recursive.txt > word-n5.txt.xz
+xz < SPRA/words/5/153/153-recursive.txt > word-n5.txt.xz
 xz -d < word-n5.txt.xz | ./paint-waste 5
 ```
 
-`-dc` decompresses to stdout and preserves the archive. To validate a zero-based N=11 corpus word directly:
+`-dc` decompresses to stdout and preserves the archive. To validate a one-based N=11 SPRA corpus word directly:
 
 ```sh
-xz -dc words/11/43930624/superpermutation-11-43930624.txt.xz | ./paint-waste -z -s 11
+bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930624/superpermutation-11-43930624.spra.xz | ./paint-waste -s 11
 ```
 
 The N=11 course-exchange program takes a word filename and needs extraction first.
