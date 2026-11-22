@@ -1,0 +1,6 @@
+thread 3 input slices=10432272 classes=119741771 local dup=0 invalid=0
+thread 2 input slices=10432272 classes=119673003 local dup=0 invalid=0
+thread 0 input slices=10432272 classes=119753527 local dup=0 invalid=0
+thread 1 input slices=10432272 classes=119833299 local dup=0 invalid=0
+COMPLETE classes visited=479001600 distinct=479001600 expected=479001600 missing=0 repeat=0 invalid=0 localdup=0 time=7.10104
+elapsed 7.70 sec peakKB 642956

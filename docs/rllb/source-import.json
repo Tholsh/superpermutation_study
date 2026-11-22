@@ -1,0 +1,127 @@
+{
+  "research_bundle": "Superperm_RLLB_PacketKraft_Repro_20261122 (1).zip",
+  "research_bundle_sha256": "5da9268ea1d6ff2b5b50a0cc0a4f629016684fccc1a3fbf876ef847d61996c86",
+  "import_scope": "Selected source, native selections, plans, correction and terminology notes; corpus records remain in SPRA.",
+  "files": [
+    {
+      "path": "data/n11/43930529/inputs/n11_43930543.spra.xz",
+      "source_name": "n11_43930543.spra.xz",
+      "bytes": 13264,
+      "sha256": "204ac6157596196be747e8c82a931a9cce5cf09b91c86a8b76c708dfefc1ec6d"
+    },
+    {
+      "path": "data/n11/43930529/inputs/n11_43930543_fiber_manifest.csv",
+      "source_name": "n11_43930543_fiber_manifest.csv",
+      "bytes": 2711,
+      "sha256": "128ab0b013a596c878088465039eef32ddb8bfef349ec2d7200c40efb895d3a3"
+    },
+    {
+      "path": "data/n11/43930529/inputs/recovered_529_order.tsv",
+      "source_name": "recovered_529_order.tsv",
+      "bytes": 3275,
+      "sha256": "a94eb24a8f389244ed921eee257bfc60f4424e75906bd94523f9118461c32928"
+    },
+    {
+      "path": "data/n11/43930529/src/joint_50unit_search.py",
+      "source_name": "joint_50unit_search.py",
+      "bytes": 7856,
+      "sha256": "e52004d17ca2743814ef35f92e7da4e484fd8c6d3de2350418295e9028789a05"
+    },
+    {
+      "path": "data/n11/43930529/src/replay_529.py",
+      "source_name": "replay_529.py",
+      "bytes": 3466,
+      "sha256": "74ad94e18e536240bd507cd7500f0a3c545d9b23e646d391c98b25b5d650eec4"
+    },
+    {
+      "path": "data/n11/43930529/inputs/n11_43930529_full_selection.txt",
+      "source_name": "n11_43930529_full_selection.txt",
+      "bytes": 483840,
+      "sha256": "75efc4f3e63b3fa929704682decaef1f21ac2afdf9782033c9dd93b7d451b9af"
+    },
+    {
+      "path": "data/n12/522736406/inputs/n12_522736406.selection.xz",
+      "source_name": "n12_522736406.selection.xz",
+      "bytes": 899624,
+      "sha256": "671c20e2e1551df801b3db52ce57cd1719b97396305db70d6244728e7244a4d5"
+    },
+    {
+      "path": "data/n12/522736406/inputs/n12_522736406.plan.tsv",
+      "source_name": "n12_522736406.plan.tsv",
+      "bytes": 87984,
+      "sha256": "e7da4e9c31739f60da0f7a20b024cf775ddadfe556c1f4eb644d8653104b73bb"
+    },
+    {
+      "path": "data/n12/522736406/evidence/original-validation.json",
+      "source_name": "n12_522736406.validation.json",
+      "bytes": 105,
+      "sha256": "245472011936d1c9d0fc842b261554b4ff398ed789bb3979a4c5cdbd1b1bfe6d"
+    },
+    {
+      "path": "data/rllb/20261122/src/generate_ports_only.cpp",
+      "source_name": "generate_ports_only.cpp",
+      "bytes": 3633,
+      "sha256": "a03b50dba44845467091267d4fe834597128fb377f00d811ea2f7fc0033b0649"
+    },
+    {
+      "path": "data/rllb/20261122/src/blockcore.py",
+      "source_name": "blockcore.py",
+      "bytes": 7406,
+      "sha256": "1feb587f2db682ca8228bf0939801fe2ab9849c7c2daa1d9adc78bd8a7b5330d"
+    },
+    {
+      "path": "data/rllb/20261122/inputs/Q210.selection.xz",
+      "source_name": "Q210.selection.xz",
+      "bytes": 894392,
+      "sha256": "d14b21df2da5db6015666ab0746512c1660e9913e4e4b8c25c374f3f6010b747"
+    },
+    {
+      "path": "data/rllb/20261122/inputs/Q210_certificate_weights.bin.xz",
+      "source_name": "Q210_certificate_weights.bin.xz",
+      "bytes": 1148324,
+      "sha256": "c815870c5077d05398a7c87b80d72734766f7ba4354c6f8f5980a8a2e7da9b36"
+    },
+    {
+      "path": "data/rllb/20261122/RLLB_METHOD.md",
+      "source_name": "RLLB_METHOD.md",
+      "bytes": 4734,
+      "sha256": "9a8f04dc42090ec84be86f50be766182a0fd5e317271886c9a25592fbb603926"
+    },
+    {
+      "path": "data/rllb/20261122/REPLAY_GAPS.md",
+      "source_name": "REPLAY_GAPS.md",
+      "bytes": 2790,
+      "sha256": "4ad8ae558b39926bfba0e7827f21fc4298190af73591242d829858a4b53e1e1a"
+    },
+    {
+      "path": "docs/rllb/sources/theo_gpt_brief_20261121.md",
+      "source_name": "theo_gpt_brief_20261121.md",
+      "bytes": 18669,
+      "sha256": "3192bfdc0cec04a59a28b12710898140fb8d4c2bb3a62ca1533ad330c918e4f7"
+    },
+    {
+      "path": "docs/rllb/sources/the-reduced-alphabet-spra-0.2-reconciled.md",
+      "source_name": "the-reduced-alphabet-spra-0.2-reconciled.md",
+      "bytes": 21107,
+      "sha256": "b41de919ceec9e5468d7686c221d21f84d7e9a5884b67f88b8986764d6c49d94"
+    },
+    {
+      "path": "docs/rllb/sources/Glossary.pdf",
+      "source_name": "Glossary.pdf",
+      "bytes": 10187318,
+      "sha256": "f1e60042a35c0777feff705482ff8bc65004ec9ebc0ae5d66f2da155c66045d3"
+    },
+    {
+      "path": "data/rllb/20261122/src/global_trie_multilevel.cpp",
+      "source_name": "global_trie_multilevel.cpp",
+      "bytes": 10049,
+      "sha256": "a77d5b30529ece0a0dc203e69099969eee7bc3887b7579aa53c6c8c9945e1824"
+    },
+    {
+      "path": "data/rllb/20261122/LICENSE-APACHE-2.0.txt",
+      "source_name": "LICENSE-APACHE-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}

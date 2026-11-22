@@ -1,0 +1,77 @@
+{
+  "baseline": {
+    "K": 11,
+    "n": 13,
+    "origin": "Halfar N on n=13",
+    "record_word_length": 6747800155,
+    "F3": 6745939200,
+    "baseline_Q": 1818768,
+    "baseline_T": 23808,
+    "baseline_floor": 1842576,
+    "RLLB0": 6747781785
+  },
+  "score": "RLLB0 = F3 + Q + T + (n-4), unpriced lower bound from maximum possible literal overlap. NOT the full chain-trie priced RLLB.",
+  "selection_results": {
+    "single_packet": {
+      "changed_rows": 42,
+      "Q": 1818900,
+      "T": 23608,
+      "Q_plus_T": 1842508,
+      "delta_Q_plus_T": -68,
+      "RLLB0": 6747781717,
+      "record_margin_at_RLLB0": 18438
+    },
+    "original_compound_pair": {
+      "changed_rows": 84,
+      "Q": 1819032,
+      "T": 23408,
+      "Q_plus_T": 1842440,
+      "delta_Q_plus_T": -136,
+      "RLLB0": 6747781649,
+      "record_margin_at_RLLB0": 18506
+    },
+    "six_packets": {
+      "changed_rows": 252,
+      "Q": 1819560,
+      "T": 22660,
+      "Q_plus_T": 1842220,
+      "delta_Q_plus_T": -356,
+      "RLLB0": 6747781429,
+      "record_margin_at_RLLB0": 18726
+    },
+    "twelve_naive": {
+      "changed_rows": 504,
+      "Q": 1820352,
+      "T": 21534,
+      "Q_plus_T": 1841886,
+      "delta_Q_plus_T": -690,
+      "RLLB0": 6747781095,
+      "record_margin_at_RLLB0": 19060
+    },
+    "twelve_best": {
+      "changed_rows": 504,
+      "Q": 1820352,
+      "T": 21444,
+      "Q_plus_T": 1841796,
+      "delta_Q_plus_T": -780,
+      "RLLB0": 6747781005,
+      "record_margin_at_RLLB0": 19150
+    }
+  },
+  "checks": {
+    "core_loops": 3386880,
+    "baseline_closed_walks": 1008,
+    "baseline_core_trails": 10080,
+    "best_core_trails": 7716,
+    "best_core_walks": 792,
+    "core_predecessor_violations": 0,
+    "core_successor_violations": 0,
+    "residual_blocks_untouched": 48,
+    "relabeled_atomic_packets": 24,
+    "conflict_pairs": 12,
+    "orientation_combinations_ranked_exhaustively": 4096,
+    "best_mask": 498,
+    "best_mask_ties": 8
+  },
+  "best_patch_sha256": "1509007b06cfb13025a78afca4a69358f615a98afa497595d5bee2b460ac2111"
+}

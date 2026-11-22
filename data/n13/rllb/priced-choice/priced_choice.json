@@ -1,0 +1,10 @@
+{
+  "basis": "n=13 complete native selection: Halfar N + 504-row compound core exchange; alternative replaces all 48 independent (7,4) residual blocks with Halfar step1",
+  "scope": "Measured depth-8/9 phase-coupled overlap-trie dual is performed separately for each residual block (NOT the global n=13 trie). Chain MILP uses only rowless trails and exact one-cut phase coupling. Cross-fiber 8/9 matches are zero between all 48 residual fibers. Possible core boundary matches remain unpriced.",
+  "shared_core": {"charge":1695024,"trails":7716},
+  "compact": {"full_Q":1820352,"full_T":21444,"full_floor":1841796,"per_block":{"Q":2611,"rowless":266,"active_trails":20,"all_trails":286,"phase_states":58051,"chain_minimum_rowless_only":84,"chain_max_9_links":182,"dual_depths":[8,9],"dual_iterations":75,"dual_overlap_upper":2438.7509831045436,"dual_joining_cost_lower":421,"dual_local_floor":3032}},
+  "low_floor": {"full_Q":1812288,"full_T":28452,"full_floor":1840740,"per_block":{"Q":2443,"rowless":406,"active_trails":26,"all_trails":432,"phase_states":57883,"chain_minimum_rowless_only":98,"chain_max_9_links":308,"dual_depths":[8,9],"dual_iterations":75,"dual_overlap_upper":3756.3507254964584,"dual_joining_cost_lower":563,"dual_local_floor":3006}},
+  "differences_low_minus_compact": {"native_floor":-1056,"rowless_chain_count":672,"isolated_depth_8_9_dual_local_price_sum":-1248},
+  "chosen_to_cold_start": "low_floor_hybrid_all_48_step1",
+  "caveats": ["The two reported local dual lower bounds are not independently certified global n=13 RLLBs. Cross-block 8/9 matching was checked among residual fibers, but core-to-residual overlap remains possible.","Weight-2 cuts, trail splitting, repeat occupations, and actual joint placement and phase arrangement are outside these models.","No n=13 word has been assembled or verified here."]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "N=12 record 522,736,406",
+  "slug": "n12-522736406",
+  "n": 12,
+  "length": 522736406,
+  "almanac_id": "W-0136",
+  "screen_selection": "data/n12/522736406/inputs/n12_522736406.selection.xz",
+  "screen_charge": 182712,
+  "screen_trails": 2832,
+  "screen_selection_role": "Complete supplied final 406 native selection",
+  "target_to_beat": 522736409,
+  "raw_sha256": "6bf1ef85a2cc52add9238329a7c3129e06ef9c0fd76a8dc9d3215a33441a1558",
+  "plan": "data/n12/522736406/inputs/n12_522736406.plan.tsv",
+  "replay_scope": "Pinned SPRA witness decode and canonical labeling; original plan depends on absent base/cand0/cand3 trail catalogues, so historical search and selection-to-plan assembly are not claimed",
+  "almanac_sha256": "6bf1ef85a2cc52add9238329a7c3129e06ef9c0fd76a8dc9d3215a33441a1558",
+  "corpus_archive": "SPRA/words/12/522736406/superpermutation-12-522736406.spra.xz",
+  "input_sha256": {
+    "data/n12/522736406/inputs/n12_522736406.selection.xz": "671c20e2e1551df801b3db52ce57cd1719b97396305db70d6244728e7244a4d5",
+    "data/n12/522736406/inputs/n12_522736406.plan.tsv": "e7da4e9c31739f60da0f7a20b024cf775ddadfe556c1f4eb644d8653104b73bb"
+  }
+}

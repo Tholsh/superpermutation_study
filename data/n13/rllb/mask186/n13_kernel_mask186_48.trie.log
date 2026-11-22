@@ -1,0 +1,16 @@
+Prepared 41729088 legal port phases 28164 trails native=6747751488
+iter=0 overlap_UB=253476.0000 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=1 overlap_UB=254602.5533 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=2 overlap_UB=254202.6910 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=3 overlap_UB=253791.2680 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=4 overlap_UB=254125.1619 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=5 overlap_UB=253778.8905 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=6 overlap_UB=253948.5580 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=7 overlap_UB=253770.8404 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=8 overlap_UB=253877.5826 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=9 overlap_UB=253756.0578 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=10 overlap_UB=253863.4142 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=11 overlap_UB=253710.1425 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+iter=12 overlap_UB=253881.6626 best_overlap_UB=253476.0000 restricted_length_LB=6747779651
+FINAL: bestiter=0 overlap_UB=253476.0000 restricted_length_LB=6747779651
+trie 3.06 seconds peakKB 654680

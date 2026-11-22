@@ -1,0 +1,28 @@
+{
+  "n": 11,
+  "screen_selection": "data/n11/43930529/inputs/n11_43930529_full_selection.txt",
+  "screen_charge": 20089,
+  "screen_trails": 1364,
+  "precursor_archive": "data/n11/43930529/inputs/n11_43930543.spra.xz",
+  "precursor_sha256": "1089c8f86fbe08c5a85093db053056be63fc124740da3d840a0e8ab710d98917",
+  "fiber_manifest": "data/n11/43930529/inputs/n11_43930543_fiber_manifest.csv",
+  "replay_program": "data/n11/43930529/src/replay_529.py",
+  "title": "N=11 record 43,930,527",
+  "slug": "n11-43930527",
+  "length": 43930527,
+  "almanac_id": "W-0132",
+  "screen_selection_role": "529 predecessor selection used as a control; not claimed to be the final 527 native selection",
+  "target_to_beat": 43930529,
+  "raw_sha256": "8b78860eebb7d25ffbf1147b6609d5c156e2fed2e0a16c5a23ad949cc0b5825c",
+  "plan": "data/n11/43930527/inputs/recovered_527_order.tsv",
+  "replay_scope": "Precursor + fiber manifest + newly recovered exact 527 unit plan; no historical free-core search replay",
+  "almanac_sha256": "d0a74cf72adeb2d117933fa6237dec71113f32df8c07eeb28ad5d859e63a44a5",
+  "corpus_archive": "SPRA/words/11/43930527/superpermutation-11-43930527.spra.xz",
+  "input_sha256": {
+    "data/n11/43930529/inputs/n11_43930529_full_selection.txt": "75efc4f3e63b3fa929704682decaef1f21ac2afdf9782033c9dd93b7d451b9af",
+    "data/n11/43930527/inputs/recovered_527_order.tsv": "9e72f0bbf4beb148924f1e5385ca3920160d0ee7e1c88917b75a2dacf6ce64ea",
+    "data/n11/43930529/inputs/n11_43930543.spra.xz": "204ac6157596196be747e8c82a931a9cce5cf09b91c86a8b76c708dfefc1ec6d",
+    "data/n11/43930529/inputs/n11_43930543_fiber_manifest.csv": "128ab0b013a596c878088465039eef32ddb8bfef349ec2d7200c40efb895d3a3",
+    "data/n11/43930529/src/replay_529.py": "74ad94e18e536240bd507cd7500f0a3c545d9b23e646d391c98b25b5d650eec4"
+  }
+}

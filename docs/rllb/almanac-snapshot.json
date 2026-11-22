@@ -1,0 +1,284 @@
+{
+  "snapshot_date": "2026-11-22",
+  "source": "https://superpermutations.com/api/words",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "words": [
+    {
+      "id": "W-0086",
+      "n": 11,
+      "length": 43930534,
+      "sha256": "895e83edb98ba45fe66652f011117eb7e9f9222d4c2fa88ac9343baceb5ca040",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 14,
+      "repeated_occurrences": 19771,
+      "credited": [
+        {
+          "name": "Jakub Halfar",
+          "github_username": "jhalfar"
+        }
+      ],
+      "date": "2026-11-08T15:36:07Z",
+      "date_precision": "day",
+      "received_at": "2026-11-08T15:36:07Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Built on Jay Pantone's 43,930,548 word, which he made from my selection X (800 closed trails) by changing the images of its blocks (his 43/80 construction). I recovered his images, changed two of them and fixed the order of the closed trails with local kicks. Published on 27 Oct 2026 in [jhalfar/superpermutations](https://github.com/jhalfar/superpermutations), the images are in plan/images-11-43930534.txt.\r\n\r\nMade with Claude (Opus 5.5) in Claude Code. I decide what to try, Claude writes the code and runs the searches.",
+      "url": "https://superpermutations.com/w/W-0086"
+    },
+    {
+      "id": "W-0131",
+      "n": 11,
+      "length": 43930529,
+      "sha256": "a9b1567086163abe20c4037db4b92f4e74be181795b7c6d4572d001bab74186d",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 5,
+      "repeated_occurrences": 19518,
+      "credited": [
+        {
+          "name": "Tholsh",
+          "github_username": "Tholsh"
+        }
+      ],
+      "date": "2026-11-21T00:41:30Z",
+      "date_precision": "day",
+      "received_at": "2026-11-21T00:41:30Z",
+      "source": "site",
+      "source_url": null,
+      "note": "# From a Kraft-scored packet to the 43,930,529-symbol n=11 word\r\n\r\nWe start with **one (7,2) packet**, study its fiber ports, develop alternative selections, and lift them into a superpermutation on `0123456789A`. Selection and arrangement are optimized together: a cheap packet helps only when its connections are cheap.\r\n\r\n## The original packet and the Kraft insight\r\n\r\nOur starting packet is Halfar's n=11 **(7,2) fiber block**. It contains **56 cyclic classes** of nine-symbol rows. In native notation, a row is `x v`: `x` selects a rotation of `012345678`, while `v` controls whether the row is full (`9`), short (`7`), detached (`0`), or fragmented at another depth. The packet has charge **Q=38**, **14 detached classes**, and one closed active row walk. Its port monodromy yields **two walk trails**, and the detached loops bring the total to **T=16**. Its literal completion covers **55,440 assigned permutations**.\r\n\r\nThe **Kraft layer** exposes what `Q+T=54` misses. We enumerate legal entry/exit ports, compute shortest suffixâ€“prefix connector strings, build a trie, measure prefix conflicts and prefix-free Kraft mass, and inspect the continuation graph. The monodromy layer tells us which ports actually belong to the same completed walks. It exposes **connection capacity**: lower-charge packets can be worse when their exit states are incompatible. Kraft mass is a **diagnostic**, not a theorem giving the superpermutation's minimum completion cost.\r\n\r\n## Turning the packet into a selection\r\n\r\nWe search for new balanced 56-class packets using the same `G_v` row transitions. Each proposal must occupy every class once and pass incidence, slice-graph, and monodromy checks. We jointly evaluate charge, detached-chain packing, available boundary ports, and **achievable min-plus join cost**. Thus we retain several distinct families, including a low-charge packet with **Q=22, T=30**, a more connected alternative with **Q=29, T=24**, and the original **Q=38, T=16** packet. Neither fewer trails nor lower charge alone determines the winner.\r\n\r\nThe global construction contains **48 complete fibers** of the (7,2) type. Each is a relabeled copy of the same occupation problem. These are 48 selected fibers, not all 720 possible old-letter cyclic orders. We map our tested source packets onto each target fiber by an old-letter cyclic shift and, when useful, an exchange of `7` and `8`. This changes rows and port states **without changing the target's 55,440 permutations**. We also retain two larger outside-core sections. The **48 selectable fibers plus two cores** cover all **40,320** native classes.\r\n\r\n## Selecting and arranging in the same search\r\n\r\nFor every target fiber, a candidate state specifies the source packet, seven-letter relabeling phase, optional `7â†”8` swap, literal length, and exact ten-letter head and tail. We search placements of the 50 units while the two large cores remain anchored. Every swap, insertion, or section move triggers **fresh optimization of all phases and packet states**; none are frozen before placement.\r\n\r\nFor literal units `a,b`, let `ov(a,b)` be their greatest matching suffixâ€“prefix overlap of length **0 through 10**. For a fixed order, we use the min-plus recurrence\r\n\r\n`DP[i,s] = |w(i,s)| + min_t (DP[i-1,t] - ov(w(i-1,t), w(i,s)))`.\r\n\r\nBackpointers recover the chosen packets, relabelings, and phases. The overlap cap of ten preserves all existing length-eleven windows inside each complete unit. The DP is exact for each candidate order; the order search is heuristic. Our objective is the **actual constructed length**, `L = L_cyclic + J_connection`, not the isolated packet's `Q+T`.\r\n\r\nThe resulting full selection has **Q=20,089**, **1,156 detached loops**, **62 closed row walks**, and **1,364 completed trails**. Its cyclic contribution is **43,928,569** letters. Joint placement and phase selection pay only **1,960** more letters to connect the units, giving **43,930,529** symbols. We accept some additional cyclic charge because better fiber geometry saves more at the interfaces.\r\n\r\n## Literal verification\r\n\r\nWe relabel the chosen packets, order all 50 units, check their endpoints, and splice with exact overlaps. An independent sliding-window scan of the resulting word finds **all 39,916,800 eleven-symbol permutations, with zero missing**. The complete 40,320-row native selection is retained separately. This is a valid construction five symbols below Halfar's then-published **43,930,534** benchmark.",
+      "url": "https://superpermutations.com/w/W-0131"
+    },
+    {
+      "id": "W-0132",
+      "n": 11,
+      "length": 43930527,
+      "sha256": "d0a74cf72adeb2d117933fa6237dec71113f32df8c07eeb28ad5d859e63a44a5",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 2,
+      "repeated_occurrences": 19518,
+      "credited": [
+        {
+          "name": "Tholsh",
+          "github_username": "Tholsh"
+        }
+      ],
+      "date": "2026-11-21T00:43:06Z",
+      "date_precision": "day",
+      "received_at": "2026-11-21T00:43:06Z",
+      "source": "site",
+      "source_url": null,
+      "note": "The move from [W-0131](https://superpermutations.com/w/W-0131) to [W-0132](https://superpermutations.com/w/W-0132) shifted five consecutive fiber blocks across the first core. W-0131â€™s search had held both cores in fixed positions. The new search could reorder all 48 (7,2) fiber blocks and both cores, moving each core as a single piece.\n\nFor each trial order, a min-plus dynamic program jointly chose a template for each fiber, a cyclic shift of its old letters, and whether to exchange 7 and 8. It minimized the combined length of the 50 pieces after subtracting the longest matching suffixâ€“prefix overlap at each join, up to ten letters. The five-block move and the new template and relabeling choices together saved two letters, giving 43,930,527, seven fewer than Jakub Halfarâ€™s [W-0086](https://superpermutations.com/w/W-0086).",
+      "url": "https://superpermutations.com/w/W-0132"
+    },
+    {
+      "id": "W-0133",
+      "n": 11,
+      "length": 43930517,
+      "sha256": "dcb991d962526257b32fca99fc397e39f59aeddf7fa63ab4f821157ba64a87ea",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 10,
+      "repeated_occurrences": 19564,
+      "credited": [
+        {
+          "name": "Jay Pantone",
+          "github_username": "jaypantone"
+        }
+      ],
+      "date": "2026-11-21T02:38:01Z",
+      "date_precision": "day",
+      "received_at": "2026-11-21T02:38:01Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Starting from Tholshâ€™s n=11 construction, we recovered its 48 complete fibers and two cores. We used Hamiltonian paths inside the individual fibers to expand the possible geometries. A connected Euler-flow model chose an order and endpoint states for all 50 units. Starting from a 43,930,518-letter word, a second round reached 43,930,517. Reoptimizing all 76,104 packet states for the new order gave this realization. The resulting word has 43,930,517 letters.",
+      "url": "https://superpermutations.com/w/W-0133"
+    },
+    {
+      "id": "W-0128",
+      "n": 12,
+      "length": 522736409,
+      "sha256": "41b829765b29d33359baa65bb155a672ec002c6d1fae4999cd375ba0e8a8fd24",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 5,
+      "repeated_occurrences": 177360,
+      "credited": [
+        {
+          "name": "Jay Pantone",
+          "github_username": "jaypantone"
+        }
+      ],
+      "date": "2026-11-20T05:29:23Z",
+      "date_precision": "day",
+      "received_at": "2026-11-20T05:29:23Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Starting from W-0126 (522,736,414 letters), built on Jakub Halfarâ€™s selection E from W-0074, we ran short constant-temperature searches with his tools on Apple Metal, saving one letter after search 18, one after search 28 and two after search 29 with five-cut segment insertion, then saving the final letter by changing a trail opening in a three-trail move during search 30 to reach 522,736,409.",
+      "url": "https://superpermutations.com/w/W-0128"
+    },
+    {
+      "id": "W-0136",
+      "n": 12,
+      "length": 522736406,
+      "sha256": "6bf1ef85a2cc52add9238329a7c3129e06ef9c0fd76a8dc9d3215a33441a1558",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 3,
+      "repeated_occurrences": 177523,
+      "credited": [
+        {
+          "name": "Tholsh",
+          "github_username": "Tholsh"
+        }
+      ],
+      "date": "2026-11-22T01:45:34Z",
+      "date_precision": "day",
+      "received_at": "2026-11-22T01:45:34Z",
+      "source": "site",
+      "source_url": null,
+      "note": "# A superpermutation of length 522,736,406 on 12 symbols\r\n\r\nFound with the help of ChatGPT\r\n\r\nWe improve the 522,736,409-letter benchmark from Halfar's E selection by three letters, using Pantone's completion construction with a modified native selection. We optimize selection, monodromy, opening phase and placement jointly, rather than minimize charge before arrangement.\r\n\r\n## Finding the selection\r\n\r\nFor 12 symbols, the native selection occupies 9! = 362,880 cyclic classes on ten symbols. Each active row has a visible grade v and contributes charge 10-v. Completing the selection produces closed trails through the required permutations. Writing F3 = 12! + 11! + 10! = 522,547,200, the literal length is F3 + Q + J, where Q is the native charge and J is the net cost of opening and joining the completed trails. A selection with lower Q need not yield a shorter word: many independent trails can impose incompatible overlaps.\r\n\r\nWe lift the fiber construction used at n=11 into 504-class packets at n=12. The small packets are screened using charge, closed-walk monodromy and a global Kraft-trie model of compatible boundary overlaps. The trie prices help reject false winners whose apparent charge advantage disappears during completion. This is a restricted screening model, not a proof of the unrestricted optimum. Candidate selections are completed and assessed using literal overlaps.\r\n\r\nE contains 48 independently closed residual fibers and an interconnected core spanning 672 fibers. The independent fibers admit occupation-preserving alphabet relabelings, but the core cannot be changed one fiber at a time without breaking closure. We therefore treat complete closed-walk footprints and groups of interacting walks as compound fibers. Balanced successor exchanges preserve the occupied cyclic classes while changing how the row walks close and how their ports compose under completion.\r\n\r\nThe first successful core selection has charge 182,632 and 2,904 completed trails. We then examine 1,306 balanced exchange alternatives. Two compound replacements, each involving five original closed walks, change 28 row assignments in total. They add 80 units of charge but remove 72 completed trails. When evaluated against the actual arrangement, their joint placement and opening phases reduce the length from 522,736,550 to 522,736,530. The final selection has Q = 182,712 and 2,832 trails, of which 2,352 are rowless and 480 are active.\r\n\r\n## Arranging the completed trails\r\n\r\nFor each trail we retain a library of legal opening phases, including cuts at steps of weights 3, 2 and 1. A state s determines the opened word W(s), its extra cyclic overhang, and its incoming and outgoing literal keys. For a fixed order, a min-plus dynamic program computes the exact optimum over the enumerated states:\r\n\r\nD_i(s) = |W_i(s)| + min_t [D_(i-1)(t) - overlap(W_(i-1)(t), W_i(s))].\r\n\r\nPrefix/suffix indexes replace the quadratic comparison of every pair of cut states. The indexes support overlaps through 15 symbols, although the useful matches depend on the actual word. The outer search changes the order; each move is evaluated with phase choices reopened around its affected boundaries. Several separated cuts divide the path into segments. We construct a phase-aware connection-cost matrix, solve an assignment on these segments and patch subtours to obtain one connected path. Directed three-edge moves, four-edge exchanges and bounded searches over longer alternating successor cycles improve the patched assignment. Forced kicks disrupt existing connections, and temporary increases in length permit escape from local minima. We also test multiple-path intermediates and alternate path endpoints before rejoining.\r\n\r\nSPRA provides a compact representation of the word and accelerates repeated construction and inspection. A repeat audit identifies redundant permutation windows inside trails and enables additional legal opening states. The final arrangement passes 522,736,495, 479, 472, 467, 443 and 423, then ties 409 before a last reconnection reaches 406.\r\n\r\n## Where the three letters come from\r\n\r\nRelative to E (Q = 182,112, J = 7,097, 3,648 completed trails), the modified selection spends 600 extra letters in native charge but saves 603 letters in cuts and joins. It eliminates 816 completed trails. Thus the final literal length is\r\n\r\n522,547,200 + 182,712 + 6,494 = 522,736,406.\r\n\r\nAn independent literal scan finds all 479,001,600 distinct permutations in 479,179,123 clean windows, with zero missing and 177,523 repeated occurrences. The SPRA archive decodes to the identical literal word.\r\n\r\nThis is a computational improvement within Pantone's construction, building on Halfar's E selection, generalized row grades and trail arrangement techniques. The result is an upper bound, not a claim of optimality. AI-assisted exploration, implementation and search are used throughout.",
+      "url": "https://superpermutations.com/w/W-0136"
+    },
+    {
+      "id": "W-0137",
+      "n": 12,
+      "length": 522736195,
+      "sha256": "25af040018c354605e967277f62e86af5aa15ac5e0ae1bbaf698baf5a965379c",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 211,
+      "repeated_occurrences": 177552,
+      "credited": [
+        {
+          "name": "Jay Pantone",
+          "github_username": "jaypantone"
+        }
+      ],
+      "date": "2026-11-22T03:57:18Z",
+      "date_precision": "day",
+      "received_at": "2026-11-22T03:57:18Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Starting from Tholshâ€™s W-0136, we changed the trail order and openings with Halfarâ€™s trailsearch and removed five redundant letters to reach 522,736,344. A second trail search on that word reached 522,736,293. Three-cut segment insertion saved another 97 letters, and removing the final symbol gave 522,736,195, a gain of 211 over W-0136.",
+      "url": "https://superpermutations.com/w/W-0137"
+    },
+    {
+      "id": "W-0140",
+      "n": 12,
+      "length": 522736146,
+      "sha256": "4c103820a4cc4d88bc4f4fc323a057533d7e2ce95b46b6d269f706afe1e43d31",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 49,
+      "repeated_occurrences": 177572,
+      "credited": [
+        {
+          "name": "Jakub Halfar",
+          "github_username": "jhalfar"
+        }
+      ],
+      "date": "2026-11-22T08:37:33Z",
+      "date_precision": "day",
+      "received_at": "2026-11-22T08:37:33Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Starts from Jay Pantone's [W-0137](https://superpermutations.com/w/W-0137), on Tholsh's selection from [W-0136](https://superpermutations.com/w/W-0136). I alternated segment insertion with moves of equal length on the card and an exact flow model over the openings and the order of the closed trails, and changed the selection by 16 successor exchanges that merge walks and remove closed trails. A dynamic program over the opening phases of the trails, as in Tholsh's note, and a trail search took it the rest of the way to 522,736,146.",
+      "url": "https://superpermutations.com/w/W-0140"
+    },
+    {
+      "id": "W-0142",
+      "n": 12,
+      "length": 522736145,
+      "sha256": "cf8326ad8f9c80041af97af7dc5d132bce7161eecbf9bd14746e3b98041b2e89",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 1,
+      "repeated_occurrences": 177572,
+      "credited": [
+        {
+          "name": "Jay Pantone",
+          "github_username": "jaypantone"
+        }
+      ],
+      "date": "2026-11-22T13:01:31Z",
+      "date_precision": "day",
+      "received_at": "2026-11-22T13:01:31Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Starting from Jakub Halfarâ€™s W-0140, a three-cut move exchanges the first 458 trail events with the next 1,823. Reopening two trails costs one letter, while the new joins save two, shortening the word by one.",
+      "url": "https://superpermutations.com/w/W-0142"
+    },
+    {
+      "id": "W-0144",
+      "n": 12,
+      "length": 522736144,
+      "sha256": "4669bde245aa7d3972ad84f9b9ae969a19bf872174dba06d686f30f406d0665f",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 1,
+      "repeated_occurrences": 177572,
+      "credited": [
+        {
+          "name": "Jay Pantone",
+          "github_username": "jaypantone"
+        }
+      ],
+      "date": "2026-11-22T16:06:20Z",
+      "date_precision": "day",
+      "received_at": "2026-11-22T16:06:20Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Starting from Jay Pantoneâ€™s W-0142 on Jakub Halfarâ€™s W-0140 selection, we applied two four-row successor switches to the same 57,820-class walk. Together they turn its three completed trails into one at unchanged native charge. We replaced those trails in W-0142, chose an opening for the new cycle and rejoined the surrounding pieces to tie 522,736,145. A three-cut segment insertion with a changed trail opening then saved one more letter.",
+      "url": "https://superpermutations.com/w/W-0144"
+    },
+    {
+      "id": "W-0146",
+      "n": 12,
+      "length": 522736133,
+      "sha256": "c8885b6e1534224cee097a26c02fde4af06a7e6a8609095d9bb30df314318a7e",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 11,
+      "repeated_occurrences": 177576,
+      "credited": [
+        {
+          "name": "Jakub Halfar",
+          "github_username": "jhalfar"
+        }
+      ],
+      "date": "2026-11-22T16:12:34Z",
+      "date_precision": "day",
+      "received_at": "2026-11-22T16:12:34Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Continues my [W-0140](https://superpermutations.com/w/W-0140), which starts from Jay Pantone's [W-0137](https://superpermutations.com/w/W-0137) on Tholsh's selection. More rounds of the exact flow model over the openings and the order of the closed trails, an assignment of trail segments with patching and a dynamic program over opening phases, both after Tholsh's [W-0136](https://superpermutations.com/w/W-0136) note, took it to 522,736,133.",
+      "url": "https://superpermutations.com/w/W-0146"
+    },
+    {
+      "id": "W-0150",
+      "n": 12,
+      "length": 522736132,
+      "sha256": "f609310eab76a07241dd9c8a76f922d6d3d6522e5a84ca59a4e8eeff801d692f",
+      "is_record": true,
+      "tie": false,
+      "letters_saved": 1,
+      "repeated_occurrences": 177574,
+      "credited": [
+        {
+          "name": "Jay Pantone",
+          "github_username": "jaypantone"
+        }
+      ],
+      "date": "2026-11-22T17:59:02Z",
+      "date_precision": "day",
+      "received_at": "2026-11-22T17:59:02Z",
+      "source": "site",
+      "source_url": null,
+      "note": "Starting from Jakub Halfarâ€™s W-0146, we applied the paired successor switches used in Jay Pantoneâ€™s W-0144. They turn the three completed trails of one 57,820-class walk into a single trail at unchanged native charge. We replaced those three intervals in W-0146 and chose the opening of the new trail and the order of the surrounding pieces, tying 522,736,133. A kick search over trail arrangements saved one further letter. Three different choices of the paired switches reached 522,736,132.",
+      "url": "https://superpermutations.com/w/W-0150"
+    }
+  ]
+}

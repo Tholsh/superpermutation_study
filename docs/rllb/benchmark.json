@@ -1,0 +1,157 @@
+{
+  "scenario": "complete n12 Q210; 3,808,224 ports; 6,624 trails; trie depths 6..8",
+  "scope": "restricted intact weight-3 RLLB; no literal-word search or coverage check",
+  "compiler": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "cpu": "AMD Ryzen 5 9600X 6-Core Processor",
+  "flags": "-O3 -std=c++20; fast binary also uses -fopenmp",
+  "threads": 4,
+  "iterations": 20,
+  "repeats": 3,
+  "timing_method": "separate processes, reused input files, interleaved runs; not a cold-disk benchmark",
+  "input_sha256": {
+    "global_trie_multilevel.cpp": "a77d5b30529ece0a0dc203e69099969eee7bc3887b7579aa53c6c8c9945e1824",
+    "generate_ports_only.cpp": "a03b50dba44845467091267d4fe834597128fb377f00d811ea2f7fc0033b0649",
+    "selections/Q210.selection.xz": "d14b21df2da5db6015666ab0746512c1660e9913e4e4b8c25c374f3f6010b747",
+    "certificates/Q210_certificate_weights.bin.xz": "c815870c5077d05398a7c87b80d72734766f7ba4354c6f8f5980a8a2e7da9b36"
+  },
+  "fast_source_sha256": "82d5f6f8d9363df3c228e0c1e397734498f18c024d6e64fc1a41a25cf5a25c0d",
+  "port_generation_seconds_excluded_from_scorer_timings": 1.2812147559998266,
+  "results": {
+    "saved_certificate": {
+      "seconds": {
+        "legacy": [
+          4.539681311000095,
+          4.474159864000285,
+          4.462260561999756
+        ],
+        "fast_single": [
+          0.5787025379995612,
+          0.6587336820002747,
+          0.5960434440003155
+        ],
+        "fast_parallel": [
+          0.4986953560000984,
+          0.5194125859998167,
+          0.552993100999629
+        ]
+      },
+      "median_seconds": {
+        "legacy": 4.474159864000285,
+        "fast_single": 0.5960434440003155,
+        "fast_parallel": 0.5194125859998167
+      },
+      "speedup_single": 7.506432474069653,
+      "speedup_parallel": 8.613884192636533,
+      "identical_scores_and_history": true,
+      "scores": {
+        "trie_levels": [
+          {
+            "depth": 6,
+            "nodes": 267186,
+            "incoming_available": 3757290,
+            "outgoing_available": 3726617
+          },
+          {
+            "depth": 7,
+            "nodes": 965316,
+            "incoming_available": 3211890,
+            "outgoing_available": 2956956
+          },
+          {
+            "depth": 8,
+            "nodes": 2308212,
+            "incoming_available": 1974612,
+            "outgoing_available": 1974612
+          }
+        ],
+        "dual_history": [
+          49769.9978
+        ],
+        "dual_overlap_upper_raw": 49769.9977706,
+        "certified_overlap_upper": 49770,
+        "joining_cost_lower_bound": 9846,
+        "length_lower_bound": 522736470,
+        "certified_reject_restricted": true
+      }
+    },
+    "optimize": {
+      "seconds": {
+        "legacy": [
+          5.521621591999974,
+          5.565186271999664,
+          5.34055515900036
+        ],
+        "fast_single": [
+          1.936243760999787,
+          2.104046954000296,
+          1.8416461679998974
+        ],
+        "fast_parallel": [
+          1.037605505999636,
+          1.3639409020006497,
+          1.0081692040002963
+        ]
+      },
+      "median_seconds": {
+        "legacy": 5.521621591999974,
+        "fast_single": 1.936243760999787,
+        "fast_parallel": 1.037605505999636
+      },
+      "speedup_single": 2.8517182098750125,
+      "speedup_parallel": 5.3215037507731875,
+      "identical_scores_and_history": true,
+      "scores": {
+        "trie_levels": [
+          {
+            "depth": 6,
+            "nodes": 267186,
+            "incoming_available": 3757290,
+            "outgoing_available": 3726617
+          },
+          {
+            "depth": 7,
+            "nodes": 965316,
+            "incoming_available": 3211890,
+            "outgoing_available": 2956956
+          },
+          {
+            "depth": 8,
+            "nodes": 2308212,
+            "incoming_available": 1974612,
+            "outgoing_available": 1974612
+          }
+        ],
+        "dual_history": [
+          52128,
+          52152.32,
+          51789.6137,
+          51621.5661,
+          51354.8835,
+          51255.0007,
+          51127.1883,
+          51079.112,
+          50998.3069,
+          50962.8311,
+          50896.3918,
+          50872.6837,
+          50821.9422,
+          50795.2762,
+          50738.5285,
+          50727.8824,
+          50673.7858,
+          50657.52,
+          50616.1482,
+          50620.1396,
+          50582.651
+        ],
+        "dual_overlap_upper_raw": 50582.65102,
+        "certified_overlap_upper": 50583,
+        "joining_cost_lower_bound": 9033,
+        "length_lower_bound": 522735657,
+        "certified_reject_restricted": false
+      }
+    }
+  },
+  "snapshot_date": "2026-11-22"
+}

@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.68in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\emergencystretch=2em
+\renewcommand{\arraystretch}{1.08}
+\urlstyle{same}
+\title{\vspace{-1.5em}Joint selection and placement at order eleven\\
+\large The $43{,}930{,}529$-symbol record}
+\author{Theo H.}
+\date{22 November 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+Starting from the $43{,}930{,}543$-symbol precursor, we constructed a
+$43{,}930{,}529$-symbol superpermutation: fourteen fewer symbols than the
+precursor and five fewer than Halfar's then-published $43{,}930{,}534$.
+The Almanac records this as \href{https://superpermutations.com/w/W-0131}{W-0131}.
+The advance changes the selected fiber realizations and their arrangement
+jointly; it is not a claim of minimum length or a new all-order construction.
+
+\section*{Definitions and inherited construction}
+We use Pantone's slices and completion~\cite{pantone}, with the glossary's
+selection/arrangement distinction~\cite{glossary}. Put $K=n-2$.
+A native selection chooses a row, or no row, in each of the $(K-1)!$
+\emph{2-loops}. A row has starting ordering $x$ and \emph{visible length}
+$v$; full and short rows have $v=K$ and $v=K-2$. The native-file value
+$v=0$ denotes a loop without a row. Its charge is not included in
+$Q=\sum_{v>0}(K-v)$.
+Completion gives closed trails on $n$ symbols, with cyclic spelling sum
+\[
+F_3(n)+Q,\qquad F_3(n)=n!+(n-1)!+(n-2)!.
+\]
+Closed walks of selected rows and closed trails of the completion are
+different objects. For general visible lengths, a walk's completed trails
+are counted by cycles of its port-monodromy permutation.
+
+At $n=11$, the complete selection has $8!=40{,}320$ native 2-loops.
+The precursor exposes 48 complete $(7,2)$ fiber blocks and two large
+literal core sections. A block has 56 native 2-loops and covers 55,440
+assigned eleven-symbol permutations. These 48 selected fibers are not all
+720 possible cyclic orders of the seven old letters.
+A \emph{packet} here is a complete balanced row selection on one such block.
+
+\section*{1. Price connections as well as charge}
+We began with Halfar's packet ($Q=38$, 14 loops without a row, $T=16$
+completed trails) and retained alternatives including $Q=22,T=30$ and
+$Q=29,T=24$. Local connector tries, prefix conflicts, and Kraft mass
+made endpoint capacity visible, but did not prove that favorable local
+connectors could coexist in a full arrangement. Their role was diagnostic.
+
+Instead of freezing a preferred packet before arrangement, we retained
+complete realizations for every target fiber. A unit state records its
+source template, cyclic relabeling of the seven old letters, optional
+exchange of 7 and 8, actual length, and ten-symbol endpoint words.
+Relabeling preserves the target fiber's assigned permutation support.
+The two cores remain literal pieces.
+
+\section*{2. Reopen all state choices when changing order}
+For a proposed order $u_1,\ldots,u_{50}$, let $w_i(s)$ be a legal literal
+state of unit $u_i$. Write $\operatorname{ov}(a,b)$ for the largest equal
+suffix/prefix overlap of length zero through ten. The attainable objective is
+\[
+L=\sum_{i=1}^{50}|w_i(s_i)|-
+\sum_{i=2}^{50}\operatorname{ov}\bigl(w_{i-1}(s_{i-1}),w_i(s_i)\bigr).
+\]
+The opening/template DP is
+\[
+D_1(s)=|w_1(s)|,\qquad
+D_i(s)=|w_i(s)|+\min_t\left[D_{i-1}(t)-\operatorname{ov}(w_{i-1}(t),w_i(s))\right].
+\]
+Backpointers materialize the chosen states. Every trial order is evaluated
+with its states chosen again, not with phases inherited from the previous
+order. The DP is exact for a fixed order and finite state library; searching
+orders is heuristic. The historical 529 account kept the core units
+anchored in its search. The newly supplied replacement search explicitly
+anchors the cores in the slots of its supplied input order.
+
+Overlaps of at most $n-1=10$ preserve every complete eleven-symbol window
+inside each retained unit. Extra boundary windows may change; preserving
+occupation support does not mean preserving all occurrence multiplicities.
+
+\section*{3. Measured cost trade}
+\begin{center}\small
+\begin{tabular}{lrrr}\toprule
+ &543 precursor&529 result&Change\\\midrule
+Charge $Q$&19,985&20,089&$+104$\\
+Loops without a row&1,106&1,156&$+50$\\
+Closed row walks&80&62&$-18$\\
+Completed trails $T$&1,476&1,364&$-112$\\
+Structural $Q+T$&21,461&21,453&$-8$\\
+Cyclic spelling sum&43,928,465&43,928,569&$+104$\\
+Net opening/joining cost $J$&2,078&1,960&$-118$\\\midrule
+Literal length&43,930,543&43,930,529&$-14$\\\bottomrule
+\end{tabular}\end{center}
+The native comparison changes 1,043 rows: 857 visible lengths and 186
+starting rotations without changing visible length. The successful
+selection spends 104 extra cyclic symbols to save 118 interface symbols.
+For the recovered 50-unit plan, the literal accounting is independently
+\[
+\boxed{43{,}930{,}683-154=43{,}930{,}529.}
+\]
+Its piece-length sum differs from the native cyclic sum because whole
+fiber realizations already contain internal openings and joins.
+
+\section*{4. Current RLLB-first chain and exact replay}
+The first computational stage in \texttt{REPRODUCE.md} builds and runs
+\path{search/rllb.cpp} as \path{build/rllb}, on the complete saved 529
+selection. The current run regenerates $Q=20{,}089$, 1,364 trails,
+and 382,969 legal completion ports. Twenty depth-6/7 price updates give
+restricted $L\geq43{,}930{,}158$; this does not construct the record.
+This modern stage is not attributed retroactively to the original local
+Kraft diagnostic.
+
+The current RLLB state space opens each completed trail once at weight 3,
+with endpoint width $h=n-3$ and overlaps at most $h-1$. The whole-fiber DP
+above uses different literal units and overlaps up to ten. A rejection in
+one restricted model must not be extended to unrestricted openings or splits.
+
+The saved 543 precursor, fiber manifest, and recovered 529 order now
+reconstruct the word without reading the 529 witness. The current receipt
+checks its literal hash and its canonical identity against SPRA and W-0131.
+The supplied search program calls itself a new replacement for the lost
+historical optimizer; the exact discovery move sequence remains distinct
+from exact saved-plan replay.
+
+\section*{5. Coverage, attribution, and subsequent work}
+The recorded independent scan found all $11!=39{,}916{,}800$ permutations,
+with 19,518 repeated clean occurrences. The current default replay verifies
+exact word identity; a fresh factorial scan is an explicit option, not
+silently claimed as having been run again.
+Pantone supplied the construction, Halfar the generalized selection and
+monodromy machinery, and this work the connection-aware packet selection
+and placement experiment, with AI-assisted implementation and search.
+Later W-0132 and Pantone's W-0133 are separate results~\cite{almanac}.
+
+\section*{Sources and reproducibility}
+The companion \href{REPRODUCE.md}{\texttt{REPRODUCE.md}} gives the current
+RLLB-first chain, pinned inputs, and exact replay scope;
+\href{NOTES.md}{\texttt{NOTES.md}} separates personal research notes.
+The source package and retained receipts are identified by
+\href{source-import.json}{\texttt{source-import.json}}.
+
+\begin{thebibliography}{9}\footnotesize
+\setlength{\itemsep}{2pt}
+\bibitem{pantone} J. Pantone,
+\emph{Superpermutations of length
+$n!+(n-1)!+(n-2)!+(43/80+o(1))(n-3)!$}, brief summary,
+September 2026, updated October 2026, Sections 2--7.
+\url{https://github.com/jaypantone/superperm-upper-43-80/blob/main/docs/upper-bound-explained.pdf}.
+\bibitem{glossary} J. Halfar, \emph{Superpermutation Glossary},
+21 November 2026 evening version; supplied 35-page printout,
+\href{../../rllb/sources/Glossary.pdf}{archived source}, especially pp.~14--20 and 32--35.
+\bibitem{spra} T. H., \emph{The Reduced Alphabet: Encoding Superpermutations
+by Transport Events}, SPRA 0.2 reconciliation, 21 November 2026.
+\href{../../rllb/sources/the-reduced-alphabet-spra-0.2-reconciled.md}{Supplied note}.
+\bibitem{almanac} \emph{Superpermutation Almanac}, record notes and word identities,
+\href{../../rllb/almanac-snapshot.json}{snapshot of 22 November 2026}.
+\url{https://superpermutations.com/api/words}.
+\end{thebibliography}
+\end{document}

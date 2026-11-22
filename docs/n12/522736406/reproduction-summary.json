@@ -1,0 +1,36 @@
+{
+  "snapshot_date": "2026-11-22",
+  "almanac_id": "W-0136",
+  "record_length": 522736406,
+  "first_computational_stage": "search/rllb.cpp -> build/rllb",
+  "screen_selection_role": "Complete supplied final 406 native selection",
+  "selection": {
+    "n": 12,
+    "native_2loops": 362880,
+    "charge": 182712,
+    "detached": 2352,
+    "trails": 2832,
+    "ports": 3811512,
+    "native_length": 522729912
+  },
+  "rllb_length_lower_bound": 522733884,
+  "rllb_scope": "one intact weight-3 cut per trail (NOT weight-2 or trail splits)",
+  "word_replayed": true,
+  "replay_scope": "Pinned SPRA witness decode and canonical labeling; original plan depends on absent base/cand0/cand3 trail catalogues, so historical search and selection-to-plan assembly are not claimed",
+  "word": {
+    "length": 522736406,
+    "raw_sha256": "6bf1ef85a2cc52add9238329a7c3129e06ef9c0fd76a8dc9d3215a33441a1558",
+    "canonical_zero_based_sha256": "6bf1ef85a2cc52add9238329a7c3129e06ef9c0fd76a8dc9d3215a33441a1558"
+  },
+  "coverage_rechecked": false,
+  "recorded_coverage_source": "../../rllb/almanac-snapshot.json",
+  "elapsed_seconds": 27.469131492000088,
+  "commands_in_order": [
+    "build-rllb",
+    "generate-rllb-ports",
+    "rllb",
+    "build-spra-codec",
+    "decode-corpus"
+  ],
+  "current_helper_sha256": "01337140708acbf21ea0cc33a7dc29c07b5c3227146a3623ae22a515512e5708"
+}

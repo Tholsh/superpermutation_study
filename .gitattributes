@@ -3,3 +3,11 @@
 
 # Preserve the imported N=8 package byte-for-byte for its SHA256SUMS.
 data/n8/46173/** -text
+
+# Preserve supplied record programs, input pins, and reference documents exactly.
+data/n11/43930529/** -text
+data/n11/43930527/** -text
+data/n12/522736406/** -text
+data/n13/rllb/** -text
+data/rllb/20261122/** -text
+docs/rllb/sources/** -text

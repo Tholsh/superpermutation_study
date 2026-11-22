@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.68in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\emergencystretch=2em
+\renewcommand{\arraystretch}{1.08}
+\urlstyle{same}
+\title{\vspace{-1.5em}Price the completion, then change the selection\\
+\large The $522{,}736{,}406$-symbol order-twelve record}
+\author{Theo H.}
+\date{22 November 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+We improved the $522{,}736{,}409$ benchmark based on Halfar's E selection
+by three symbols. The resulting $522{,}736{,}406$ word is
+\href{https://superpermutations.com/w/W-0136}{W-0136}.
+The contribution is a modified selection and connection-aware arrangement
+inside Pantone's completion construction, not a new general construction.
+The RLLB correction explains how candidates were assessed; the literal
+word, rather than a lower-bound score, establishes the record.
+
+\section*{Definitions and the two layers}
+Follow Pantone's slices~\cite{pantone} and the preferred glossary
+terms~\cite{glossary}. Here $K=n-2=10$, so a complete native selection has
+$9!=362{,}880$ 2-loops. A row has starting ordering $x$ and visible length
+$v$; $v=0$ in a native file means a loop without a row. Charge is
+$Q=\sum_{v>0}(K-v)$. Let $T$ count completed closed trails.
+The selection fixes these objects; the arrangement fixes openings, order,
+and literal overlaps. For a realized word write
+\[
+L=F_3+Q+J,\qquad F_3=12!+11!+10!=522{,}547{,}200,
+\]
+where $J$ is net opening and joining cost. It is not generically $T$.
+
+\section*{1. Halfar's correction and the revised RLLB}
+The initial packet lift could reduce $Q+T$ while making actual joins much
+more expensive. Halfar quantified the issue: one
+comparison changed local $Q$ from 266 to 184 and $T$ from 55 to 125,
+while measured joining cost changed from 140 to 379. His fitted trail and
+empty-loop prices, and rank correlations 0.90 versus 0.61 for priced
+versus plain-floor scores, concern tested families, not universal constants.
+The positions and chains of loops without rows matter as well as their count.
+
+The updated global connector trie prices compatible endpoint words, with
+one legal opening phase supplying \emph{both} ends of each trail.
+For the restricted model of one intact weight-3 opening per trail,
+put $h=n-3=9$ and let $O$ be total overlap. Then
+\[
+L=F_3+Q+hT-O.
+\]
+Give each exact connector key $a$ at depth $m\leq k<h$ a potential
+$\theta_{k,a}$. For a legal phase $p$ of trail $i$ define
+\[
+B_i(p,\theta)=
+\max\!\left\{\frac{m-1}{2},\max_k\left(\frac{k}{2}-\theta_{k,\mathrm{pre}_k(p)}\right)\right\}
++\max\!\left\{\frac{m-1}{2},\max_k\left(\frac{k}{2}+\theta_{k,\mathrm{suf}_k(p)}\right)\right\},
+\]
+where an unavailable incoming or outgoing match is omitted. Set
+$U(\theta)=\sum_i\max_p B_i(p,\theta)$.
+For an actual matched key, its two potential contributions cancel.
+Fallback values overestimate shorter overlaps, and a zero-overlap dummy
+closing edge handles path endpoints. Thus $O\leq U(\theta)$ and
+\[
+L\geq F_3+Q+9T-\lceil U(\theta)\rceil
+\]
+with conservative numerical rounding in the implementation.
+
+For the Q210 control, the saved prices give $Q=179{,}424$, $T=6{,}624$,
+$U\leq49{,}770$, $J\geq9{,}846$, and $L\geq522{,}736{,}470$.
+That rejects this control against its historical $522{,}736{,}428$ target
+\emph{only inside the intact weight-3 model}. Weight-2 openings, splits,
+and unrestricted words are not rejected by that certificate.
+
+\section*{2. Change closed-walk footprints, not just isolated blocks}
+E has 48 independently closed residual fibers and a connected core spanning
+672 other fibers. Independent residual blocks can be relabeled while
+preserving their assigned support. Arbitrary one-fiber core replacements
+need not preserve closure. We therefore considered complete closed-walk
+footprints and compound replacements.
+
+The successful initial core selection has $Q=182{,}632$, $T=2{,}904$.
+From 1,306 balanced exchange alternatives, two compound replacements,
+each involving five original walks, change 28 row assignments in total.
+They add 80 charge units and remove 72 completed trails. Joint phase and
+placement evaluation takes a $522{,}736{,}550$ arrangement to
+$522{,}736{,}530$. The final selection has $Q=182{,}712$ and $T=2{,}832$:
+2,352 trails from loops without rows and 480 active completion trails.
+
+\section*{3. Opening and arrangement search}
+For a fixed order and finite opening states $s$, use
+\[
+D_i(s)=|W_i(s)|+\min_t\left[D_{i-1}(t)-\operatorname{ov}(W_{i-1}(t),W_i(s))\right].
+\]
+The state library includes openings at weights 3, 2, and 1 and can use
+literal overlaps through 15 symbols. These freedoms exceed the restricted
+RLLB state space. The outer search changes order and reopens affected
+phase choices. Segment assignments are patched to eliminate subtours;
+segment insertion, larger successor exchanges, iterated local search,
+and neutral moves provide further arrangements.
+
+The final arrangement passes $522{,}736{,}495$, 479, 472, 467, 443, and
+423, then ties 409 before the last reconnection reaches 406.
+The saved plan has 2,832 entries. Opening overhangs total 25,557 and
+overlaps total 19,063, giving $J=6,494$.
+
+\section*{4. Where the three symbols come from}
+\begin{center}
+\begin{tabular}{lrrr}\toprule
+ &E benchmark&406 selection/word&Change\\\midrule
+Charge $Q$&182,112&182,712&$+600$\\
+Completed trails $T$&3,648&2,832&$-816$\\
+Net opening/joining cost $J$&7,097&6,494&$-603$\\\midrule
+Literal length&522,736,409&522,736,406&$-3$\\\bottomrule
+\end{tabular}\end{center}
+Hence
+\[
+\boxed{522{,}547{,}200+182{,}712+6{,}494=522{,}736{,}406.}
+\]
+The recorded scan found $479{,}001{,}600=12!$ distinct permutations in
+479,179,123 clean occurrences, with zero missing and 177,523 repetitions.
+
+\section*{5. Current reproduction and attribution}
+The first chain compiles and runs the new \path{search/rllb.cpp}, via
+\path{build/rllb}, on the actual final 406 selection. It is separate from
+the Q210 control above. The second chain exactly decodes the pinned SPRA
+witness and checks its canonical Almanac hash. The original 2,832-row
+plan is retained, but its \texttt{base}, \texttt{cand0}, and \texttt{cand3}
+source catalogues are absent. A self-contained historical selection-to-plan
+materialization or discovery search is therefore not claimed.
+
+Pantone supplied the construction and Halfar the E selection and generalized
+native machinery. This work supplies the compound selection changes,
+phase-coupled scoring, and arrangement experiment, with AI assistance.
+The Almanac separately credits later improvements to Pantone and Halfar:
+W-0137 (195), W-0140 (146), W-0142 (145), W-0144 (144), W-0146 (133), and
+W-0150 (132), where each suffix follows $522{,}736{,}$~\cite{almanac}.
+Those later results build on this line but are not claimed here.
+
+\section*{Sources and reproducibility}
+The companion \href{REPRODUCE.md}{\texttt{REPRODUCE.md}} gives the current
+RLLB-first chain, pinned inputs, and exact replay scope;
+\href{NOTES.md}{\texttt{NOTES.md}} separates personal research notes.
+The source package and retained receipts are identified by
+\href{source-import.json}{\texttt{source-import.json}}.
+
+\begin{thebibliography}{9}\footnotesize
+\setlength{\itemsep}{2pt}
+\bibitem{pantone} J. Pantone,
+\emph{Superpermutations of length
+$n!+(n-1)!+(n-2)!+(43/80+o(1))(n-3)!$}, brief summary,
+September 2026, updated October 2026, Sections 2--7.
+\url{https://github.com/jaypantone/superperm-upper-43-80/blob/main/docs/upper-bound-explained.pdf}.
+\bibitem{glossary} J. Halfar, \emph{Superpermutation Glossary},
+21 November 2026 evening version; supplied 35-page printout,
+\href{../../rllb/sources/Glossary.pdf}{archived source}, especially pp.~14--20 and 32--35.
+\bibitem{spra} T. H., \emph{The Reduced Alphabet: Encoding Superpermutations
+by Transport Events}, SPRA 0.2 reconciliation, 21 November 2026.
+\href{../../rllb/sources/the-reduced-alphabet-spra-0.2-reconciled.md}{Supplied note}.
+\bibitem{almanac} \emph{Superpermutation Almanac}, record notes and word identities,
+\href{../../rllb/almanac-snapshot.json}{snapshot of 22 November 2026}.
+\url{https://superpermutations.com/api/words}.
+\end{thebibliography}
+\end{document}

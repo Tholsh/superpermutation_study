@@ -1,0 +1,12 @@
+{
+  "record": "W-0131",
+  "inputs": {
+    "data/n11/43930529/inputs/n11_43930529_full_selection.txt": "75efc4f3e63b3fa929704682decaef1f21ac2afdf9782033c9dd93b7d451b9af",
+    "data/n11/43930529/inputs/recovered_529_order.tsv": "a94eb24a8f389244ed921eee257bfc60f4424e75906bd94523f9118461c32928",
+    "data/n11/43930529/inputs/n11_43930543.spra.xz": "204ac6157596196be747e8c82a931a9cce5cf09b91c86a8b76c708dfefc1ec6d",
+    "data/n11/43930529/inputs/n11_43930543_fiber_manifest.csv": "128ab0b013a596c878088465039eef32ddb8bfef349ec2d7200c40efb895d3a3",
+    "data/n11/43930529/src/replay_529.py": "74ad94e18e536240bd507cd7500f0a3c545d9b23e646d391c98b25b5d650eec4"
+  },
+  "shared_provenance": "../../rllb/source-import.json",
+  "replay_scope": "Precursor + supplied fiber manifest + recovered 50-unit plan; exact literal assembly"
+}

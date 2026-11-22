@@ -1,0 +1,9 @@
+{
+  "record": "W-0136",
+  "inputs": {
+    "data/n12/522736406/inputs/n12_522736406.selection.xz": "671c20e2e1551df801b3db52ce57cd1719b97396305db70d6244728e7244a4d5",
+    "data/n12/522736406/inputs/n12_522736406.plan.tsv": "e7da4e9c31739f60da0f7a20b024cf775ddadfe556c1f4eb644d8653104b73bb"
+  },
+  "shared_provenance": "../../rllb/source-import.json",
+  "replay_scope": "Pinned SPRA witness decode and canonical labeling; original plan depends on absent base/cand0/cand3 trail catalogues, so historical search and selection-to-plan assembly are not claimed"
+}

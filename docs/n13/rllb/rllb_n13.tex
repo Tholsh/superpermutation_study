@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.68in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\emergencystretch=2em
+\renewcommand{\arraystretch}{1.08}
+\urlstyle{same}
+\title{\vspace{-1.5em}Selection experiments at order thirteen\\
+\large Finite packet progress and restricted screens; no completed lift claim}
+\author{Theo H.}
+\date{22 November 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+This note records selection-stage experiments and restricted RLLB screens.
+\textbf{It claims neither a new N=13 record nor a completed recursive lift.}
+The supplied archive contains native selections, local motifs, and previous
+witnesses with differing replay status. They are not interchangeable forms
+of evidence for a completed new word.
+
+\section*{Objects and conventions}
+Use Pantone's \emph{transport} only for its defined full/short-row map~\cite{pantone}.
+At $n=13$, $K=11$, a complete native selection chooses one row or no row in
+$10!=3{,}628{,}800$ 2-loops. Completion concerns
+$12!=479{,}001{,}600$ cyclic classes (1-cycles) on thirteen symbols;
+this is not the number $13!$ of individual permutations.
+A packet is a complete balanced solution on a residual $(7,4)$ block of
+5,040 2-loops. The port-monodromy product counts its completed trails.
+Terminology follows~\cite{glossary,spra}.
+
+\section*{1. Why a monodromy-correct motif was insufficient}
+The original 108-step itinerary had port cycles $(3,7)$ but visited only
+99 distinct native 2-loops, repeating nine. Removing two identity-action
+circuits preserved the port action and left an 88-step itinerary with one
+repeat. A tested zero-repeat 98-row motif had charge 232, but remained a
+partial walk until integrated into a full balanced selection.
+
+Conservative integration demoted entire intersected baseline walks to
+loops without rows. It guaranteed closure but could produce too many
+completed trails. The best recorded compound integration has
+$Q=1{,}786{,}938$, $T=81{,}970$. Its intact weight-3 floor is
+\[
+F_3(13)+Q+T+9=6{,}747{,}808{,}117,
+\]
+which misses the experiment's $6{,}747{,}800{,}000$ target.
+That is a diagnosis of this integration and model, not an impossibility
+proof against nonlocal repairs, other openings, or a future lift.
+
+\section*{2. Balanced switches yielded a complete finite packet}
+The Step1-to-N packet difference contains exactly 259 changed 2-loops,
+partitioned into eight independent balanced switches: one component of
+161 loops and seven components of 14. Enumerating all $2^8=256$ switch
+combinations gave 56 with minimum $Q+T=2,869$ in this finite family.
+
+A 42-row patch produces a complete packet with $Q=2,443$, 406 loops without
+a row, five active row walks, 20 active completion trails, and $T=426$.
+One 288-row walk has monodromy cycles $(7,3)$. This realizes an A-like
+finite port pattern at this degree; it does not prove that the original
+N=11 packet interiors possess an ordinary recursive transport.
+
+Applying the packet in 48 residual fibers gives the archived complete
+native totals
+\[
+Q=1{,}812{,}288,\qquad D=19{,}488,\qquad T=28{,}164.
+\]
+Original native and completion-class receipts are retained as archived
+evidence. No new 6.7-billion-symbol literal word was assembled from this
+selection in this repository session.
+
+\section*{3. What the screens and mask comparisons establish}
+For one intact weight-3 opening per completed trail, $h=10$, so
+\[
+L=F_3+Q+10T-O\geq F_3+Q+T+9=6{,}747{,}779{,}661.
+\]
+The archive's grouped global trie gave $6{,}747{,}779{,}651$, ten weaker.
+A lower bound below the comparison word is only a necessary screen;
+it is not an achievable arrangement cost.
+
+Mask 186 changes 2,688 native row assignments relative to mask 38 across
+48 fibers and leaves the displayed $Q,D,T$ totals unchanged. All 56
+minimum-floor variants have the same simple relaxed matching counts.
+Seed-dependent local phase-compatible path covers motivated mask 186 as
+a follow-up; they do not establish a globally better word or an optimal mask.
+
+A separate selection-first compound-core checkpoint lowers $Q+T$ by 780
+against its retained N-block control. Replacing all residual blocks with
+Step1 gives a structural gain of 1,836 against that experiment's Halfar-N
+baseline. These counts must not be reported as literal-length savings.
+
+\section*{4. Current computational chain and next obligation}
+The first chain in the companion guide builds and runs
+\path{search/rllb.cpp} as \path{build/rllb} on a complete candidate's
+port graph. It offers the archived grouped endpoint-symbol price family
+or full connector keys; they are different relaxations. Both preserve one
+shared opening phase per trail, and neither certifies unrestricted splits
+or weight-2 openings.
+
+The exact progress is a finite balanced packet, complete experimental
+native selections, and a clearer accounting of why some integrations fail.
+The remaining obligation is a constructive, connection-aware global
+arrangement with a separately identified literal witness. Until that
+obligation is met, the correct status is selection research and attempted
+extension, not a completed lift or record.
+
+\section*{Sources and reproducibility}
+The companion \href{REPRODUCE.md}{\texttt{REPRODUCE.md}} gives the current
+RLLB-first chain, pinned inputs, and exact replay scope;
+\href{NOTES.md}{\texttt{NOTES.md}} separates personal research notes.
+The source package and retained receipts are identified by
+\href{source-import.json}{\texttt{source-import.json}}.
+
+\begin{thebibliography}{9}\footnotesize
+\setlength{\itemsep}{2pt}
+\bibitem{pantone} J. Pantone,
+\emph{Superpermutations of length
+$n!+(n-1)!+(n-2)!+(43/80+o(1))(n-3)!$}, brief summary,
+September 2026, updated October 2026, Sections 2--7.
+\url{https://github.com/jaypantone/superperm-upper-43-80/blob/main/docs/upper-bound-explained.pdf}.
+\bibitem{glossary} J. Halfar, \emph{Superpermutation Glossary},
+21 November 2026 evening version; supplied 35-page printout,
+\href{../../rllb/sources/Glossary.pdf}{archived source}, especially pp.~14--20 and 32--35.
+\bibitem{spra} T. H., \emph{The Reduced Alphabet: Encoding Superpermutations
+by Transport Events}, SPRA 0.2 reconciliation, 21 November 2026.
+\href{../../rllb/sources/the-reduced-alphabet-spra-0.2-reconciled.md}{Supplied note}.
+\bibitem{almanac} \emph{Superpermutation Almanac}, record notes and word identities,
+\href{../../rllb/almanac-snapshot.json}{snapshot of 22 November 2026}.
+\url{https://superpermutations.com/api/words}.
+\end{thebibliography}
+\end{document}

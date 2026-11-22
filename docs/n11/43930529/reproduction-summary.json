@@ -1,0 +1,37 @@
+{
+  "snapshot_date": "2026-11-22",
+  "almanac_id": "W-0131",
+  "record_length": 43930529,
+  "first_computational_stage": "search/rllb.cpp -> build/rllb",
+  "screen_selection_role": "Complete final 529 selection",
+  "selection": {
+    "n": 11,
+    "native_2loops": 40320,
+    "charge": 20089,
+    "detached": 1156,
+    "trails": 1364,
+    "ports": 382969,
+    "native_length": 43928569
+  },
+  "rllb_length_lower_bound": 43930158,
+  "rllb_scope": "one intact weight-3 cut per trail (NOT weight-2 or trail splits)",
+  "word_replayed": true,
+  "replay_scope": "Precursor + supplied fiber manifest + recovered 50-unit plan; exact literal assembly",
+  "word": {
+    "length": 43930529,
+    "raw_sha256": "3743ea507d76b8f907b8f2ddba0f9825b5ee62159e609b0c5a4dfe30fa8d34be",
+    "canonical_zero_based_sha256": "a9b1567086163abe20c4037db4b92f4e74be181795b7c6d4572d001bab74186d"
+  },
+  "coverage_rechecked": false,
+  "recorded_coverage_source": "../../rllb/almanac-snapshot.json",
+  "elapsed_seconds": 3.8359858010007883,
+  "commands_in_order": [
+    "build-rllb",
+    "generate-rllb-ports",
+    "rllb",
+    "build-spra-codec",
+    "decode-precursor",
+    "decode-corpus"
+  ],
+  "current_helper_sha256": "01337140708acbf21ea0cc33a7dc29c07b5c3227146a3623ae22a515512e5708"
+}

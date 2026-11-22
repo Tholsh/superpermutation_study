@@ -1,0 +1,17 @@
+slices=41733120 charge=1816320 build done
+heads indexed=41733120
+all endpoints balanced
+trails=2000 ports=13978940
+trails=4000 ports=22734808
+trails=6000 ports=32243856
+trails=8000 ports=39008733
+trails=10000 ports=39355039
+trails=12000 ports=39673498
+trails=14000 ports=39992746
+trails=16000 ports=40339052
+trails=18000 ports=40681149
+trails=20000 ports=40978467
+trails=22000 ports=41324773
+trails=24000 ports=41616174
+COMPLETE trails=24804 ports=41733120 length=6747755520 maxtrail=32666201
+elapsed 25.56 sec peakKB 3270528

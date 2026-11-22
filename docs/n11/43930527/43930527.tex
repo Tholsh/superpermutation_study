@@ -1,0 +1,141 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.68in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\emergencystretch=2em
+\renewcommand{\arraystretch}{1.08}
+\urlstyle{same}
+\title{\vspace{-1.5em}Freeing the core positions\\
+\large The $43{,}930{,}527$-symbol order-eleven record}
+\author{Theo H.}
+\date{22 November 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+The next experiment shortened the $43{,}930{,}529$ word to
+$43{,}930{,}527$, recorded as
+\href{https://superpermutations.com/w/W-0132}{W-0132}.
+It is two symbols shorter than W-0131 and seven shorter than Halfar's
+then-published $43{,}930{,}534$ benchmark. The change removes a placement
+restriction and reoptimizes available literal unit states.
+
+\section*{Definitions and the retained units}
+We retain Pantone's construction and the selection/arrangement distinction
+of~\cite{pantone,glossary}. A completed \emph{closed trail} is not the
+Reduced Alphabet's \emph{course}, which is one clean rotation edge~\cite{spra}.
+The arrangement has 48 complete $(7,2)$ fiber units and two large literal
+cores. A unit state specifies a complete template, old-letter relabeling
+phase, optional 7/8 exchange, length, and ten-symbol endpoint words.
+Whole-unit relabeling preserves assigned permutation support.
+
+\section*{1. The search restriction that changed}
+The historical 529 account fixed the core positions in its search.
+The 527 search allowed a core to move as an intact literal unit, or,
+equivalently, allowed a fiber section to cross it. It did not edit the
+core's internal literal content.
+
+The recovered orders identify the decisive section as unit IDs
+$34,38,39,40,41$. Those five consecutive fibers move from after the first
+core to before it. The first core shifts from zero-based position 37 to 42;
+the second remains at position 48. Template and relabeling choices are
+reselected together with the new order.
+
+\section*{2. Fixed-order opening/template optimization}
+For an order $u_1,\ldots,u_{50}$ and state choices $s_i$, define
+\[
+\operatorname{ov}(a,b)=\max\{0\leq k\leq10:
+\operatorname{suffix}_k(a)=\operatorname{prefix}_k(b)\}.
+\]
+The objective and opening DP are
+\[
+L=\sum_i|w_i(s_i)|-\sum_{i>1}\operatorname{ov}(w_{i-1}(s_{i-1}),w_i(s_i)),
+\]
+\[
+D_1(s)=|w_1(s)|,\qquad
+D_i(s)=|w_i(s)|+\min_t[D_{i-1}(t)-\operatorname{ov}(w_{i-1}(t),w_i(s))].
+\]
+Every proposed placement is scored with fresh state optimization. This is
+exact for the fixed order and enumerated library; it does not solve the
+unrestricted order problem. The overlap cap preserves complete internal
+length-eleven windows of each unit.
+
+\newpage
+\section*{3. Exact accounting from both recovered plans}
+The supplied 529 plan and newly recovered 527 plan give
+\begin{center}
+\begin{tabular}{lrrr}\toprule
+ &529 plan&527 plan&Change\\\midrule
+Sum of whole-unit lengths&43,930,683&43,930,685&$+2$\\
+Sum of exact literal overlaps&154&158&$+4$\\\midrule
+Emitted word length&43,930,529&43,930,527&$-2$\\\bottomrule
+\end{tabular}\end{center}
+Consequently
+\[
+\boxed{\Delta L=\Delta\!\sum |w_i|-\Delta\!\sum\operatorname{ov}=2-4=-2.}
+\]
+This is more precise than assigning the gain exclusively to overlap:
+the selected piece lengths also change. The recorded native 529 selection
+must not automatically be called the final 527 selection.
+
+\section*{4. Reproducibility and its scope}
+The first computational chain runs the new \path{search/rllb.cpp}, built
+as \path{build/rllb}. Its input is explicitly the complete \emph{529
+predecessor selection}, used as a control; no independently recovered final
+527 native selection is claimed. The same $Q=20{,}089$, 1,364-trail graph
+therefore gives the same restricted screening bound as the 529 control.
+The score is not presented as the objective of the historical free-core search.
+
+The second chain assembles 527 from the original 543 precursor, its fiber
+manifest, and the separately recovered 527 order. The recovery matches
+complete relabeled source pieces and unchanged cores to the known witness,
+with every unit used once. The saved plan then replays without reading that
+witness. Its literal SHA-256 is
+\begin{center}\small
+\path{8b78860eebb7d25ffbf1147b6609d5c156e2fed2e0a16c5a23ad949cc0b5825c}.
+\end{center}
+Canonical relabeling matches the pinned SPRA corpus and W-0132.
+The recovery program is provided and writes only under \path{build/}.
+It is a new witness-derived recovery tool, not the missing historical
+free-core optimizer or its random-state log.
+
+The recorded independent scan covers all $39{,}916{,}800$ permutations,
+with 19,518 repeated clean occurrences. This session's default replay
+checks exact word identity; a new coverage scan is optional.
+
+\section*{5. Attribution and continuation}
+The construction is Pantone's and the native selection machinery builds
+on Halfar's work. The contribution here is the core-unpinned,
+connection-aware arrangement change, with AI-assisted exploration.
+Pantone subsequently reached $43{,}930{,}517$ (W-0133) using expanded
+fiber geometries and a connected Euler-flow order model~\cite{almanac}.
+That later improvement is credited separately, and no optimality of 527
+is inferred from unsuccessful additional local search.
+
+\section*{Sources and reproducibility}
+The companion \href{REPRODUCE.md}{\texttt{REPRODUCE.md}} gives the current
+RLLB-first chain, pinned inputs, and exact replay scope;
+\href{NOTES.md}{\texttt{NOTES.md}} separates personal research notes.
+The source package and retained receipts are identified by
+\href{source-import.json}{\texttt{source-import.json}}.
+
+\begin{thebibliography}{9}\footnotesize
+\setlength{\itemsep}{2pt}
+\bibitem{pantone} J. Pantone,
+\emph{Superpermutations of length
+$n!+(n-1)!+(n-2)!+(43/80+o(1))(n-3)!$}, brief summary,
+September 2026, updated October 2026, Sections 2--7.
+\url{https://github.com/jaypantone/superperm-upper-43-80/blob/main/docs/upper-bound-explained.pdf}.
+\bibitem{glossary} J. Halfar, \emph{Superpermutation Glossary},
+21 November 2026 evening version; supplied 35-page printout,
+\href{../../rllb/sources/Glossary.pdf}{archived source}, especially pp.~14--20 and 32--35.
+\bibitem{spra} T. H., \emph{The Reduced Alphabet: Encoding Superpermutations
+by Transport Events}, SPRA 0.2 reconciliation, 21 November 2026.
+\href{../../rllb/sources/the-reduced-alphabet-spra-0.2-reconciled.md}{Supplied note}.
+\bibitem{almanac} \emph{Superpermutation Almanac}, record notes and word identities,
+\href{../../rllb/almanac-snapshot.json}{snapshot of 22 November 2026}.
+\url{https://superpermutations.com/api/words}.
+\end{thebibliography}
+\end{document}

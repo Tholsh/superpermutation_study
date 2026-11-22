@@ -1,0 +1,61 @@
+{
+  "scope": "one intact weight-3 cut per trail (NOT weight-2 or trail splits)",
+  "certified_for_unrestricted_search": false,
+  "n": 11,
+  "trails": 1364,
+  "ports": 382969,
+  "charge": 20089,
+  "min_key": 6,
+  "trie_levels": [
+    {
+      "depth": 6,
+      "nodes": 101597,
+      "incoming_available": 309058,
+      "outgoing_available": 280407
+    },
+    {
+      "depth": 7,
+      "nodes": 241127,
+      "incoming_available": 169710,
+      "outgoing_available": 169695
+    }
+  ],
+  "dual_overlap_upper_raw": 9322.02611825,
+  "certified_overlap_upper": 9323,
+  "joining_cost_lower_bound": 1589,
+  "length_lower_bound": 43930158,
+  "target_to_beat": 43930529,
+  "certified_reject_restricted": false,
+  "iterations": 20,
+  "best_iteration": 20,
+  "dual_history": [
+    9426,
+    9440,
+    9418.28863,
+    9411.24634,
+    9397.5684,
+    9391.20663,
+    9380.75624,
+    9376.02885,
+    9369.85111,
+    9362.00469,
+    9358.12396,
+    9352.74274,
+    9350.65556,
+    9344.81978,
+    9341.92328,
+    9337.44561,
+    9332.64022,
+    9330.49546,
+    9326.37227,
+    9323.02991,
+    9322.02612
+  ],
+  "timing_seconds": {
+    "read": 0.016639079,
+    "prepare": 0.045802184,
+    "pricing": 0.012015342,
+    "total": 0.059524353
+  },
+  "threads": 4
+}

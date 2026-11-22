@@ -1,0 +1,4 @@
+Prepared 41733120 legal port phases 24804 trails native=6747755520
+iter=0 overlap_UB=223236.0000 best_overlap_UB=223236.0000 restricted_length_LB=6747780323
+iter=1 overlap_UB=223856.0948 best_overlap_UB=223236.0000 restricted_length_LB=6747780323
+iter=2 overlap_UB=223655.6849 best_overlap_UB=223236.0000 restricted_length_LB=6747780323

@@ -6,6 +6,7 @@ CXX ?= g++
 CPPFLAGS ?=
 CXXFLAGS ?= -O3 -std=c++17
 PAINT_CXXFLAGS ?= -O3 -std=c++20
+RLLB_CXXFLAGS ?= -O3 -std=c++20 -fopenmp
 LDFLAGS ?=
 LDLIBS ?=
 BUILD_DIR := build
@@ -24,15 +25,23 @@ SEARCH_SOURCES := search/course_exchange.cpp \
     $(LIB_DIR)/boundary_transfer.cpp $(LIB_DIR)/construct.cpp
 CHECKER_NAMES := literal_check verify_standalone verify_sorted
 CHECKER_BINARIES := $(addprefix $(BUILD_DIR)/,$(addsuffix $(EXE),$(CHECKER_NAMES)))
-BINARIES := $(BUILD_DIR)/course_exchange$(EXE) $(CHECKER_BINARIES) $(BUILD_DIR)/paint-waste$(EXE) $(BUILD_DIR)/boundary_transfer$(EXE)
+BINARIES := $(BUILD_DIR)/course_exchange$(EXE) $(CHECKER_BINARIES) $(BUILD_DIR)/paint-waste$(EXE) $(BUILD_DIR)/boundary_transfer$(EXE) $(BUILD_DIR)/rllb$(EXE) $(BUILD_DIR)/rllb-ports$(EXE)
 DEPFILES := $(addsuffix .d,$(basename $(BINARIES)))
 
-.PHONY: all course_exchange checkers paint-waste boundary_transfer clean
+.PHONY: all course_exchange checkers paint-waste boundary_transfer rllb rllb-ports clean
 all: course_exchange
 course_exchange: $(BUILD_DIR)/course_exchange$(EXE)
 checkers: $(CHECKER_BINARIES)
 paint-waste: $(BUILD_DIR)/paint-waste$(EXE)
 boundary_transfer: $(BUILD_DIR)/boundary_transfer$(EXE)
+rllb: $(BUILD_DIR)/rllb$(EXE)
+rllb-ports: $(BUILD_DIR)/rllb-ports$(EXE)
+
+$(BUILD_DIR)/rllb$(EXE): search/rllb.cpp Makefile | $(BUILD_DIR)
+	"$(CXX)" $(CPPFLAGS) $(RLLB_CXXFLAGS) -MMD -MP -MF $(BUILD_DIR)/rllb.d $< $(LDFLAGS) $(LDLIBS) -o "$@"
+
+$(BUILD_DIR)/rllb-ports$(EXE): tools/rllb_ports.cpp Makefile | $(BUILD_DIR)
+	"$(CXX)" $(CPPFLAGS) $(PAINT_CXXFLAGS) -MMD -MP -MF $(BUILD_DIR)/rllb-ports.d $< $(LDFLAGS) $(LDLIBS) -o "$@"
 
 $(BUILD_DIR)/course_exchange$(EXE): $(SEARCH_SOURCES) Makefile | $(BUILD_DIR)
 	"$(CXX)" $(CPPFLAGS) $(CXXFLAGS) -MMD -MP -MF $(BUILD_DIR)/course_exchange.d $< $(LDFLAGS) $(LDLIBS) -o "$@"

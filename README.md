@@ -29,9 +29,17 @@ The original research models and evidence remain in `data/` and `docs/`. The com
 
 ## Math
 
-The new N=8 writeup is available at [`docs/n8/46173`](docs/n8/46173/46173.pdf)
+Each record has its own writeup and reproduction directory:
 
-The N=11 writeup is in [`docs/n11/improve_halfar/math/`](docs/n11/improve_halfar/math/). The N=8 boundary interaction writeup is [`docs/n8/46173/46173.tex`](docs/n8/46173/46173.tex), with its [reproduction guide](docs/n8/46173/REPRODUCE.md) alongside it.
+| Order | Length | Writeup | Reproduction |
+| --- | ---: | --- | --- |
+| 8 | 46,173 | [paper](docs/n8/46173/46173.pdf) | [guide](docs/n8/46173/REPRODUCE.md) |
+| 11 | 43,930,624 | [paper](docs/n11/improve_halfar/math/n11_improve_halfar.pdf) | [guide](docs/n11/improve_halfar/REPRODUCE.md) |
+| 11 | 43,930,529 | [paper](docs/n11/43930529/43930529.pdf) | [RLLB-first guide](docs/n11/43930529/REPRODUCE.md) |
+| 11 | 43,930,527 | [paper](docs/n11/43930527/43930527.pdf) | [RLLB-first guide](docs/n11/43930527/REPRODUCE.md) |
+| 12 | 522,736,406 | [paper](docs/n12/522736406/522736406.pdf) | [RLLB-first guide](docs/n12/522736406/REPRODUCE.md) |
+
+The N=13 [selection research](docs/n13/rllb/README.md) has its own research directory; it does not claim a record or a completed lift. Each new record directory contains LaTeX/PDF, personal notes, pinned inputs, a runner, and separate screening/replay receipts. The first computational stage runs the current C++ [`search/rllb.cpp`](search/rllb.cpp), built as `build/rllb`.
 
 In VS Code, LaTeX Workshop builds with LuaLaTeX whenever a `.tex` file is saved. The workspace sets `latex-workshop.latex.outDir` to `%DIR%`, so the PDF is written beside its root `.tex` file and can be tracked by Git. Auxiliary files stay in the ignored `.latex-build/` directory through `latex-workshop.latex.auxDir` and the MiKTeX `-aux-directory=%AUXDIR%` argument. Press **Ctrl+Alt+V** from the source to open the PDF preview, which refreshes after successful builds. Add each new PDF to Git once; later builds appear as changes to that tracked file.
 
@@ -176,6 +184,10 @@ bash SPRA/tools/spra-xz.sh decode SPRA/words/11/43930624/superpermutation-11-439
 ```
 
 The N=11 course-exchange program takes a word filename and needs extraction first.
+
+## RLLB scoring
+
+For fast restricted length-lower-bound scoring of N=11, N=12, and N=13 trail/port graphs, build `make rllb`. See the [RLLB run guide and benchmark](docs/rllb/README.md). The scorer supports the full connector-key trie and the archived N=13 grouped-price mode.
 
 ## Course exchange search
 
